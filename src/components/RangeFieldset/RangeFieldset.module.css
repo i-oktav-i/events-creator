@@ -1,0 +1,21 @@
+.RangeFieldset {
+  display: flex;
+  gap: 16px;
+  width: 200px;
+
+  &__RangeItem {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 50%;
+
+    input[type="checkbox"] {
+      width: auto;
+    }
+
+    &Title {
+      display: flex;
+      gap: 16px;
+    }
+  }
+}
