@@ -1,0 +1,11 @@
+.ActionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__ActionsChange {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}

@@ -1,5 +1,29 @@
 import { Group } from "./groups";
 
+type Dependencies = {
+  timeRange: {
+    min: number;
+    max: number;
+  };
+  events: {
+    required: string[];
+    blocking: string[];
+  };
+  actions: {
+    required: string[];
+    blocking: string[];
+  };
+  state: Partial<
+    Record<
+      Group,
+      {
+        min: number;
+        max: number;
+      }
+    >
+  >;
+};
+
 export type GameEvent = {
   id: number;
   title: string;
@@ -7,29 +31,7 @@ export type GameEvent = {
   type: "weekly" | "weekend";
   fireIfPossible: boolean;
   actions: GameEventAction[];
-  dependencies: {
-    timeRange: {
-      min: number;
-      max: number;
-    };
-    events: {
-      required: string[];
-      blocking: string[];
-    };
-    actions: {
-      required: string[];
-      blocking: string[];
-    };
-    state: Partial<
-      Record<
-        Group,
-        {
-          min: number;
-          max: number;
-        }
-      >
-    >;
-  };
+  dependencies: Dependencies;
 };
 
 export type GameEventAction = {
@@ -37,4 +39,5 @@ export type GameEventAction = {
   title: string;
   description: string;
   changes: Partial<Record<Group, number>>;
+  dependencies: Dependencies;
 };

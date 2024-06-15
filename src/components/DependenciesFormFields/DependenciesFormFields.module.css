@@ -1,0 +1,12 @@
+.DependenciesFormFields {
+  width: 100%;
+
+  &__Summary {
+    width: 100%;
+  }
+
+  &__Details {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

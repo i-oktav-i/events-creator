@@ -18,6 +18,7 @@ export const RangeFieldset: FC<RangeFieldsetProps> = ({ name, label }) => {
   return (
     <fieldset className={b()}>
       <legend>{label}</legend>
+
       <label className={b("RangeItem")}>
         <span className={b("RangeItemTitle")}>
           Старт

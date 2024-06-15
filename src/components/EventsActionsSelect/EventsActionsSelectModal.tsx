@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import { PORTAL_ID } from "../../constants";
 import { useBlockBodyScroll } from "../../hooks/useBlockBodyScroll";
 import { GameEvent } from "../../typings/event";
-
 import { bevis } from "../../utils/bevis";
+import { eventsSearch } from "../../utils/eventsSearch";
 import s from "./EventsActionsSelect.module.css";
 
 const b = bevis(s, "EventsActionsSelectModal");
@@ -27,18 +27,7 @@ export const EventsActionsSelectModal: FC<EventsActionsSelectModalProps> = ({
   );
   const [search, setSearch] = useState("");
 
-  const searchWords = search.split(" ").filter(Boolean);
-
-  const filteredEvents = events.filter(
-    (event) =>
-      searchWords.every((word) => event.title.includes(word)) ||
-      searchWords.every((word) => event.description.includes(word)) ||
-      event.actions.some(
-        (action) =>
-          searchWords.every((word) => action.title.includes(word)) ||
-          searchWords.every((word) => action.description.includes(word))
-      )
-  );
+  const filteredEvents = eventsSearch(events, search, true);
 
   const handleSelect = (id: string) => {
     setSelectedEventsActions((prev) =>

@@ -2,12 +2,21 @@
   display: flex;
   gap: 16px;
   width: 200px;
+  outline-offset: 4px;
+
+  &:focus-within {
+    outline: 1px solid #0f7ac2;
+  }
 
   &__RangeItem {
     display: flex;
     flex-direction: column;
     gap: 16px;
     width: 50%;
+
+    input {
+      width: 100%;
+    }
 
     input[type="checkbox"] {
       width: auto;

@@ -6,6 +6,7 @@ import { PORTAL_ID } from "../../constants";
 import { useBlockBodyScroll } from "../../hooks/useBlockBodyScroll";
 import { bevis } from "../../utils/bevis";
 import s from "./EventSelect.module.css";
+import { eventsSearch } from "../../utils/eventsSearch";
 
 const b = bevis(s, "EventSelectModal");
 
@@ -25,13 +26,7 @@ export const EventSelectModal: FC<EventSelectModalProps> = ({
   const [selectedEvents, setSelectedEvents] = useState(initialSelectedEvents);
   const [search, setSearch] = useState("");
 
-  const searchWords = search.split(" ").filter(Boolean);
-
-  const filteredEvents = events.filter(
-    (event) =>
-      searchWords.every((word) => event.title.includes(word)) ||
-      searchWords.every((word) => event.description.includes(word))
-  );
+  const filteredEvents = eventsSearch(events, search);
 
   const handleSelect = (id: number) => {
     setSelectedEvents((prev) =>
