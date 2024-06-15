@@ -1,0 +1,7 @@
+# Includes files with a name starting with a dot
+*
+!*
+
+build
+node_modules
+storybook-static

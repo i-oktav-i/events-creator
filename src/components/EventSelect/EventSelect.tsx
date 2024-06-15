@@ -3,10 +3,13 @@ import { FC, useState } from "react";
 import { useFormState } from "react-final-form";
 
 import _get from "lodash/get";
+
 import { GameEvent } from "../../typings/event";
-import { EventSelectModal } from "./EventSelectModal";
 
 import { bevis } from "../../utils/bevis";
+
+import { EventSelectModal } from "./EventSelectModal";
+
 import s from "./EventSelect.module.css";
 
 const b = bevis(s, "EventSelect");

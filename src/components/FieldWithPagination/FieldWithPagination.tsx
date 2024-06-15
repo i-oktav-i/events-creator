@@ -4,9 +4,11 @@ import {
   FieldArrayRenderProps,
 } from "react-final-form-arrays";
 
-import { bevis } from "../../utils/bevis";
-import s from "./FieldWithPagination.module.css";
 import { useState } from "react";
+
+import { bevis } from "../../utils/bevis";
+
+import s from "./FieldWithPagination.module.css";
 
 const b = bevis(s, "FieldWithPagination");
 

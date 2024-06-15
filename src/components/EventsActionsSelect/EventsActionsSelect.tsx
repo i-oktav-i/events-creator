@@ -1,11 +1,16 @@
 import { FC, useState } from "react";
 import _get from "lodash/get";
 
-import { bevis } from "../../utils/bevis";
-import s from "./EventsActionsSelect.module.css";
-import { GameEvent } from "../../typings/event";
 import { FormApi } from "final-form";
+
 import { useFormState } from "react-final-form";
+
+import { bevis } from "../../utils/bevis";
+
+import { GameEvent } from "../../typings/event";
+
+import s from "./EventsActionsSelect.module.css";
+
 import { EventsActionsSelectModal } from "./EventsActionsSelectModal";
 
 const b = bevis(s, "EventsActionsSelect");

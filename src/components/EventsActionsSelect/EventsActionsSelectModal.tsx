@@ -1,10 +1,12 @@
 import { FC, useState } from "react";
 import { createPortal } from "react-dom";
+
 import { PORTAL_ID } from "../../constants";
 import { useBlockBodyScroll } from "../../hooks/useBlockBodyScroll";
 import { GameEvent } from "../../typings/event";
 import { bevis } from "../../utils/bevis";
 import { eventsSearch } from "../../utils/eventsSearch";
+
 import s from "./EventsActionsSelect.module.css";
 
 const b = bevis(s, "EventsActionsSelectModal");

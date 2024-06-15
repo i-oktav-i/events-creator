@@ -1,14 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+
 import { EventForm } from "../../components/EventForm";
 import { EventsList } from "../../components/EventsList";
 import { GameEvent } from "../../typings/event";
 import { bevis } from "../../utils/bevis";
 import { combineRefs } from "../../utils/combineRefs";
-import s from "./EventCreator.module.css";
+
 import {
   getEventsFromLocalStorage,
   saveEventsToLocalStorage,
 } from "../../utils/localStorage";
+
+import s from "./EventCreator.module.css";
 
 const b = bevis(s, "EventCreator");
 
@@ -60,7 +63,7 @@ export const EventCreator = () => {
 
       value.actions = value.actions.map((action, index) => ({
         ...action,
-        id: `${value.id}-${index}`,
+        id: `${value.id}-${index}` as const,
       }));
 
       setEvents((current) => [...current, value]);

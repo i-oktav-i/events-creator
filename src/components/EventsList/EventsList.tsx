@@ -1,11 +1,15 @@
 import { FC, useEffect, useMemo, useState } from "react";
-import { GameEvent } from "../../typings/event";
 
 import _debounce from "lodash/debounce";
 
+import { GameEvent } from "../../typings/event";
+
+
 import { bevis } from "../../utils/bevis";
-import s from "./EventsList.module.css";
+
 import { eventsSearch } from "../../utils/eventsSearch";
+
+import s from "./EventsList.module.css";
 
 const b = bevis(s, "EventsList");
 

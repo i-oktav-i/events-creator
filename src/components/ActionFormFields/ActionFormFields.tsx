@@ -1,17 +1,24 @@
 import { FC } from "react";
+
+import { Field } from "react-final-form";
+
+import { FormApi } from "final-form";
+
 import {
   FieldWithPagination,
   FieldWithPaginationProps,
 } from "../FieldWithPagination";
 import { atLeastOne } from "../../utils/form";
-import { Field } from "react-final-form";
 import { InputField } from "../InputField";
 
-import s from "./ActionForm.module.css";
 import { bevis } from "../../utils/bevis";
+
 import { GameEvent, GameEventAction } from "../../typings/event";
-import { FormApi } from "final-form";
+
+
 import { DependenciesFormFields } from "../DependenciesFormFields";
+
+import s from "./ActionForm.module.css";
 
 const b = bevis(s, "ActionForm");
 

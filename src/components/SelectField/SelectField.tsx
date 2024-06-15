@@ -1,7 +1,8 @@
 import { Field } from "react-final-form";
 
-import s from "./SelectField.module.css";
 import { bevis } from "../../utils/bevis";
+
+import s from "./SelectField.module.css";
 
 const b = bevis(s, "SelectField");
 

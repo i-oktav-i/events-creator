@@ -1,8 +1,9 @@
 import { FC, useState } from "react";
 import { Field } from "react-final-form";
 
-import s from "./RangeFieldset.module.css";
 import { bevis } from "../../utils/bevis";
+
+import s from "./RangeFieldset.module.css";
 
 const b = bevis(s, "RangeFieldset");
 

@@ -2,14 +2,17 @@ import { FC } from "react";
 import { Form, FormProps } from "react-final-form";
 
 import arrayMutators from "final-form-arrays";
+
 import { GameEvent, GameEventType } from "../../typings/event";
 import { bevis } from "../../utils/bevis";
 import { ActionFormFields } from "../ActionFormFields";
 import { DependenciesFormFields } from "../DependenciesFormFields";
 import { InputField } from "../InputField";
-import s from "./styles.module.css";
+
 import { SelectField } from "../SelectField";
 import { CheckboxField } from "../CheckboxField";
+
+import s from "./styles.module.css";
 
 const b = bevis(s, "EventForm");
 
