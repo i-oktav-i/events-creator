@@ -1,7 +1,9 @@
-import { EventCreator } from "./pages/EventCreator";
+import { RouterProvider } from "react-router-dom";
+
+import { router } from "./router";
 
 function App() {
-  return <EventCreator />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
