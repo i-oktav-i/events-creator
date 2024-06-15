@@ -24,11 +24,13 @@ type Dependencies = {
   >;
 };
 
+export type GameEventType = "weekly" | "weekend";
+
 export type GameEvent = {
   id: number;
   title: string;
   description: string;
-  type: "weekly" | "weekend";
+  type: GameEventType;
   fireIfPossible: boolean;
   actions: GameEventAction[];
   dependencies: Dependencies;

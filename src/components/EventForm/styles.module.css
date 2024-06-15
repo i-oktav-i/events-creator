@@ -9,6 +9,9 @@
   &__Fields {
     overflow-y: auto;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   &__Buttons {

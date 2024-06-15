@@ -2,12 +2,14 @@ import { FC } from "react";
 import { Form, FormProps } from "react-final-form";
 
 import arrayMutators from "final-form-arrays";
-import { GameEvent } from "../../typings/event";
+import { GameEvent, GameEventType } from "../../typings/event";
 import { bevis } from "../../utils/bevis";
 import { ActionFormFields } from "../ActionFormFields";
 import { DependenciesFormFields } from "../DependenciesFormFields";
 import { InputField } from "../InputField";
 import s from "./styles.module.css";
+import { SelectField } from "../SelectField";
+import { CheckboxField } from "../CheckboxField";
 
 const b = bevis(s, "EventForm");
 
@@ -18,6 +20,19 @@ type EventFormProps = {
   onAbort: () => void;
 };
 
+const eventTypeOptions: {
+  [T in GameEventType]: { value: T; label: string };
+}[GameEventType][] = [
+  {
+    label: "Недельное",
+    value: "weekly",
+  },
+  {
+    label: "Выходное",
+    value: "weekend",
+  },
+];
+
 export const EventForm: FC<EventFormProps> = ({
   events,
   onSave,
@@ -25,7 +40,6 @@ export const EventForm: FC<EventFormProps> = ({
   initValues,
 }) => {
   const onSubmit: FormProps["onSubmit"] = (values) => {
-    console.log("save", values);
     onSave(values as GameEvent);
   };
 
@@ -38,11 +52,23 @@ export const EventForm: FC<EventFormProps> = ({
         <form onSubmit={handleSubmit} className={b()}>
           <div className={b("Fields")}>
             <InputField name="title" label="Название события" required />
+
             <InputField
               name="description"
               label="Описание события"
               asTextArea
               required
+            />
+
+            <SelectField
+              name="type"
+              label="Тип события"
+              options={eventTypeOptions}
+            />
+
+            <CheckboxField
+              label="Запустить как станет возможно"
+              name="fireIfPossible"
             />
 
             <DependenciesFormFields

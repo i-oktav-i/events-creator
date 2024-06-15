@@ -5,24 +5,17 @@ import { GameEvent } from "../../typings/event";
 import { bevis } from "../../utils/bevis";
 import { combineRefs } from "../../utils/combineRefs";
 import s from "./EventCreator.module.css";
-
-const LOCAL_STORAGE_KEY = "events";
-
-const getFromLocalStorage = (): GameEvent[] => {
-  const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-  if (data) return JSON.parse(data);
-
-  return [];
-};
-
-const saveToLocalStorage = (events: GameEvent[]) => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(events));
-};
+import {
+  getEventsFromLocalStorage,
+  saveEventsToLocalStorage,
+} from "../../utils/localStorage";
 
 const b = bevis(s, "EventCreator");
 
 export const EventCreator = () => {
-  const [events, setEvents] = useState<GameEvent[]>(getFromLocalStorage());
+  const [events, setEvents] = useState<GameEvent[]>(
+    getEventsFromLocalStorage()
+  );
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [eventCreation, setEventCreation] = useState(false);
   const popoverNodeRef = useRef<HTMLDivElement>(null);
@@ -61,7 +54,34 @@ export const EventCreator = () => {
     hidePopover();
   };
 
-  useEffect(() => saveToLocalStorage(events), [events]);
+  const onSave = (value: GameEvent) => {
+    if (eventCreation) {
+      value.id = maxEventId + 1;
+
+      value.actions = value.actions.map((action, index) => ({
+        ...action,
+        id: `${value.id}-${index}`,
+      }));
+
+      setEvents((current) => [...current, value]);
+
+      setEventCreation(false);
+    }
+
+    if (selectedEventId) {
+      setEvents((current) =>
+        current.map((event) => (event.id === selectedEventId ? value : event))
+      );
+      setSelectedEventId(null);
+    }
+  };
+
+  const onAbort = () => {
+    setEventCreation(false);
+    setSelectedEventId(null);
+  };
+
+  useEffect(() => saveEventsToLocalStorage(events), [events]);
 
   useEffect(() => {
     if (selectedEvent) return;
@@ -92,34 +112,8 @@ export const EventCreator = () => {
           key={selectedEventId}
           events={events}
           initValues={selectedEvent}
-          onSave={(value) => {
-            console.log("value", value);
-            if (eventCreation) {
-              value.id = maxEventId + 1;
-
-              value.actions = value.actions.map((action, index) => ({
-                ...action,
-                id: `${value.id}-${index}`,
-              }));
-
-              setEvents((current) => [...current, value]);
-
-              setEventCreation(false);
-            }
-
-            if (selectedEventId) {
-              setEvents((current) =>
-                current.map((event) =>
-                  event.id === selectedEventId ? value : event
-                )
-              );
-              setSelectedEventId(null);
-            }
-          }}
-          onAbort={() => {
-            setEventCreation(false);
-            setSelectedEventId(null);
-          }}
+          onSave={onSave}
+          onAbort={onAbort}
         />
       ) : null}
 
