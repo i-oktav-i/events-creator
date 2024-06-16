@@ -26,7 +26,7 @@ export const SelectField = <T extends string | number>({
     <label className={b()}>
       {label}
 
-      <Field<T> name={name} component="select">
+      <Field<T> name={name} component="select" defaultValue={options[0]?.value}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

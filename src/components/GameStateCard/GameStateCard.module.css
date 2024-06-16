@@ -1,0 +1,10 @@
+.GameStateCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__Item {
+    display: flex;
+    gap: 16px;
+  }
+}

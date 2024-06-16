@@ -1,21 +1,20 @@
 import { Group } from "./groups";
 
-type Dependencies = {
-  timeRange: {
-    min: number;
-    max: number;
+export type GameEventId = number & {};
+export type GameEventActionId = `${number}-${number}` & {};
+
+export type Dependencies = {
+  events?: {
+    required?: GameEventId[];
+    blocking?: GameEventId[];
   };
-  events: {
-    required: string[];
-    blocking: string[];
+  actions?: {
+    required?: GameEventActionId[];
+    blocking?: GameEventActionId[];
   };
-  actions: {
-    required: string[];
-    blocking: string[];
-  };
-  state: Partial<
+  state?: Partial<
     Record<
-      Group,
+      Group | "week",
       {
         min: number;
         max: number;
@@ -27,17 +26,17 @@ type Dependencies = {
 export type GameEventType = "weekly" | "weekend";
 
 export type GameEvent = {
-  id: number;
+  id: GameEventId;
   title: string;
   description: string;
   type: GameEventType;
   fireIfPossible: boolean;
   actions: GameEventAction[];
-  dependencies: Dependencies;
+  dependencies?: Dependencies;
 };
 
 export type GameEventAction = {
-  id: `${number}-${number}`;
+  id: GameEventActionId;
   title: string;
   description: string;
   changes: Partial<Record<Group, number>>;

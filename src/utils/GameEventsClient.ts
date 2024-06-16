@@ -13,6 +13,7 @@ class GameEventsClient {
 
   set events(value) {
     this.#events = value;
+    console.log("save value", value);
     this.saveEventsToLocalStorage(value);
     this.#callbacks.forEach((callback) => callback(value));
   }

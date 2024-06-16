@@ -4,7 +4,6 @@ import _debounce from "lodash/debounce";
 
 import { GameEvent } from "../../typings/event";
 
-
 import { bevis } from "../../utils/bevis";
 
 import { eventsSearch } from "../../utils/eventsSearch";
@@ -55,7 +54,6 @@ export const EventsList: FC<EventsListProps> = ({
         {filteredEvents.map((gameEvent) => (
           <button
             key={gameEvent.id}
-            className={b("Event")}
             onClick={() => onEventClick(gameEvent)}
             onContextMenu={(event) => {
               event.preventDefault();
