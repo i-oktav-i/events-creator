@@ -6,19 +6,15 @@ import { GameEvent } from "../../typings/event";
 import { bevis } from "../../utils/bevis";
 import { combineRefs } from "../../utils/combineRefs";
 
-import {
-  getEventsFromLocalStorage,
-  saveEventsToLocalStorage,
-} from "../../utils/localStorage";
+import { gameEventsClient } from "../../utils/GameEventsClient";
 
 import s from "./EventCreator.module.css";
 
 const b = bevis(s, "EventCreator");
 
 export const EventCreator = () => {
-  const [events, setEvents] = useState<GameEvent[]>(
-    getEventsFromLocalStorage()
-  );
+  const [events, setEvents] = useState<GameEvent[]>(gameEventsClient.events);
+
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [eventCreation, setEventCreation] = useState(false);
   const popoverNodeRef = useRef<HTMLDivElement>(null);
@@ -51,9 +47,10 @@ export const EventCreator = () => {
   };
 
   const deleteSelectedEvent = () => {
-    setEvents((current) =>
-      current.filter((event) => event.id !== popoverInvokerIdRef.current)
+    gameEventsClient.events = gameEventsClient.events.filter(
+      (event) => event.id !== popoverInvokerIdRef.current
     );
+
     hidePopover();
   };
 
@@ -66,15 +63,16 @@ export const EventCreator = () => {
         id: `${value.id}-${index}` as const,
       }));
 
-      setEvents((current) => [...current, value]);
+      gameEventsClient.events = [...gameEventsClient.events, value];
 
       setEventCreation(false);
     }
 
     if (selectedEventId) {
-      setEvents((current) =>
-        current.map((event) => (event.id === selectedEventId ? value : event))
+      gameEventsClient.events = gameEventsClient.events.map((event) =>
+        event.id === selectedEventId ? value : event
       );
+
       setSelectedEventId(null);
     }
   };
@@ -84,13 +82,15 @@ export const EventCreator = () => {
     setSelectedEventId(null);
   };
 
-  useEffect(() => saveEventsToLocalStorage(events), [events]);
-
   useEffect(() => {
     if (selectedEvent) return;
 
     setSelectedEventId(null);
   }, [selectedEvent]);
+
+  useEffect(() => {
+    return gameEventsClient.subscribe(setEvents);
+  }, []);
 
   return (
     <div className={b()}>
@@ -121,12 +121,28 @@ export const EventCreator = () => {
       ) : null}
 
       {!eventCreation && !selectedEvent ? (
-        <button
-          className={b("CreateButton")}
-          onClick={() => setEventCreation(true)}
-        >
-          Создать
-        </button>
+        <div className={b("Actions")}>
+          <button
+            className={b("ActionButton")}
+            onClick={() => setEventCreation(true)}
+          >
+            Создать
+          </button>
+
+          <button
+            className={b("ActionButton")}
+            onClick={gameEventsClient.exportEvents}
+          >
+            Сохранить
+          </button>
+
+          <button
+            className={b("ActionButton")}
+            onClick={gameEventsClient.importEvents}
+          >
+            Загрузить
+          </button>
+        </div>
       ) : null}
     </div>
   );

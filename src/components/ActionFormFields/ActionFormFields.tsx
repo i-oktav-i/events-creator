@@ -1,22 +1,21 @@
 import { FC } from "react";
 
-import { Field } from "react-final-form";
-
 import { FormApi } from "final-form";
 
+import { atLeastOne } from "../../utils/form";
 import {
   FieldWithPagination,
   FieldWithPaginationProps,
 } from "../FieldWithPagination";
-import { atLeastOne } from "../../utils/form";
 import { InputField } from "../InputField";
 
 import { bevis } from "../../utils/bevis";
 
 import { GameEvent, GameEventAction } from "../../typings/event";
 
-
 import { DependenciesFormFields } from "../DependenciesFormFields";
+
+import { NumberInput } from "../NumberInput";
 
 import s from "./ActionForm.module.css";
 
@@ -69,27 +68,9 @@ export const ActionFormFields: FC<ActionFormFieldsProps> = ({
           <fieldset className={b("ActionsChange")}>
             <legend>Изменения</legend>
 
-            <label>
-              Группа 1
-              <Field
-                key={field}
-                name={`${field}.changes.group1`}
-                component="input"
-                type="number"
-                defaultValue={0}
-              />
-            </label>
+            <NumberInput label="Группа 1" name={`${field}.changes.group1`} />
 
-            <label>
-              Группа 2
-              <Field
-                key={field}
-                name={`${field}.changes.group2`}
-                component="input"
-                type="number"
-                defaultValue={0}
-              />
-            </label>
+            <NumberInput label="Группа 2" name={`${field}.changes.group2`} />
           </fieldset>
 
           <DependenciesFormFields

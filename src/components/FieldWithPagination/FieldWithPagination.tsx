@@ -58,6 +58,7 @@ export const FieldWithPagination = <T,>({
 
           <div className={b("Pagination")}>
             <button
+              type="button"
               className={b("ItemAddButton")}
               onClick={() => {
                 fields.push(undefined as T);

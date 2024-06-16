@@ -1,13 +1,25 @@
 import { FormApi } from "final-form";
 import { FC } from "react";
-import { GameEvent } from "../../typings/event";
+
+import { Dependencies, GameEvent } from "../../typings/event";
 import { bevis } from "../../utils/bevis";
 import { EventSelect } from "../EventSelect";
 import { EventsActionsSelect } from "../EventsActionsSelect";
 import { RangeFieldset } from "../RangeFieldset";
+
 import s from "./DependenciesFormFields.module.css";
 
 const b = bevis(s, "DependenciesFormFields");
+
+type StateKeys = keyof Required<Required<Dependencies>["state"]>;
+
+const stateFieldsOrder: {
+  [K in StateKeys]: { name: K; label: string };
+}[StateKeys][] = [
+  { name: "week", label: "Временной диапазон" },
+  { name: "group1", label: "Влияние группы 1" },
+  { name: "group2", label: "Влияние группы 2" },
+];
 
 export type DependenciesFormFieldsProps = {
   events: GameEvent[];
@@ -27,20 +39,13 @@ export const DependenciesFormFields: FC<DependenciesFormFieldsProps> = ({
       <summary className={b("summary")}>
         <details>
           <div className={b("details")}>
-            <RangeFieldset
-              name={`${name}.timeRange`}
-              label="Временной диапазон"
-            />
-
-            <RangeFieldset
-              name={`${name}.state.group1`}
-              label="Влияние группы 1"
-            />
-
-            <RangeFieldset
-              name={`${name}.state.group2`}
-              label="Влияние группы 2"
-            />
+            {stateFieldsOrder.map(({ name: fieldName, label }) => (
+              <RangeFieldset
+                key={fieldName}
+                name={`${name}.state.${fieldName}`}
+                label={label}
+              />
+            ))}
 
             <EventSelect
               events={events}

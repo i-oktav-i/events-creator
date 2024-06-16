@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
-import { Field } from "react-final-form";
 
 import { bevis } from "../../utils/bevis";
+
+import { NumberInput } from "../NumberInput";
 
 import s from "./RangeFieldset.module.css";
 
@@ -30,9 +31,7 @@ export const RangeFieldset: FC<RangeFieldsetProps> = ({ name, label }) => {
           />
         </span>
 
-        {withStart ? (
-          <Field name={`${name}.min`} component="input" type="number" />
-        ) : null}
+        {withStart ? <NumberInput label="" name={`${name}.min`} /> : null}
       </label>
 
       <label className={b("RangeItem")}>
@@ -45,9 +44,7 @@ export const RangeFieldset: FC<RangeFieldsetProps> = ({ name, label }) => {
           />
         </span>
 
-        {withEnd ? (
-          <Field name={`${name}.max`} component="input" type="number" />
-        ) : null}
+        {withEnd ? <NumberInput label="" name={`${name}.max`} /> : null}
       </label>
     </fieldset>
   );
