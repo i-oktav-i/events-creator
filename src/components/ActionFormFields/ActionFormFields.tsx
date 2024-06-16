@@ -55,7 +55,7 @@ export const ActionFormFields: FC<ActionFormFieldsProps> = ({
       label="Действия"
       validate={atLeastOne}
       getErrorText={getErrorText}
-      renderItem={(field, index, onRemove) => (
+      renderItem={(field, _index, onRemove) => (
         <div className={b()}>
           <InputField name={`${field}.title`} label="Название действия" />
 
