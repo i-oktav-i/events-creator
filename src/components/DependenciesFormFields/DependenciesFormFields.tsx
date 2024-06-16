@@ -44,6 +44,7 @@ export const DependenciesFormFields: FC<DependenciesFormFieldsProps> = ({
                 key={fieldName}
                 name={`${name}.state.${fieldName}`}
                 label={label}
+                form={form}
               />
             ))}
 
