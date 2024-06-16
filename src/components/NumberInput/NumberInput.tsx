@@ -16,8 +16,10 @@ export const NumberInput: FC<NumberInputProps> = ({ name, label }) => {
         component="input"
         type="number"
         defaultValue={0}
-        format={(value) => `${value}`}
-        parse={(value) => parseInt(value, 10)}
+        format={(value: number | undefined) =>
+          value === undefined ? "" : `${value}`
+        }
+        parse={(value) => (!value ? undefined : parseInt(value, 10))}
       />
     </label>
   );
