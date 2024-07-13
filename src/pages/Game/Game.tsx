@@ -61,6 +61,7 @@ export const Game: FC = () => {
       ],
     }));
     setCurrentEvents(newEvents);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events, gameState.isWeekend]);
 
   useEffect(() => gameEventsClient.subscribe(setEvents), []);

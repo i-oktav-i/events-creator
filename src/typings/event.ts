@@ -1,6 +1,8 @@
 import { Group } from "./groups";
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type GameEventId = number & {};
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type GameEventActionId = `${number}-${number}` & {};
 
 export type Dependencies = {

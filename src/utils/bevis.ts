@@ -18,7 +18,6 @@ export const bevis = (styles: Record<string, string>, blockName: string) => {
       if (typeof elementOrState === "string") {
         className += `__${capitalize(elementOrState)}`;
       } else {
-        // eslint-disable-next-line no-param-reassign
         state = elementOrState;
       }
     }
