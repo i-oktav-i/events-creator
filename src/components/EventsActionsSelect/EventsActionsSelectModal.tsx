@@ -4,12 +4,9 @@ import { createPortal } from "react-dom";
 import { PORTAL_ID } from "../../constants";
 import { useBlockBodyScroll } from "../../hooks/useBlockBodyScroll";
 import { GameEvent } from "../../typings/event";
-import { bevis } from "../../utils/bevis";
 import { eventsSearch } from "../../utils/eventsSearch";
 
-import s from "./EventsActionsSelect.module.css";
-
-const b = bevis(s, "EventsActionsSelectModal");
+import * as s from "./EventsActionsSelect.css";
 
 export type EventsActionsSelectModalProps = {
   events: GameEvent[];
@@ -42,8 +39,8 @@ export const EventsActionsSelectModal: FC<EventsActionsSelectModalProps> = ({
   useBlockBodyScroll(true);
 
   const modalNode = (
-    <div className={b("Container")}>
-      <div className={b()}>
+    <div className={s.eventsActionsSelectModalContainer}>
+      <div className={s.eventsActionsSelectModal}>
         <input
           type="text"
           value={search}
@@ -51,17 +48,17 @@ export const EventsActionsSelectModal: FC<EventsActionsSelectModalProps> = ({
           placeholder="Поиск"
         />
 
-        <div className={b("Events")}>
+        <div className={s.eventsActionsSelectModalEvents}>
           {filteredEvents.map((event) => (
-            <div key={event.id} className={b("Event")}>
+            <div key={event.id} className={s.eventsActionsSelectModalEvent}>
               <h3>{event.title}</h3>
               <p>{event.description}</p>
 
-              <div className={b("Actions")}>
+              <div className={s.eventsActionsSelectModalActions}>
                 {event.actions.map((action) => (
                   <div
                     key={action.id}
-                    className={b("Action", {
+                    className={s.eventsActionsSelectModalAction({
                       selected: selectedEventsActions.includes(action.id),
                     })}
                     onClick={() => handleSelect(action.id)}
@@ -75,7 +72,7 @@ export const EventsActionsSelectModal: FC<EventsActionsSelectModalProps> = ({
           ))}
         </div>
 
-        <div className={b("Actions")}>
+        <div>
           <button onClick={onClose}>Закрыть</button>
 
           <button onClick={() => onSelect(selectedEventsActions)}>

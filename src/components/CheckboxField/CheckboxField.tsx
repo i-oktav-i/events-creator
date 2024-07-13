@@ -2,11 +2,7 @@ import { Field } from "react-final-form";
 
 import { FC } from "react";
 
-import { bevis } from "../../utils/bevis";
-
-import s from "./CheckboxField.module.css";
-
-const b = bevis(s, "CheckboxField");
+import * as s from "./CheckboxField.css";
 
 export type CheckboxFieldProps = {
   name: string;
@@ -15,7 +11,7 @@ export type CheckboxFieldProps = {
 
 export const CheckboxField: FC<CheckboxFieldProps> = ({ name, label }) => {
   return (
-    <label className={b()}>
+    <label className={s.checkboxField}>
       {label}
 
       <Field<boolean> name={name} component="input" type="checkbox" />

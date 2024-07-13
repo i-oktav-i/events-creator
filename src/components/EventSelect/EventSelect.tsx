@@ -6,13 +6,9 @@ import _get from "lodash/get";
 
 import { GameEvent } from "../../typings/event";
 
-import { bevis } from "../../utils/bevis";
-
 import { EventSelectModal } from "./EventSelectModal";
 
-import s from "./EventSelect.module.css";
-
-const b = bevis(s, "EventSelect");
+import * as s from "./EventSelect.css";
 
 export type EventSelectProps = {
   name: string;
@@ -40,12 +36,12 @@ export const EventSelect: FC<EventSelectProps> = ({
   };
 
   return (
-    <fieldset className={b()}>
+    <fieldset className={s.eventSelect}>
       <legend>{label}</legend>
 
-      <div className={b("SelectedContainer")}>
+      <div className={s.eventSelectSelectedContainer}>
         {selected.map((id) => (
-          <span key={id} className={b("SelectedItem")}>
+          <span key={id} className={s.eventSelectSelectedItem}>
             <span>{events.find((event) => event.id === id)?.title}</span>
             <button type="button" onClick={() => onRemove(id)}>
               X
@@ -54,11 +50,7 @@ export const EventSelect: FC<EventSelectProps> = ({
         ))}
       </div>
 
-      <button
-        type="button"
-        onClick={() => setIsModalOpen(true)}
-        className={b("OpenModal")}
-      >
+      <button type="button" onClick={() => setIsModalOpen(true)}>
         Добавить
       </button>
 

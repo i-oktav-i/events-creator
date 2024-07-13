@@ -3,11 +3,7 @@ import { Field } from "react-final-form";
 
 import { required as requiredValidator } from "../../utils/form";
 
-import { bevis } from "../../utils/bevis";
-
-import s from "./InputField.module.css";
-
-const b = bevis(s, "InputField");
+import * as s from "./InputField.css";
 
 export type InputFieldProps = {
   name: string;
@@ -32,12 +28,12 @@ export const InputField: FC<InputFieldProps> = ({
       validate={required ? requiredValidator : undefined}
     >
       {({ input, meta }) => (
-        <label className={b({ error: meta.error && meta.touched })}>
-          <span className={b("title")}>
+        <label className={s.inputField({ error: meta.error && meta.touched })}>
+          <span className={s.inputFieldTitle}>
             {label}
 
             {meta.error && meta.touched && (
-              <span className={b("error")}>{meta.error}</span>
+              <span className={s.inputFieldError}>{meta.error}</span>
             )}
           </span>
 

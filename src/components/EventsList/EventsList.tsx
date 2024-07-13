@@ -4,13 +4,9 @@ import _debounce from "lodash/debounce";
 
 import { GameEvent } from "../../typings/event";
 
-import { bevis } from "../../utils/bevis";
-
 import { eventsSearch } from "../../utils/eventsSearch";
 
-import s from "./EventsList.module.css";
-
-const b = bevis(s, "EventsList");
+import * as s from "./EventsList.css";
 
 export type EventsListProps = {
   events: GameEvent[];
@@ -41,16 +37,16 @@ export const EventsList: FC<EventsListProps> = ({
   useEffect(() => filterEvents(events, search), [search, filterEvents, events]);
 
   return (
-    <div className={b()}>
+    <div className={s.eventsList}>
       <input
-        className={b("Search")}
+        className={s.eventsListSearch}
         placeholder="Search"
         type="search"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
 
-      <div className={b("Scroll")}>
+      <div className={s.eventsListScroll}>
         {filteredEvents.map((gameEvent) => (
           <button
             key={gameEvent.id}

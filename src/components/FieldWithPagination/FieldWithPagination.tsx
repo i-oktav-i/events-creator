@@ -6,11 +6,7 @@ import {
 
 import { useState } from "react";
 
-import { bevis } from "../../utils/bevis";
-
-import s from "./FieldWithPagination.module.css";
-
-const b = bevis(s, "FieldWithPagination");
+import * as s from "./FieldWithPagination.css";
 
 export type FieldWithPaginationProps<T> = {
   name: string;
@@ -38,13 +34,15 @@ export const FieldWithPagination = <T,>({
   return (
     <FieldArray<T> name={name} validate={validate}>
       {({ fields, meta }) => (
-        <fieldset className={b()}>
+        <fieldset className={s.fieldWithPagination}>
           <legend>{label}</legend>
 
           {fields.map((name, index) => (
             <fieldset
               key={name}
-              className={b("Item", { active: index === visibleItem })}
+              className={s.fieldWithPaginationItem({
+                active: index === visibleItem,
+              })}
             >
               {renderItem(name, index, () => {
                 fields.remove(index);
@@ -56,10 +54,10 @@ export const FieldWithPagination = <T,>({
             </fieldset>
           ))}
 
-          <div className={b("Pagination")}>
+          <div>
             <button
               type="button"
-              className={b("ItemAddButton")}
+              className={s.fieldWithPaginationItemAddButton}
               onClick={() => {
                 fields.push(undefined as T);
                 setVisibleItem(fields.length ?? 0);
@@ -73,7 +71,7 @@ export const FieldWithPagination = <T,>({
                 type="button"
                 key={name}
                 onClick={() => setVisibleItem(index)}
-                className={b("ItemSelectButton", {
+                className={s.fieldWithPaginationItemSelectButton({
                   active: index === visibleItem,
                 })}
               >
@@ -83,7 +81,9 @@ export const FieldWithPagination = <T,>({
           </div>
 
           {getErrorText ? (
-            <span className={b("Error")}>{getErrorText(meta)}</span>
+            <span className={s.FieldWithPaginationError}>
+              {getErrorText(meta)}
+            </span>
           ) : null}
         </fieldset>
       )}

@@ -4,7 +4,6 @@ import { Form, FormProps } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 
 import { GameEvent, GameEventType } from "../../typings/event";
-import { bevis } from "../../utils/bevis";
 import { ActionFormFields } from "../ActionFormFields";
 import { DependenciesFormFields } from "../DependenciesFormFields";
 import { InputField } from "../InputField";
@@ -12,9 +11,7 @@ import { InputField } from "../InputField";
 import { SelectField } from "../SelectField";
 import { CheckboxField } from "../CheckboxField";
 
-import s from "./styles.module.css";
-
-const b = bevis(s, "EventForm");
+import * as s from "./EventForm.css";
 
 type EventFormProps = {
   events: GameEvent[];
@@ -52,8 +49,8 @@ export const EventForm: FC<EventFormProps> = ({
       initialValues={initValues}
       mutators={{ ...arrayMutators }}
       render={({ handleSubmit, form }) => (
-        <form onSubmit={handleSubmit} className={b()}>
-          <div className={b("Fields")}>
+        <form onSubmit={handleSubmit} className={s.eventForm}>
+          <div className={s.eventFormFields}>
             <InputField name="title" label="Название события" required />
 
             <InputField
@@ -83,7 +80,7 @@ export const EventForm: FC<EventFormProps> = ({
             <ActionFormFields name="actions" events={events} form={form} />
           </div>
 
-          <div className={b("Buttons")}>
+          <div className={s.eventFormButtons}>
             <button type="submit">Сохранить</button>
 
             <button type="button" onClick={form.reset}>

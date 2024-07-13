@@ -2,14 +2,11 @@ import { FormApi } from "final-form";
 import { FC } from "react";
 
 import { Dependencies, GameEvent } from "../../typings/event";
-import { bevis } from "../../utils/bevis";
 import { EventSelect } from "../EventSelect";
 import { EventsActionsSelect } from "../EventsActionsSelect";
 import { RangeFieldset } from "../RangeFieldset";
 
-import s from "./DependenciesFormFields.module.css";
-
-const b = bevis(s, "DependenciesFormFields");
+import * as s from "./DependenciesFormFields.css";
 
 type StateKeys = keyof Required<Required<Dependencies>["state"]>;
 
@@ -33,12 +30,12 @@ export const DependenciesFormFields: FC<DependenciesFormFieldsProps> = ({
   form,
 }) => {
   return (
-    <fieldset className={b()}>
+    <fieldset className={s.dependenciesFormFields}>
       <legend>Зависимости</legend>
 
-      <summary className={b("summary")}>
+      <summary className={s.dependenciesFormFieldsSummary}>
         <details>
-          <div className={b("details")}>
+          <div className={s.dependenciesFormFieldsDetails}>
             {stateFieldsOrder.map(({ name: fieldName, label }) => (
               <RangeFieldset
                 key={fieldName}

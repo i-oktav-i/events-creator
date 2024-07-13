@@ -1,26 +1,32 @@
+import cn from "classnames";
 import { FC } from "react";
 
 import { Link, Outlet } from "react-router-dom";
 
-import { bevis } from "../../utils/bevis";
+import { ThemeModeSelector } from "../ThemeModeSelector";
 
-import s from "./Layout.module.css";
-
-const b = bevis(s, "Layout");
+import * as s from "./Layout.css";
+import { useAppThemeClass } from "./useAppThemeClass";
 
 export const Layout: FC = () => {
+  const themeClassName = useAppThemeClass();
+
   return (
-    <div className={b()}>
-      <header className={b("header")}>
-        <nav className={b("navigation")}>
+    <div className={cn(s.layout, themeClassName)}>
+      <header className={s.header}>
+        <nav className={s.navigation}>
           <Link to="/">Создание событий</Link>
           <Link to="/game/">Игра</Link>
         </nav>
+
+        <ThemeModeSelector />
       </header>
 
-      <main className={b("main")}>
+      <main className={s.main}>
         <Outlet />
       </main>
+
+      <div id="portal"></div>
     </div>
   );
 };

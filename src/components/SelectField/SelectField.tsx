@@ -1,10 +1,6 @@
 import { Field } from "react-final-form";
 
-import { bevis } from "../../utils/bevis";
-
-import s from "./SelectField.module.css";
-
-const b = bevis(s, "SelectField");
+import * as s from "./SelectField.css";
 
 export type SelectFieldProps<T extends string | number> = {
   name: string;
@@ -23,7 +19,7 @@ export const SelectField = <T extends string | number>({
   if (!options.length) return null;
 
   return (
-    <label className={b()}>
+    <label className={s.label}>
       {label}
 
       <Field<T> name={name} component="select" defaultValue={options[0]?.value}>

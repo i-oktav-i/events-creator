@@ -6,13 +6,10 @@ import { GameEvent } from "../../typings/event";
 
 import { PORTAL_ID } from "../../constants";
 import { useBlockBodyScroll } from "../../hooks/useBlockBodyScroll";
-import { bevis } from "../../utils/bevis";
 
 import { eventsSearch } from "../../utils/eventsSearch";
 
-import s from "./EventSelect.module.css";
-
-const b = bevis(s, "EventSelectModal");
+import * as s from "./EventSelect.css";
 
 export type EventSelectModalProps = {
   events: GameEvent[];
@@ -43,19 +40,19 @@ export const EventSelectModal: FC<EventSelectModalProps> = ({
   useBlockBodyScroll(true);
 
   const modalNode = (
-    <div className={b("Container")}>
-      <div className={b()}>
+    <div className={s.eventSelectModalContainer}>
+      <div className={s.eventSelectModal}>
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Поиск"
         />
-        <div className={b("Events")}>
+        <div className={s.eventSelectModalEvents}>
           {filteredEvents.map((event) => (
             <div
               key={event.id}
-              className={b("Event", {
+              className={s.eventSelectModalEvent({
                 selected: selectedEvents.includes(event.id),
               })}
               onClick={() => handleSelect(event.id)}
@@ -65,7 +62,7 @@ export const EventSelectModal: FC<EventSelectModalProps> = ({
             </div>
           ))}
         </div>
-        <div className={b("Actions")}>
+        <div>
           <button onClick={onClose}>Закрыть</button>
           <button onClick={() => onSelect(selectedEvents)}>Выбрать</button>
         </div>

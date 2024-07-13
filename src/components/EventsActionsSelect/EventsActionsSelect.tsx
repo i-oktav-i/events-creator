@@ -5,15 +5,11 @@ import { FormApi } from "final-form";
 
 import { useFormState } from "react-final-form";
 
-import { bevis } from "../../utils/bevis";
-
 import { GameEvent } from "../../typings/event";
 
-import s from "./EventsActionsSelect.module.css";
+import * as s from "./EventsActionsSelect.css";
 
 import { EventsActionsSelectModal } from "./EventsActionsSelectModal";
-
-const b = bevis(s, "EventsActionsSelect");
 
 export type EventsActionsSelectProps = {
   name: string;
@@ -46,19 +42,22 @@ export const EventsActionsSelect: FC<EventsActionsSelectProps> = ({
   );
 
   return (
-    <fieldset className={b()}>
+    <fieldset className={s.eventsActionsSelect}>
       <legend>{label}</legend>
 
-      <div className={b("SelectedContainer")}>
+      <div className={s.eventsActionsSelectSelectedContainer}>
         {actionsEvents.map((event) => (
-          <span key={event.id} className={b("SelectedItem")}>
+          <span key={event.id} className={s.eventsActionsSelectSelectedItem}>
             <span>{event.title}</span>
             <p>{event.description}</p>
 
             {event.actions.map(
               (action) =>
                 selected.includes(action.id) && (
-                  <span key={action.id} className={b("SelectedItemActions")}>
+                  <span
+                    key={action.id}
+                    className={s.eventsActionsSelectSelectedItemActions}
+                  >
                     <span>{action.title}</span>
                     <button type="button" onClick={() => onRemove(action.id)}>
                       X
@@ -70,11 +69,7 @@ export const EventsActionsSelect: FC<EventsActionsSelectProps> = ({
         ))}
       </div>
 
-      <button
-        type="button"
-        onClick={() => setIsModalOpen(true)}
-        className={b("OpenModal")}
-      >
+      <button type="button" onClick={() => setIsModalOpen(true)}>
         Добавить
       </button>
 

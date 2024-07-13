@@ -2,12 +2,9 @@ import { FC } from "react";
 
 import { GameState } from "../../typings/state";
 
-import { bevis } from "../../utils/bevis";
 import { Group } from "../../typings/groups";
 
-import s from "./GameStateCard.module.css";
-
-const b = bevis(s, "GameStateCard");
+import * as s from "./GameStateCard.css";
 
 export type GameStateCardProps = {
   state: GameState;
@@ -25,13 +22,15 @@ const statePartsOrder: {
 
 export const GameStateCard: FC<GameStateCardProps> = ({ state }) => {
   return (
-    <div className={b()}>
+    <div className={s.gameStateCard}>
       {statePartsOrder.map(({ key, label }) => (
-        <span key={key} className={b("Item")}>
-          <span className={b("ItemTitle")}>{label}:</span>
-          <span className={b("ItemValue")}>{state[key]}</span>
+        <span key={key} className={s.gameStateCardItem}>
+          <span>{label}:</span>
+
+          <span>{state[key]}</span>
         </span>
       ))}
+
       <span>Сейчас {state.isWeekend ? "выходные" : "будни"}</span>
     </div>
   );

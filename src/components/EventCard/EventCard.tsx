@@ -1,11 +1,8 @@
 import { FC } from "react";
 
 import { GameEvent, GameEventAction } from "../../typings/event";
-import { bevis } from "../../utils/bevis";
 
-import s from "./EventCard.module.css";
-
-const b = bevis(s, "EventCard");
+import * as s from "./EventCard.css";
 
 export type EventCardProps = {
   event: GameEvent;
@@ -14,16 +11,16 @@ export type EventCardProps = {
 
 export const EventCard: FC<EventCardProps> = ({ event, onActionSelect }) => {
   return (
-    <div className={b()}>
+    <div className={s.eventCard}>
       <h2>{event.title}</h2>
 
       <p>{event.description}</p>
 
-      <div className={b("Actions")}>
+      <div className={s.eventCardActions}>
         {event.actions.map((action) => (
           <button
             key={action.id}
-            className={b("Action")}
+            className={s.eventCardAction}
             onClick={() => onActionSelect(action)}
           >
             <span>{action.title}</span>

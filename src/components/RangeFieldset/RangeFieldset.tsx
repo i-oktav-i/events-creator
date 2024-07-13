@@ -1,12 +1,8 @@
 import { FC } from "react";
 
-import { bevis } from "../../utils/bevis";
-
 import { NumberInput } from "../NumberInput";
 
-import s from "./RangeFieldset.module.css";
-
-const b = bevis(s, "RangeFieldset");
+import * as s from "./RangeFieldset.css";
 
 export type RangeFieldsetProps = {
   name: string;
@@ -18,17 +14,17 @@ export const RangeFieldset: FC<RangeFieldsetProps> = ({ name, label }) => {
   const endName = `${name}.max`;
 
   return (
-    <fieldset className={b()}>
+    <fieldset className={s.rangeFieldset}>
       <legend>{label}</legend>
 
-      <label className={b("RangeItem")}>
-        <span className={b("RangeItemTitle")}>Старт</span>
+      <label className={s.rangeFieldsetItem}>
+        <span className={s.rangeFieldsetItemTitle}>Старт</span>
 
         <NumberInput label="" name={startName} />
       </label>
 
-      <label className={b("RangeItem")}>
-        <span className={b("RangeItemTitle")}>Конец</span>
+      <label className={s.rangeFieldsetItem}>
+        <span className={s.rangeFieldsetItemTitle}>Конец</span>
 
         <NumberInput label="" name={endName} />
       </label>

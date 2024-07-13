@@ -9,17 +9,13 @@ import {
 } from "../FieldWithPagination";
 import { InputField } from "../InputField";
 
-import { bevis } from "../../utils/bevis";
-
 import { GameEvent, GameEventAction } from "../../typings/event";
 
 import { DependenciesFormFields } from "../DependenciesFormFields";
 
 import { NumberInput } from "../NumberInput";
 
-import s from "./ActionForm.module.css";
-
-const b = bevis(s, "ActionForm");
+import * as s from "./ActionForm.css";
 
 export type ActionFormFieldsProps = {
   name: string;
@@ -56,7 +52,7 @@ export const ActionFormFields: FC<ActionFormFieldsProps> = ({
       validate={atLeastOne}
       getErrorText={getErrorText}
       renderItem={(field, _index, onRemove) => (
-        <div className={b()}>
+        <div className={s.actionForm}>
           <InputField name={`${field}.title`} label="Название действия" />
 
           <InputField
@@ -65,7 +61,7 @@ export const ActionFormFields: FC<ActionFormFieldsProps> = ({
             asTextArea
           />
 
-          <fieldset className={b("ActionsChange")}>
+          <fieldset className={s.actionFormActionsChange}>
             <legend>Изменения</legend>
 
             <NumberInput label="Группа 1" name={`${field}.changes.group1`} />
