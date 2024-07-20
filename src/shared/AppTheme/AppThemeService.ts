@@ -1,9 +1,9 @@
-import { AppTheme, AppThemeMode } from "./types";
+import { AppTheme, AppThemeMode } from './types';
 
 type ThemeModeCallbacks = (themeMode: AppThemeMode) => void;
 type ThemeCallbacks = (theme: AppTheme) => void;
 
-const lightThemeMedia = matchMedia("(prefers-color-scheme: light)");
+const lightThemeMedia = matchMedia('(prefers-color-scheme: light)');
 
 class AppThemeService {
   #currentThemeMode!: AppThemeMode;
@@ -42,7 +42,7 @@ class AppThemeService {
 
     this.updateCurrentTheme();
 
-    lightThemeMedia.addEventListener("change", this.updateCurrentTheme);
+    lightThemeMedia.addEventListener('change', this.updateCurrentTheme);
   }
 
   updateCurrentTheme = () => {
@@ -59,10 +59,7 @@ class AppThemeService {
   };
 
   readThemeModeFromStorage = () => {
-    return (
-      (localStorage.getItem(this.storageKey) as AppThemeMode) ??
-      AppThemeMode.AUTO
-    );
+    return (localStorage.getItem(this.storageKey) as AppThemeMode) ?? AppThemeMode.AUTO;
   };
 
   wrightThemeModeToStorage = (value: AppThemeMode) => {
@@ -90,6 +87,6 @@ class AppThemeService {
   };
 }
 
-export const appThemeService = new AppThemeService("theme_mode");
+export const appThemeService = new AppThemeService('theme_mode');
 
-console.log("appThemeService", appThemeService);
+console.log('appThemeService', appThemeService);

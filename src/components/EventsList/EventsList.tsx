@@ -1,12 +1,12 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from 'react';
 
-import _debounce from "lodash/debounce";
+import _debounce from 'lodash/debounce';
 
-import { GameEvent } from "../../typings/event";
+import { GameEvent } from '../../typings/event';
 
-import { eventsSearch } from "../../utils/eventsSearch";
+import { eventsSearch } from '../../utils/eventsSearch';
 
-import * as s from "./EventsList.css";
+import * as s from './EventsList.css';
 
 export type EventsListProps = {
   events: GameEvent[];
@@ -14,12 +14,8 @@ export type EventsListProps = {
   onEventContextMenu: (event: GameEvent) => void;
 };
 
-export const EventsList: FC<EventsListProps> = ({
-  events,
-  onEventClick,
-  onEventContextMenu,
-}) => {
-  const [search, setSearch] = useState("");
+export const EventsList: FC<EventsListProps> = ({ events, onEventClick, onEventContextMenu }) => {
+  const [search, setSearch] = useState('');
   const [filteredEvents, setFilteredEvents] = useState(events);
 
   const filterEvents = useMemo(
@@ -29,9 +25,9 @@ export const EventsList: FC<EventsListProps> = ({
           setFilteredEvents(eventsSearch(gameEvents, search));
         },
         500,
-        { trailing: true }
+        { trailing: true },
       ),
-    []
+    [],
   );
 
   useEffect(() => filterEvents(events, search), [search, filterEvents, events]);

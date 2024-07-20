@@ -1,7 +1,7 @@
-import { createTheme } from "@vanilla-extract/css";
+import { createTheme } from '@vanilla-extract/css';
 
-import { colorsConfig as colorsConfig } from "./light.css";
-import { tokensConfig } from "./base.css";
+import { tokensConfig } from './base.css';
+import { colorsConfig as colorsConfig } from './light.css';
 
 export const darkThemeClassName = createTheme(colorsConfig, {
   colors: {

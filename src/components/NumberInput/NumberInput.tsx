@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { Field } from "react-final-form";
+import { FC } from 'react';
+import { Field } from 'react-final-form';
 
 export type NumberInputProps = {
   name: string;
@@ -16,9 +16,7 @@ export const NumberInput: FC<NumberInputProps> = ({ name, label }) => {
         component="input"
         type="number"
         defaultValue={0}
-        format={(value: number | undefined) =>
-          value === undefined ? "" : `${value}`
-        }
+        format={(value: number | undefined) => (value === undefined ? '' : `${value}`)}
         parse={(value) => (!value ? undefined : parseInt(value, 10))}
       />
     </label>

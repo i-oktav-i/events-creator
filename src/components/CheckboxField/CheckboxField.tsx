@@ -1,8 +1,8 @@
-import { Field } from "react-final-form";
+import { Field } from 'react-final-form';
 
-import { FC } from "react";
+import { FC } from 'react';
 
-import * as s from "./CheckboxField.css";
+import * as s from './CheckboxField.css';
 
 export type CheckboxFieldProps = {
   name: string;

@@ -1,21 +1,18 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { FormApi } from "final-form";
+import { FormApi } from 'final-form';
 
-import { atLeastOne } from "../../utils/form";
-import {
-  FieldWithPagination,
-  FieldWithPaginationProps,
-} from "../FieldWithPagination";
-import { InputField } from "../InputField";
+import { atLeastOne } from '../../utils/form';
+import { FieldWithPagination, FieldWithPaginationProps } from '../FieldWithPagination';
+import { InputField } from '../InputField';
 
-import { GameEvent, GameEventAction } from "../../typings/event";
+import { GameEvent, GameEventAction } from '../../typings/event';
 
-import { DependenciesFormFields } from "../DependenciesFormFields";
+import { DependenciesFormFields } from '../DependenciesFormFields';
 
-import { NumberInput } from "../NumberInput";
+import { NumberInput } from '../NumberInput';
 
-import * as s from "./ActionForm.css";
+import * as s from './ActionForm.css';
 
 export type ActionFormFieldsProps = {
   name: string;
@@ -23,28 +20,23 @@ export type ActionFormFieldsProps = {
   form: FormApi;
 };
 
-const getErrorText: FieldWithPaginationProps<GameEventAction>["getErrorText"] =
-  (meta) => {
-    if (!meta.error || !meta.touched) return null;
+const getErrorText: FieldWithPaginationProps<GameEventAction>['getErrorText'] = (meta) => {
+  if (!meta.error || !meta.touched) return null;
 
-    if (Array.isArray(meta.error)) {
-      const errorIndexes = meta.error
-        .map((error, index) => [index, error])
-        .filter(([, error]) => error)
-        .map(([index]) => index)
-        .join(", ");
+  if (Array.isArray(meta.error)) {
+    const errorIndexes = meta.error
+      .map((error, index) => [index, error])
+      .filter(([, error]) => error)
+      .map(([index]) => index)
+      .join(', ');
 
-      return `Ошибка в действиях № ${errorIndexes}`;
-    }
+    return `Ошибка в действиях № ${errorIndexes}`;
+  }
 
-    return meta.error;
-  };
+  return meta.error;
+};
 
-export const ActionFormFields: FC<ActionFormFieldsProps> = ({
-  name,
-  events,
-  form,
-}) => {
+export const ActionFormFields: FC<ActionFormFieldsProps> = ({ name, events, form }) => {
   return (
     <FieldWithPagination<GameEventAction>
       name={name}
@@ -55,11 +47,7 @@ export const ActionFormFields: FC<ActionFormFieldsProps> = ({
         <div className={s.actionForm}>
           <InputField name={`${field}.title`} label="Название действия" />
 
-          <InputField
-            name={`${field}.description`}
-            label="Описание действия"
-            asTextArea
-          />
+          <InputField name={`${field}.description`} label="Описание действия" asTextArea />
 
           <fieldset className={s.actionFormActionsChange}>
             <legend>Изменения</legend>
@@ -69,11 +57,7 @@ export const ActionFormFields: FC<ActionFormFieldsProps> = ({
             <NumberInput label="Группа 2" name={`${field}.changes.group2`} />
           </fieldset>
 
-          <DependenciesFormFields
-            events={events}
-            form={form}
-            name={`${field}.dependencies`}
-          />
+          <DependenciesFormFields events={events} form={form} name={`${field}.dependencies`} />
 
           <button type="button" onClick={onRemove}>
             Удалить действие

@@ -1,16 +1,16 @@
-import { style } from "@vanilla-extract/css";
+import { style } from '@vanilla-extract/css';
 
-import { container } from "@theme";
+import { container } from '@theme';
 
 export const dependenciesFormFields = style({
-  width: "100%",
+  width: '100%',
 });
 
 export const dependenciesFormFieldsSummary = style({
-  width: "100%",
+  width: '100%',
 });
 
 export const dependenciesFormFieldsDetails = container({
-  display: "flex",
-  flexWrap: "wrap",
+  display: 'flex',
+  flexWrap: 'wrap',
 });

@@ -1,31 +1,31 @@
-import { style } from "@vanilla-extract/css";
+import { style } from '@vanilla-extract/css';
 
-import { container } from "@theme";
+import { container } from '@theme';
 
 export const eventsList = style([
   container({
-    display: "flex",
-    flexDirection: "column",
-    gap: "x4",
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 'x4',
   }),
   {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
 ]);
 export const eventsListSearch = style({
-  width: "100%",
+  width: '100%',
 });
 
 export const eventsListScroll = style([
   container({
-    display: "flex",
-    flexDirection: "column",
-    gap: "x4",
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 'x4',
   }),
   {
-    width: "100%",
-    height: "100%",
-    overflow: "auto",
+    width: '100%',
+    height: '100%',
+    overflow: 'auto',
   },
 ]);

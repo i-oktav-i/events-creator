@@ -1,25 +1,14 @@
-import {
-  FieldArray,
-  FieldArrayProps,
-  FieldArrayRenderProps,
-} from "react-final-form-arrays";
+import { ReactNode, useState } from 'react';
+import { FieldArray, FieldArrayProps, FieldArrayRenderProps } from 'react-final-form-arrays';
 
-import { useState } from "react";
-
-import * as s from "./FieldWithPagination.css";
+import * as s from './FieldWithPagination.css';
 
 export type FieldWithPaginationProps<T> = {
   name: string;
   label: string;
-  renderItem: (
-    name: string,
-    index: number,
-    onRemove: () => void
-  ) => React.ReactNode;
-  getErrorText?: (
-    meta: FieldArrayRenderProps<T, HTMLElement>["meta"]
-  ) => React.ReactNode;
-  validate?: FieldArrayProps<T, HTMLElement>["validate"];
+  renderItem: (name: string, index: number, onRemove: () => void) => ReactNode;
+  getErrorText?: (meta: FieldArrayRenderProps<T, HTMLElement>['meta']) => ReactNode;
+  validate?: FieldArrayProps<T, HTMLElement>['validate'];
 };
 
 export const FieldWithPagination = <T,>({
@@ -81,9 +70,7 @@ export const FieldWithPagination = <T,>({
           </div>
 
           {getErrorText ? (
-            <span className={s.FieldWithPaginationError}>
-              {getErrorText(meta)}
-            </span>
+            <span className={s.FieldWithPaginationError}>{getErrorText(meta)}</span>
           ) : null}
         </fieldset>
       )}

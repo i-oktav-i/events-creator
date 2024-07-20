@@ -1,12 +1,10 @@
-export type UnionToIntersection<U> = (
-  U extends unknown ? (k: U) => void : never
-) extends (k: infer I) => void
+export type UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (
+  k: infer I,
+) => void
   ? I
   : never;
 
-type LastOf<T> = UnionToIntersection<
-  T extends unknown ? () => T : never
-> extends () => infer R
+type LastOf<T> = UnionToIntersection<T extends unknown ? () => T : never> extends () => infer R
   ? R
   : never;
 

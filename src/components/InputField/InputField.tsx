@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { Field } from "react-final-form";
+import { FC } from 'react';
+import { Field } from 'react-final-form';
 
-import { required as requiredValidator } from "../../utils/form";
+import { required as requiredValidator } from '../../utils/form';
 
-import * as s from "./InputField.css";
+import * as s from './InputField.css';
 
 export type InputFieldProps = {
   name: string;
@@ -20,21 +20,16 @@ export const InputField: FC<InputFieldProps> = ({
   asTextArea,
   required = true,
 }) => {
-  const Component = asTextArea ? "textarea" : "input";
+  const Component = asTextArea ? 'textarea' : 'input';
 
   return (
-    <Field<string>
-      name={name}
-      validate={required ? requiredValidator : undefined}
-    >
+    <Field<string> name={name} validate={required ? requiredValidator : undefined}>
       {({ input, meta }) => (
         <label className={s.inputField({ error: meta.error && meta.touched })}>
           <span className={s.inputFieldTitle}>
             {label}
 
-            {meta.error && meta.touched && (
-              <span className={s.inputFieldError}>{meta.error}</span>
-            )}
+            {meta.error && meta.touched && <span className={s.inputFieldError}>{meta.error}</span>}
           </span>
 
           <Component {...input} placeholder={placeholder} />

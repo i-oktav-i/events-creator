@@ -1,6 +1,6 @@
-import { createTheme } from "@vanilla-extract/css";
+import { createTheme } from '@vanilla-extract/css';
 
-import { tokensConfig } from "./base.css";
+import { tokensConfig } from './base.css';
 
 export const [lightThemeClassName, colorsConfig] = createTheme({
   colors: {

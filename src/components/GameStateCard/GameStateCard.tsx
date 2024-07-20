@@ -1,23 +1,23 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { GameState } from "../../typings/state";
+import { GameState } from '../../typings/state';
 
-import { Group } from "../../typings/groups";
+import { Group } from '../../typings/groups';
 
-import * as s from "./GameStateCard.css";
+import * as s from './GameStateCard.css';
 
 export type GameStateCardProps = {
   state: GameState;
 };
 
-type StateKeys = Group | "week";
+type StateKeys = Group | 'week';
 
 const statePartsOrder: {
   [K in StateKeys]: { key: K; label: string };
 }[StateKeys][] = [
-  { key: "week", label: "Номер недели" },
-  { key: "group1", label: "Влияние группы 1" },
-  { key: "group2", label: "Влияние группы 2" },
+  { key: 'week', label: 'Номер недели' },
+  { key: 'group1', label: 'Влияние группы 1' },
+  { key: 'group2', label: 'Влияние группы 2' },
 ];
 
 export const GameStateCard: FC<GameStateCardProps> = ({ state }) => {
@@ -31,7 +31,7 @@ export const GameStateCard: FC<GameStateCardProps> = ({ state }) => {
         </span>
       ))}
 
-      <span>Сейчас {state.isWeekend ? "выходные" : "будни"}</span>
+      <span>Сейчас {state.isWeekend ? 'выходные' : 'будни'}</span>
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { appThemeService } from "./AppThemeService";
+import { appThemeService } from './AppThemeService';
 
 export const useAppTheme = () => {
   const [themeMode, setThemeMode] = useState(appThemeService.currentThemeMode);

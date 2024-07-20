@@ -1,1 +1,1 @@
-export { ThemeModeSelector } from "./ThemeModeSelector";
+export { ThemeModeSelector } from './ThemeModeSelector';

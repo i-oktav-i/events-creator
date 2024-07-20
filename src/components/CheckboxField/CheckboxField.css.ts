@@ -1,7 +1,7 @@
-import { container } from "@theme";
+import { container } from '@theme';
 
 export const checkboxField = container({
-  display: "flex",
-  gap: "x4",
-  alignItems: "center",
+  display: 'flex',
+  gap: 'x4',
+  alignItems: 'center',
 });

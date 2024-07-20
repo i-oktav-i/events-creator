@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { NumberInput } from "../NumberInput";
+import { NumberInput } from '../NumberInput';
 
-import * as s from "./RangeFieldset.css";
+import * as s from './RangeFieldset.css';
 
 export type RangeFieldsetProps = {
   name: string;

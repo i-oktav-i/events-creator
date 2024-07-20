@@ -1,33 +1,33 @@
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
-import { conditions } from "./conditions.css";
-import { indentProperties } from "./indents.css";
-import { tokensConfig } from "./base.css";
-import { colorsConfig } from "./light.css";
+import { tokensConfig } from './base.css';
+import { conditions } from './conditions.css';
+import { indentProperties } from './indents.css';
+import { colorsConfig } from './light.css';
 
 const responsiveProperties = defineProperties({
   ...conditions,
-  defaultCondition: "mobile",
+  defaultCondition: 'mobile',
   properties: {
-    display: ["none", "flex", "block", "inline"],
-    flexDirection: ["row", "column"],
+    display: ['none', 'flex', 'block', 'inline'],
+    flexDirection: ['row', 'column'],
     justifyContent: [
-      "stretch",
-      "flex-start",
-      "center",
-      "flex-end",
-      "space-around",
-      "space-between",
+      'stretch',
+      'flex-start',
+      'center',
+      'flex-end',
+      'space-around',
+      'space-between',
     ],
-    alignItems: ["stretch", "flex-start", "center", "flex-end"],
-    flexWrap: ["nowrap", "wrap"],
-    flex: ["auto", "none"],
+    alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
+    flexWrap: ['nowrap', 'wrap'],
+    flex: ['auto', 'none'],
     gap: tokensConfig.space,
     rowGap: tokensConfig.space,
     columnGap: tokensConfig.space,
   },
   shorthands: {
-    placeItems: ["justifyContent", "alignItems"],
+    placeItems: ['justifyContent', 'alignItems'],
   },
 });
 
@@ -40,7 +40,7 @@ const containerColorProperties = defineProperties({
 export const container = createSprinkles(
   indentProperties,
   responsiveProperties,
-  containerColorProperties
+  containerColorProperties,
 );
 
 export type ContainerProps = Parameters<typeof container>[0];

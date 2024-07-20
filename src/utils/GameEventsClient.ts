@@ -1,7 +1,7 @@
-import { EVENTS_LOCAL_STORAGE_KEY } from "../constants";
-import { GameEvent } from "../typings/event";
+import { EVENTS_LOCAL_STORAGE_KEY } from '../constants';
+import { GameEvent } from '../typings/event';
 
-import { loadFromFile, saveToFile } from "./filesIO";
+import { loadFromFile, saveToFile } from './filesIO';
 
 class GameEventsClient {
   #events: GameEvent[];
@@ -13,7 +13,7 @@ class GameEventsClient {
 
   set events(value) {
     this.#events = value;
-    console.log("save value", value);
+    console.log('save value', value);
     this.saveEventsToLocalStorage(value);
     this.#callbacks.forEach((callback) => callback(value));
   }
@@ -48,17 +48,13 @@ class GameEventsClient {
   };
 
   exportEvents = () => {
-    saveToFile(
-      JSON.stringify(this.#events, null, 4),
-      "events.json",
-      "application/json"
-    );
+    saveToFile(JSON.stringify(this.#events, null, 4), 'events.json', 'application/json');
   };
 
   importEvents = async () => {
-    const readResult = await loadFromFile("application/json");
+    const readResult = await loadFromFile('application/json');
 
-    if (typeof readResult !== "string") throw new Error("Not a string file");
+    if (typeof readResult !== 'string') throw new Error('Not a string file');
 
     const readEvents = JSON.parse(readResult);
 

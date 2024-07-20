@@ -1,1 +1,1 @@
-export { GameStateCard, type GameStateCardProps } from "./GameStateCard";
+export { GameStateCard, type GameStateCardProps } from './GameStateCard';

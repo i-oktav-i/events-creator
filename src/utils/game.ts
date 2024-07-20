@@ -1,22 +1,13 @@
-import _inRange from "lodash/inRange";
+import _inRange from 'lodash/inRange';
 
-import { Dependencies, GameEvent } from "../typings/event";
-import { Group } from "../typings/groups";
-import { UnionToTuple } from "../typings/helpers";
-import { GameState } from "../typings/state";
+import { Dependencies, GameEvent } from '../typings/event';
+import { Group } from '../typings/groups';
+import { UnionToTuple } from '../typings/helpers';
+import { GameState } from '../typings/state';
 
-const allGroupsAndTimeRange: UnionToTuple<Group | "week"> = [
-  "group1",
-  "group2",
-  "week",
-];
+const allGroupsAndTimeRange: UnionToTuple<Group | 'week'> = ['group1', 'group2', 'week'];
 
-const getEvents = (
-  state: GameState,
-  events: GameEvent[],
-  type: GameEvent["type"],
-  count = 5
-) => {
+const getEvents = (state: GameState, events: GameEvent[], type: GameEvent['type'], count = 5) => {
   const filterDependenciesPredicate = (dependencies: Dependencies) => {
     const satisfyState = allGroupsAndTimeRange.every((fieldName) => {
       const field = dependencies?.state?.[fieldName];
@@ -36,48 +27,31 @@ const getEvents = (
     const requiredActions = dependencies?.actions?.required;
     const blockingActions = dependencies?.actions?.blocking;
 
-    if (
-      requiredEvents &&
-      !requiredEvents.every((id) => happenedEventsIds.includes(id))
-    )
+    if (requiredEvents && !requiredEvents.every((id) => happenedEventsIds.includes(id)))
       return false;
 
-    if (
-      blockingEvents &&
-      blockingEvents.some((id) => happenedEventsIds.includes(id))
-    )
+    if (blockingEvents && blockingEvents.some((id) => happenedEventsIds.includes(id))) return false;
+    if (requiredActions && !requiredActions.every((id) => chosenActionIds.includes(id)))
       return false;
-    if (
-      requiredActions &&
-      !requiredActions.every((id) => chosenActionIds.includes(id))
-    )
-      return false;
-    if (
-      blockingActions &&
-      blockingActions.some((id) => chosenActionIds.includes(id))
-    )
-      return false;
+    if (blockingActions && blockingActions.some((id) => chosenActionIds.includes(id))) return false;
 
     return true;
   };
 
-  const availableEvents = events.filter(
-    ({ id, type: eventType, dependencies }) => {
-      if (eventType !== type) return false;
+  const availableEvents = events.filter(({ id, type: eventType, dependencies }) => {
+    if (eventType !== type) return false;
 
-      const { happenedEventsIds } = state;
+    const { happenedEventsIds } = state;
 
-      if (happenedEventsIds.includes(id)) return false;
+    if (happenedEventsIds.includes(id)) return false;
 
-      if (!dependencies) return true;
+    if (!dependencies) return true;
 
-      return filterDependenciesPredicate(dependencies);
-    }
-  );
+    return filterDependenciesPredicate(dependencies);
+  });
 
   availableEvents.sort((first, second) => {
-    if (first.fireIfPossible === second.fireIfPossible)
-      return Math.random() > 0.5 ? 1 : -1;
+    if (first.fireIfPossible === second.fireIfPossible) return Math.random() > 0.5 ? 1 : -1;
 
     return first.fireIfPossible ? 1 : -1;
   });
@@ -96,14 +70,8 @@ const getEvents = (
   });
 };
 
-export const getWeeklyEvents = (
-  state: GameState,
-  events: GameEvent[],
-  count = 5
-) => getEvents(state, events, "weekly", count);
+export const getWeeklyEvents = (state: GameState, events: GameEvent[], count = 5) =>
+  getEvents(state, events, 'weekly', count);
 
-export const getWeekendEvents = (
-  state: GameState,
-  events: GameEvent[],
-  count = 5
-) => getEvents(state, events, "weekend", count);
+export const getWeekendEvents = (state: GameState, events: GameEvent[], count = 5) =>
+  getEvents(state, events, 'weekend', count);

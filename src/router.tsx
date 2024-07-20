@@ -1,8 +1,8 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
 
-import { EventCreator } from "./pages/EventCreator";
-import { Game } from "./pages/Game";
-import { Layout } from "./components/Layout";
+import { Layout } from './components/Layout';
+import { EventCreator } from './pages/EventCreator';
+import { Game } from './pages/Game';
 
 export const router = createBrowserRouter(
   [
@@ -10,11 +10,11 @@ export const router = createBrowserRouter(
       element: <Layout />,
       children: [
         {
-          path: "/",
+          path: '/',
           element: <EventCreator />,
         },
         {
-          path: "/game/",
+          path: '/game/',
           element: <Game />,
         },
       ],
@@ -22,5 +22,5 @@ export const router = createBrowserRouter(
   ],
   {
     basename: import.meta.env.BASE_URL,
-  }
+  },
 );

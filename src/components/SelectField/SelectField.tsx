@@ -1,6 +1,6 @@
-import { Field } from "react-final-form";
+import { Field } from 'react-final-form';
 
-import * as s from "./SelectField.css";
+import * as s from './SelectField.css';
 
 export type SelectFieldProps<T extends string | number> = {
   name: string;

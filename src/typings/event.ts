@@ -1,4 +1,4 @@
-import { Group } from "./groups";
+import { Group } from './groups';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type GameEventId = number & {};
@@ -16,7 +16,7 @@ export type Dependencies = {
   };
   state?: Partial<
     Record<
-      Group | "week",
+      Group | 'week',
       {
         min: number;
         max: number;
@@ -25,7 +25,7 @@ export type Dependencies = {
   >;
 };
 
-export type GameEventType = "weekly" | "weekend";
+export type GameEventType = 'weekly' | 'weekend';
 
 export type GameEvent = {
   id: GameEventId;

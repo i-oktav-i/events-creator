@@ -1,43 +1,37 @@
-import {
-  createGlobalTheme,
-  createVar,
-  globalStyle,
-} from "@vanilla-extract/css";
-import * as tailwindColors from "tailwindcss/colors";
+import { createGlobalTheme, createVar, globalStyle } from '@vanilla-extract/css';
+import * as tailwindColors from 'tailwindcss/colors';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny:
 type Convert<T extends Record<string, any>> = {
-  [Key in keyof T]: T[Key] extends Record<string, string>
-    ? Convert<T[Key]>
-    : string;
+  [Key in keyof T]: T[Key] extends Record<string, string> ? Convert<T[Key]> : string;
 };
 
 type TailwindColors = Convert<typeof tailwindColors>;
 
 const baseSize = createVar();
 
-globalStyle(":root", {
+globalStyle(':root', {
   vars: {
-    [baseSize]: "4px",
+    [baseSize]: '4px',
   },
 });
 
-export const tokensConfig = createGlobalTheme(":root", {
+export const tokensConfig = createGlobalTheme(':root', {
   typography: {
-    fontFamily: "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif",
+    fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
     fontSize: {
-      s: "16px",
-      m: "18px",
-      l: "20px",
+      s: '16px',
+      m: '18px',
+      l: '20px',
     },
     lineHeight: {
-      s: "20px",
-      m: "20px",
-      l: "24px",
+      s: '20px',
+      m: '20px',
+      l: '24px',
     },
     fontWeight: {
-      semiBold: "550",
-      regular: "400",
+      semiBold: '550',
+      regular: '400',
     },
   },
   space: {
@@ -52,7 +46,7 @@ export const tokensConfig = createGlobalTheme(":root", {
     x8: `calc(${baseSize} * 8)`,
   },
   radii: {
-    infinity: "50%",
+    infinity: '50%',
     x0: `calc(${baseSize} * 0)`,
     x1: `calc(${baseSize} * 1)`,
     x2: `calc(${baseSize} * 2)`,

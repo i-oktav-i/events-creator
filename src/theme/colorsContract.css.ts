@@ -1,22 +1,22 @@
-import { createGlobalThemeContract } from "@vanilla-extract/css";
+import { createGlobalThemeContract } from '@vanilla-extract/css';
 
 export const colorsContract = createGlobalThemeContract({
   colors: {
     text: {
-      primary: "",
-      secondary: "",
+      primary: '',
+      secondary: '',
     },
     background: {
-      primary: "",
-      secondary: "",
-      backdrop: "",
+      primary: '',
+      secondary: '',
+      backdrop: '',
     },
     border: {
-      primary: "",
-      active: "",
+      primary: '',
+      active: '',
     },
     status: {
-      error: "",
+      error: '',
     },
   },
 });

@@ -1,7 +1,7 @@
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
-import { tokensConfig } from "./base.css";
-import { conditions } from "./conditions.css";
+import { tokensConfig } from './base.css';
+import { conditions } from './conditions.css';
 
 export const indentProperties = defineProperties({
   ...conditions,
@@ -16,12 +16,12 @@ export const indentProperties = defineProperties({
     marginRight: tokensConfig.space,
   },
   shorthands: {
-    padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
-    paddingX: ["paddingLeft", "paddingRight"],
-    paddingY: ["paddingTop", "paddingBottom"],
-    margin: ["marginTop", "marginBottom", "marginLeft", "marginRight"],
-    marginX: ["marginLeft", "marginRight"],
-    marginY: ["marginTop", "marginBottom"],
+    padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    paddingX: ['paddingLeft', 'paddingRight'],
+    paddingY: ['paddingTop', 'paddingBottom'],
+    margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    marginX: ['marginLeft', 'marginRight'],
+    marginY: ['marginTop', 'marginBottom'],
   },
 });
 

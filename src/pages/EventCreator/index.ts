@@ -1,1 +1,1 @@
-export { EventCreator } from "./EventCreator";
+export { EventCreator } from './EventCreator';

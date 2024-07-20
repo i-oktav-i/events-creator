@@ -1,9 +1,9 @@
-import { recipe } from "@vanilla-extract/recipes";
+import { recipe } from '@vanilla-extract/recipes';
 
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
-import { tokensConfig } from "./base.css";
-import { colorsConfig } from "./light.css";
+import { tokensConfig } from './base.css';
+import { colorsConfig } from './light.css';
 
 const typographySizesProperties = defineProperties({
   properties: {
@@ -13,7 +13,7 @@ const typographySizesProperties = defineProperties({
     color: colorsConfig.colors.text,
   },
   shorthands: {
-    variant: ["fontSize", "lineHeight"],
+    variant: ['fontSize', 'lineHeight'],
   },
 });
 
@@ -25,12 +25,12 @@ export const typography = recipe({
   },
   variants: {
     variant: {
-      smallTight: [typographySizes({ variant: "s", fontWeight: "regular" })],
-      mediumTight: [typographySizes({ variant: "m", fontWeight: "regular" })],
-      largeTight: [typographySizes({ variant: "l", fontWeight: "regular" })],
-      smallBold: [typographySizes({ variant: "s", fontWeight: "semiBold" })],
-      mediumBold: [typographySizes({ variant: "m", fontWeight: "semiBold" })],
-      largeBold: [typographySizes({ variant: "l", fontWeight: "semiBold" })],
+      smallTight: [typographySizes({ variant: 's', fontWeight: 'regular' })],
+      mediumTight: [typographySizes({ variant: 'm', fontWeight: 'regular' })],
+      largeTight: [typographySizes({ variant: 'l', fontWeight: 'regular' })],
+      smallBold: [typographySizes({ variant: 's', fontWeight: 'semiBold' })],
+      mediumBold: [typographySizes({ variant: 'm', fontWeight: 'semiBold' })],
+      largeBold: [typographySizes({ variant: 'l', fontWeight: 'semiBold' })],
     },
     color: {
       primary: {
@@ -41,5 +41,5 @@ export const typography = recipe({
       },
     },
   },
-  defaultVariants: { variant: "mediumTight", color: "primary" },
+  defaultVariants: { variant: 'mediumTight', color: 'primary' },
 });

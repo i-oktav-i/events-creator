@@ -1,12 +1,12 @@
-import cn from "classnames";
-import { FC } from "react";
+import cn from 'classnames';
+import { FC } from 'react';
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from 'react-router-dom';
 
-import { ThemeModeSelector } from "../ThemeModeSelector";
+import { ThemeModeSelector } from '../ThemeModeSelector';
 
-import * as s from "./Layout.css";
-import { useAppThemeClass } from "./useAppThemeClass";
+import * as s from './Layout.css';
+import { useAppThemeClass } from './useAppThemeClass';
 
 export const Layout: FC = () => {
   const themeClassName = useAppThemeClass();

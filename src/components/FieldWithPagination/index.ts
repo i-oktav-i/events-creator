@@ -1,4 +1,4 @@
 export {
   FieldWithPagination,
   type FieldWithPaginationProps,
-} from "./FieldWithPagination";
+} from './FieldWithPagination';

@@ -1,13 +1,9 @@
-export const saveToFile = (
-  data: string,
-  filename: string,
-  type: string = "text/plain"
-) => {
+export const saveToFile = (data: string, filename: string, type: string = 'text/plain') => {
   const blob = new Blob([data], { type });
 
   const url = window.URL.createObjectURL(blob);
 
-  const a = document.createElement("a");
+  const a = document.createElement('a');
   a.href = url;
   a.download = filename;
 
@@ -18,13 +14,11 @@ export const saveToFile = (
   window.URL.revokeObjectURL(url);
 };
 
-export const loadFromFile = async (accept = "text/plain") => {
-  const { promise, resolve, reject } = Promise.withResolvers<
-    string | ArrayBuffer
-  >();
+export const loadFromFile = async (accept = 'text/plain') => {
+  const { promise, resolve, reject } = Promise.withResolvers<string | ArrayBuffer>();
 
-  const input = document.createElement("input");
-  input.type = "file";
+  const input = document.createElement('input');
+  input.type = 'file';
   input.accept = accept;
 
   input.onchange = (event: Event) => {
@@ -37,7 +31,7 @@ export const loadFromFile = async (accept = "text/plain") => {
         try {
           const result = e.target?.result;
 
-          if (!result) throw new Error("Nothing read");
+          if (!result) throw new Error('Nothing read');
 
           resolve(result);
         } catch (err) {

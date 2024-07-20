@@ -1,21 +1,21 @@
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
-import { conditions } from "./conditions.css";
-import { tokensConfig } from "./base.css";
+import { tokensConfig } from './base.css';
+import { conditions } from './conditions.css';
 
 const insetProperties = defineProperties({
   ...conditions,
   properties: {
-    position: ["relative", "absolute", "fixed"],
+    position: ['relative', 'absolute', 'fixed'],
     top: tokensConfig.space,
     bottom: tokensConfig.space,
     left: tokensConfig.space,
     right: tokensConfig.space,
   },
   shorthands: {
-    inset: ["top", "bottom", "left", "right"],
-    insetX: ["left", "right"],
-    insetY: ["top", "bottom"],
+    inset: ['top', 'bottom', 'left', 'right'],
+    insetX: ['left', 'right'],
+    insetY: ['top', 'bottom'],
   },
 });
 

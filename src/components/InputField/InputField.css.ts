@@ -1,16 +1,16 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style } from '@vanilla-extract/css';
 
-import { recipe } from "@vanilla-extract/recipes";
+import { recipe } from '@vanilla-extract/recipes';
 
-import { config, container } from "@theme";
+import { config, container } from '@theme';
 
 export const inputField = recipe({
   base: [
-    container({ display: "flex", flexDirection: "column", gap: "x4" }),
+    container({ display: 'flex', flexDirection: 'column', gap: 'x4' }),
     {
       outlineOffset: config.space.x4,
 
-      ":focus-within": {
+      ':focus-within': {
         outline: `1px solid ${config.colors.border.active}`,
       },
     },
@@ -25,15 +25,15 @@ export const inputField = recipe({
 });
 
 globalStyle(`${inputField} input`, {
-  width: "100%",
+  width: '100%',
 });
 
 globalStyle(`${inputField} textarea`, {
-  width: "100%",
+  width: '100%',
   minHeight: 200,
 });
 
-export const inputFieldTitle = container({ display: "flex", gap: "x4" });
+export const inputFieldTitle = container({ display: 'flex', gap: 'x4' });
 
 export const inputFieldError = style({
   color: config.colors.status.error,
