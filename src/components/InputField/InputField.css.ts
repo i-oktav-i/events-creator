@@ -2,7 +2,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 import { recipe } from '@vanilla-extract/recipes';
 
-import { config, container } from '@theme';
+import { config, container } from '@shared/theme';
 
 export const inputField = recipe({
   base: [

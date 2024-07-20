@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { config, container } from '@theme';
+import { config, container } from '@shared/theme';
 
 export const rangeFieldset = style([
   container({ display: 'flex', gap: 'x4' }),

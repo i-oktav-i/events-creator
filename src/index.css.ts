@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css';
 
-import { config, darkThemeClassName, lightThemeClassName } from '@theme';
+import { config, darkThemeClassName, lightThemeClassName } from '@shared/theme';
 
 globalStyle(`${lightThemeClassName}, ${darkThemeClassName}`, {
   fontFamily: config.typography.fontFamily,

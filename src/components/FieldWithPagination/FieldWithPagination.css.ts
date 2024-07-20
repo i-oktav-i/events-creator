@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { recipe } from '@vanilla-extract/recipes';
 
-import { config, container, indent } from '@theme';
+import { config, container, indent } from '@shared/theme';
 
 export const fieldWithPagination = style([
   container({

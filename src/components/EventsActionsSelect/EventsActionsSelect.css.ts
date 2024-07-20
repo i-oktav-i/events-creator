@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { recipe } from '@vanilla-extract/recipes';
 
-import { config, container, inset } from '@theme';
+import { config, container, inset } from '@shared/theme';
 
 export const eventsActionsSelectModal = style([
   container({

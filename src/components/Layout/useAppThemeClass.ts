@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { AppTheme, appThemeService } from '@shared/AppTheme';
 
-import { darkThemeClassName, lightThemeClassName } from '@theme';
+import { darkThemeClassName, lightThemeClassName } from '@shared/theme';
 
 const getClassName = (theme: AppTheme) =>
   theme === AppTheme.DARK ? darkThemeClassName : lightThemeClassName;

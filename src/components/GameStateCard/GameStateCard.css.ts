@@ -1,4 +1,4 @@
-import { container } from '@theme';
+import { container } from '@shared/theme';
 
 export const gameStateCard = container({
   display: 'flex',

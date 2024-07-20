@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { config, container, darkThemeClassName, indent } from '@theme';
+import { config, container, darkThemeClassName, indent } from '@shared/theme';
 
 export const layout = style([
   container({

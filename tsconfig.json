@@ -22,7 +22,6 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@components/*": ["./src/components/*"],
-      "@theme": ["./src/theme"],
       "@shared/*": ["./src/shared/*"]
     },
     "typeRoots": ["node_modules/@types"]
