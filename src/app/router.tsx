@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Layout } from './components/Layout';
-import { EventCreator } from './pages/EventCreator';
-import { Game } from './pages/Game';
+import { Layout } from '../components/Layout';
+import { EventCreator } from '../pages/EventCreator';
+import { Game } from '../pages/Game';
 
 export const router = createBrowserRouter(
   [

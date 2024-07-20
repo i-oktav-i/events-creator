@@ -21,8 +21,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
+      "@app": ["./src/app"],
+      "@shared/*": ["./src/shared/*"],
       "@components/*": ["./src/components/*"],
-      "@shared/*": ["./src/shared/*"]
     },
     "typeRoots": ["node_modules/@types"]
   },
