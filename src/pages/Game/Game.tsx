@@ -1,11 +1,16 @@
 import { FC, useEffect, useState } from 'react';
 
+import {
+  GameEvent,
+  GameEventAction,
+  GameState,
+  gameEventsClient,
+  getWeekendEvents,
+  getWeeklyEvents,
+} from '@entities/gameEvent';
+import { GameStateCard } from '@widgets/GameStateCard';
+
 import { EventCard } from '../../components/EventCard';
-import { GameStateCard } from '../../components/GameStateCard';
-import { GameEvent, GameEventAction } from '../../typings/event';
-import { GameState } from '../../typings/state';
-import { gameEventsClient } from '../../utils/GameEventsClient';
-import { getWeekendEvents, getWeeklyEvents } from '../../utils/game';
 
 export const Game: FC = () => {
   const [events, setEvents] = useState<GameEvent[]>(gameEventsClient.events);

@@ -2,15 +2,13 @@ import { FC } from 'react';
 
 import { FormApi } from 'final-form';
 
-import { atLeastOne } from '../../utils/form';
-import { FieldWithPagination, FieldWithPaginationProps } from '../FieldWithPagination';
-import { InputField } from '../InputField';
+import { GameEvent, GameEventAction } from '@entities/gameEvent';
+import { validators } from '@shared/formUtils';
+import { InputField, NumberInput } from '@shared/ui';
 
-import { GameEvent, GameEventAction } from '../../typings/event';
+import { FieldWithPagination, FieldWithPaginationProps } from '../FieldWithPagination';
 
 import { DependenciesFormFields } from '../DependenciesFormFields';
-
-import { NumberInput } from '../NumberInput';
 
 import * as s from './ActionForm.css';
 
@@ -41,7 +39,7 @@ export const ActionFormFields: FC<ActionFormFieldsProps> = ({ name, events, form
     <FieldWithPagination<GameEventAction>
       name={name}
       label="Действия"
-      validate={atLeastOne}
+      validate={validators.atLeastOne}
       getErrorText={getErrorText}
       renderItem={(field, _index, onRemove) => (
         <div className={s.actionForm}>

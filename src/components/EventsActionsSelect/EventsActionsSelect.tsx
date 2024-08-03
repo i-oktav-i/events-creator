@@ -1,15 +1,13 @@
+import { FormApi } from 'final-form';
 import _get from 'lodash/get';
 import { FC, useState } from 'react';
-
-import { FormApi } from 'final-form';
-
 import { useFormState } from 'react-final-form';
 
-import { GameEvent } from '../../typings/event';
-
-import * as s from './EventsActionsSelect.css';
+import { GameEvent } from '@entities/gameEvent';
 
 import { EventsActionsSelectModal } from './EventsActionsSelectModal';
+
+import * as s from './EventsActionsSelect.css';
 
 export type EventsActionsSelectProps = {
   name: string;

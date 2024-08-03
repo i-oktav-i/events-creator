@@ -1,10 +1,7 @@
+import _debounce from 'lodash/debounce';
 import { FC, useEffect, useMemo, useState } from 'react';
 
-import _debounce from 'lodash/debounce';
-
-import { GameEvent } from '../../typings/event';
-
-import { eventsSearch } from '../../utils/eventsSearch';
+import { GameEvent, eventsSearch } from '@entities/gameEvent';
 
 import * as s from './EventsList.css';
 

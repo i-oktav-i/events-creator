@@ -1,15 +1,13 @@
+import arrayMutators from 'final-form-arrays';
 import { FC } from 'react';
 import { Form, FormProps } from 'react-final-form';
 
-import arrayMutators from 'final-form-arrays';
+import { GameEvent, GameEventType } from '@entities/gameEvent';
+import { InputField, SelectField } from '@shared/ui';
 
-import { GameEvent, GameEventType } from '../../typings/event';
 import { ActionFormFields } from '../ActionFormFields';
-import { DependenciesFormFields } from '../DependenciesFormFields';
-import { InputField } from '../InputField';
-
 import { CheckboxField } from '../CheckboxField';
-import { SelectField } from '../SelectField';
+import { DependenciesFormFields } from '../DependenciesFormFields';
 
 import * as s from './EventForm.css';
 

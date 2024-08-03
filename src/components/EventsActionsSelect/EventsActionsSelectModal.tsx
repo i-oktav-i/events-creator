@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { PORTAL_ID } from '../../constants';
-import { useBlockBodyScroll } from '../../hooks/useBlockBodyScroll';
-import { GameEvent } from '../../typings/event';
-import { eventsSearch } from '../../utils/eventsSearch';
+import { GameEvent, eventsSearch } from '@entities/gameEvent';
+import { PORTAL_ID } from '@shared/config';
+
+import { useBlockBodyScroll } from '@shared/hooks';
 
 import * as s from './EventsActionsSelect.css';
 

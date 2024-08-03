@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { EventCreator } from '@pages/EventCreator';
 import { Game } from '@pages/Game';
-import { Layout } from '../components/Layout';
+import { Layout } from './ui/Layout';
 
 export const router = createBrowserRouter(
   [

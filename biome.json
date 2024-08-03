@@ -15,7 +15,8 @@
         "noMultipleSpacesInRegularExpressionLiterals": "error",
         "noUselessCatch": "error",
         "noUselessTypeConstraint": "error",
-        "noWith": "error"
+        "noWith": "error",
+        "noUselessRename": "error"
       },
       "correctness": {
         "noChildrenProp": "error",

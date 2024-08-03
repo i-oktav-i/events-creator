@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { container } from '../../theme';
+import { container } from '@shared/theme';
 
 export const eventForm = style([
   container({

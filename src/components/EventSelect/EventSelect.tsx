@@ -1,10 +1,9 @@
 import { FormApi } from 'final-form';
+import _get from 'lodash/get';
 import { FC, useState } from 'react';
 import { useFormState } from 'react-final-form';
 
-import _get from 'lodash/get';
-
-import { GameEvent } from '../../typings/event';
+import { GameEvent } from '@entities/gameEvent';
 
 import { EventSelectModal } from './EventSelectModal';
 

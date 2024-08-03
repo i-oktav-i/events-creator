@@ -1,10 +1,11 @@
 import { FormApi } from 'final-form';
 import { FC } from 'react';
 
-import { Dependencies, GameEvent } from '../../typings/event';
+import { Dependencies, GameEvent } from '@entities/gameEvent';
+import { RangeFieldset } from '@shared/ui';
+
 import { EventSelect } from '../EventSelect';
 import { EventsActionsSelect } from '../EventsActionsSelect';
-import { RangeFieldset } from '../RangeFieldset';
 
 import * as s from './DependenciesFormFields.css';
 
