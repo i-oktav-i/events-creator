@@ -1,15 +1,13 @@
-import { FC, useState } from "react";
-import _get from "lodash/get";
+import { FormApi } from 'final-form';
+import _get from 'lodash/get';
+import { FC, useState } from 'react';
+import { useFormState } from 'react-final-form';
 
-import { FormApi } from "final-form";
+import { GameEvent } from '@entities/gameEvent';
 
-import { useFormState } from "react-final-form";
+import { EventsActionsSelectModal } from './EventsActionsSelectModal';
 
-import { GameEvent } from "../../typings/event";
-
-import * as s from "./EventsActionsSelect.css";
-
-import { EventsActionsSelectModal } from "./EventsActionsSelectModal";
+import * as s from './EventsActionsSelect.css';
 
 export type EventsActionsSelectProps = {
   name: string;
@@ -33,12 +31,12 @@ export const EventsActionsSelect: FC<EventsActionsSelectProps> = ({
   const onRemove = (id: string) => {
     form.change(
       name,
-      selected.filter((eventId) => eventId !== id)
+      selected.filter((eventId) => eventId !== id),
     );
   };
 
   const actionsEvents = events.filter((event) =>
-    event.actions.some((action) => selected.includes(action.id))
+    event.actions.some((action) => selected.includes(action.id)),
   );
 
   return (
@@ -54,16 +52,13 @@ export const EventsActionsSelect: FC<EventsActionsSelectProps> = ({
             {event.actions.map(
               (action) =>
                 selected.includes(action.id) && (
-                  <span
-                    key={action.id}
-                    className={s.eventsActionsSelectSelectedItemActions}
-                  >
+                  <span key={action.id} className={s.eventsActionsSelectSelectedItemActions}>
                     <span>{action.title}</span>
                     <button type="button" onClick={() => onRemove(action.id)}>
                       X
                     </button>
                   </span>
-                )
+                ),
             )}
           </span>
         ))}

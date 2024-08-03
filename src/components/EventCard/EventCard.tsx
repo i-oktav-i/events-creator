@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { GameEvent, GameEventAction } from "../../typings/event";
+import { GameEvent, GameEventAction } from '@entities/gameEvent';
 
-import * as s from "./EventCard.css";
+import * as s from './EventCard.css';
 
 export type EventCardProps = {
   event: GameEvent;

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
@@ -21,9 +20,13 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
+      "@app": ["./src/app"],
+      "@pages/*": ["./src/pages/*"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@features/*": ["./src/features/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@shared/*": ["./src/shared/*"],
       "@components/*": ["./src/components/*"],
-      "@theme": ["./src/theme"],
-      "@shared/*": ["./src/shared/*"]
     },
     "typeRoots": ["node_modules/@types"]
   },

@@ -1,12 +1,12 @@
-import { FC, useState } from "react";
-import { createPortal } from "react-dom";
+import { FC, useState } from 'react';
+import { createPortal } from 'react-dom';
 
-import { PORTAL_ID } from "../../constants";
-import { useBlockBodyScroll } from "../../hooks/useBlockBodyScroll";
-import { GameEvent } from "../../typings/event";
-import { eventsSearch } from "../../utils/eventsSearch";
+import { GameEvent, eventsSearch } from '@entities/gameEvent';
+import { PORTAL_ID } from '@shared/config';
 
-import * as s from "./EventsActionsSelect.css";
+import { useBlockBodyScroll } from '@shared/hooks';
+
+import * as s from './EventsActionsSelect.css';
 
 export type EventsActionsSelectModalProps = {
   events: GameEvent[];
@@ -22,17 +22,15 @@ export const EventsActionsSelectModal: FC<EventsActionsSelectModalProps> = ({
   onSelect,
 }) => {
   const [selectedEventsActions, setSelectedEventsActions] = useState<string[]>(
-    initialSelectedEventsActions
+    initialSelectedEventsActions,
   );
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const filteredEvents = eventsSearch(events, search, true);
 
   const handleSelect = (id: string) => {
     setSelectedEventsActions((prev) =>
-      prev.includes(id)
-        ? prev.filter((eventId) => eventId !== id)
-        : [...prev, id]
+      prev.includes(id) ? prev.filter((eventId) => eventId !== id) : [...prev, id],
     );
   };
 
@@ -75,9 +73,7 @@ export const EventsActionsSelectModal: FC<EventsActionsSelectModalProps> = ({
         <div>
           <button onClick={onClose}>Закрыть</button>
 
-          <button onClick={() => onSelect(selectedEventsActions)}>
-            Выбрать
-          </button>
+          <button onClick={() => onSelect(selectedEventsActions)}>Выбрать</button>
         </div>
       </div>
     </div>

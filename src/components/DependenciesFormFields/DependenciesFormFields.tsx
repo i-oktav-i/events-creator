@@ -1,21 +1,22 @@
-import { FormApi } from "final-form";
-import { FC } from "react";
+import { FormApi } from 'final-form';
+import { FC } from 'react';
 
-import { Dependencies, GameEvent } from "../../typings/event";
-import { EventSelect } from "../EventSelect";
-import { EventsActionsSelect } from "../EventsActionsSelect";
-import { RangeFieldset } from "../RangeFieldset";
+import { Dependencies, GameEvent } from '@entities/gameEvent';
+import { RangeFieldset } from '@shared/ui';
 
-import * as s from "./DependenciesFormFields.css";
+import { EventSelect } from '../EventSelect';
+import { EventsActionsSelect } from '../EventsActionsSelect';
 
-type StateKeys = keyof Required<Required<Dependencies>["state"]>;
+import * as s from './DependenciesFormFields.css';
+
+type StateKeys = keyof Required<Required<Dependencies>['state']>;
 
 const stateFieldsOrder: {
   [K in StateKeys]: { name: K; label: string };
 }[StateKeys][] = [
-  { name: "week", label: "Временной диапазон" },
-  { name: "group1", label: "Влияние группы 1" },
-  { name: "group2", label: "Влияние группы 2" },
+  { name: 'week', label: 'Временной диапазон' },
+  { name: 'group1', label: 'Влияние группы 1' },
+  { name: 'group2', label: 'Влияние группы 2' },
 ];
 
 export type DependenciesFormFieldsProps = {
@@ -24,11 +25,7 @@ export type DependenciesFormFieldsProps = {
   form: FormApi;
 };
 
-export const DependenciesFormFields: FC<DependenciesFormFieldsProps> = ({
-  name,
-  events,
-  form,
-}) => {
+export const DependenciesFormFields: FC<DependenciesFormFieldsProps> = ({ name, events, form }) => {
   return (
     <fieldset className={s.dependenciesFormFields}>
       <legend>Зависимости</legend>
@@ -37,11 +34,7 @@ export const DependenciesFormFields: FC<DependenciesFormFieldsProps> = ({
         <details>
           <div className={s.dependenciesFormFieldsDetails}>
             {stateFieldsOrder.map(({ name: fieldName, label }) => (
-              <RangeFieldset
-                key={fieldName}
-                name={`${name}.state.${fieldName}`}
-                label={label}
-              />
+              <RangeFieldset key={fieldName} name={`${name}.state.${fieldName}`} label={label} />
             ))}
 
             <EventSelect

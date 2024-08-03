@@ -1,13 +1,13 @@
-import { container } from "@theme";
+import { container } from '@shared/theme';
 
 export const actionForm = container({
-  display: "flex",
-  flexDirection: "column",
-  gap: "x4",
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'x4',
 });
 
 export const actionFormActionsChange = container({
-  display: "flex",
-  gap: "x4",
-  flexWrap: "wrap",
+  display: 'flex',
+  gap: 'x4',
+  flexWrap: 'wrap',
 });

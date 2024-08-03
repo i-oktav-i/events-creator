@@ -1,14 +1,13 @@
-import { FormApi } from "final-form";
-import { FC, useState } from "react";
-import { useFormState } from "react-final-form";
+import { FormApi } from 'final-form';
+import _get from 'lodash/get';
+import { FC, useState } from 'react';
+import { useFormState } from 'react-final-form';
 
-import _get from "lodash/get";
+import { GameEvent } from '@entities/gameEvent';
 
-import { GameEvent } from "../../typings/event";
+import { EventSelectModal } from './EventSelectModal';
 
-import { EventSelectModal } from "./EventSelectModal";
-
-import * as s from "./EventSelect.css";
+import * as s from './EventSelect.css';
 
 export type EventSelectProps = {
   name: string;
@@ -17,12 +16,7 @@ export type EventSelectProps = {
   label: string;
 };
 
-export const EventSelect: FC<EventSelectProps> = ({
-  name,
-  events,
-  form,
-  label,
-}) => {
+export const EventSelect: FC<EventSelectProps> = ({ name, events, form, label }) => {
   const { values } = useFormState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,7 +25,7 @@ export const EventSelect: FC<EventSelectProps> = ({
   const onRemove = (id: number) => {
     form.change(
       name,
-      selected.filter((eventId) => eventId !== id)
+      selected.filter((eventId) => eventId !== id),
     );
   };
 

@@ -1,31 +1,31 @@
-import { recipe } from "@vanilla-extract/recipes";
-import { style } from "@vanilla-extract/css";
+import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
-import { config, container, inset } from "@theme";
+import { config, container, inset } from '@shared/theme';
 
 export const eventSelectModal = style([
   container({
-    display: "flex",
-    flexDirection: "column",
-    gap: "x4",
-    padding: "x4",
-    backgroundColor: "primary",
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 'x4',
+    padding: 'x4',
+    backgroundColor: 'primary',
   }),
   {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     border: `1px solid ${config.colors.border.active}`,
     borderRadius: config.radii.x4,
   },
 ]);
 export const eventSelectModalContainer = style([
   container({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "x8",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 'x8',
   }),
-  inset({ position: "fixed", inset: "x0" }),
+  inset({ position: 'fixed', inset: 'x0' }),
   {
     backdropFilter: `blur(${config.space.x1})`,
   },
@@ -33,18 +33,18 @@ export const eventSelectModalContainer = style([
 
 export const eventSelectModalEvents = style([
   container({
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "x4",
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 'x4',
   }),
   {
-    width: "100%",
+    width: '100%',
   },
 ]);
 
 export const eventSelectModalEvent = recipe({
   base: {
-    width: "calc(100% / 3)",
+    width: 'calc(100% / 3)',
     border: `1px solid ${config.colors.border.primary}`,
     borderRadius: config.radii.x1,
   },
@@ -59,27 +59,27 @@ export const eventSelectModalEvent = recipe({
 
 export const eventSelect = style([
   container({
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "x4",
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 'x4',
   }),
   {
-    width: "100%",
+    width: '100%',
   },
 ]);
 
 export const eventSelectSelectedContainer = container({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: "x4",
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 'x4',
 });
 
 export const eventSelectSelectedItem = style([
   container({
-    display: "flex",
-    gap: "x4",
-    alignItems: "center",
-    padding: "x2",
+    display: 'flex',
+    gap: 'x4',
+    alignItems: 'center',
+    padding: 'x2',
   }),
   {
     border: `1px solid ${config.colors.border.primary}`,

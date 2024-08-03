@@ -1,16 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { EventForm } from "../../components/EventForm";
-import { EventsList } from "../../components/EventsList";
-import { GameEvent } from "../../typings/event";
-import { bevis } from "../../utils/bevis";
-import { combineRefs } from "../../utils/combineRefs";
+import { GameEvent, gameEventsClient } from '@entities/gameEvent';
+import { combineRefs } from '@shared/lib';
 
-import { gameEventsClient } from "../../utils/GameEventsClient";
+import { EventForm } from '../../components/EventForm';
+import { EventsList } from '../../components/EventsList';
 
-import s from "./EventCreator.module.css";
-
-const b = bevis(s, "EventCreator");
+import * as s from './EventCreator.css';
 
 export const EventCreator = () => {
   const [events, setEvents] = useState<GameEvent[]>(gameEventsClient.events);
@@ -24,17 +20,13 @@ export const EventCreator = () => {
     ? events.find((event) => event.id === selectedEventId)
     : undefined;
 
-  const maxEventId = useMemo(
-    () => Math.max(0, ...events.map((event) => event.id)),
-    [events]
-  );
+  const maxEventId = useMemo(() => Math.max(0, ...events.map((event) => event.id)), [events]);
 
   const popoverRef = combineRefs(popoverNodeRef, (node) =>
-    node?.setAttribute("popover", "popover")
+    node?.setAttribute('popover', 'popover'),
   );
 
-  const handleEventClick = (gameEvent: GameEvent) =>
-    setSelectedEventId(gameEvent.id);
+  const handleEventClick = (gameEvent: GameEvent) => setSelectedEventId(gameEvent.id);
 
   const handleEventContextMenu = (gameEvent: GameEvent) => {
     popoverNodeRef.current?.showPopover();
@@ -48,7 +40,7 @@ export const EventCreator = () => {
 
   const deleteSelectedEvent = () => {
     gameEventsClient.events = gameEventsClient.events.filter(
-      (event) => event.id !== popoverInvokerIdRef.current
+      (event) => event.id !== popoverInvokerIdRef.current,
     );
 
     hidePopover();
@@ -70,7 +62,7 @@ export const EventCreator = () => {
 
     if (selectedEventId) {
       gameEventsClient.events = gameEventsClient.events.map((event) =>
-        event.id === selectedEventId ? value : event
+        event.id === selectedEventId ? value : event,
       );
 
       setSelectedEventId(null);
@@ -93,8 +85,8 @@ export const EventCreator = () => {
   }, []);
 
   return (
-    <div className={b()}>
-      <div className={b("Search")}>
+    <div className={s.root}>
+      <div className={s.search}>
         <EventsList
           events={events}
           onEventClick={handleEventClick}
@@ -102,7 +94,7 @@ export const EventCreator = () => {
         />
       </div>
 
-      <div className={b("Popover")} ref={popoverRef}>
+      <div className={s.popover} ref={popoverRef}>
         <button autoFocus onClick={deleteSelectedEvent}>
           Удалить
         </button>
@@ -121,25 +113,16 @@ export const EventCreator = () => {
       ) : null}
 
       {!eventCreation && !selectedEvent ? (
-        <div className={b("Actions")}>
-          <button
-            className={b("ActionButton")}
-            onClick={() => setEventCreation(true)}
-          >
+        <div className={s.actionsContainer}>
+          <button className={s.actionButton} onClick={() => setEventCreation(true)}>
             Создать
           </button>
 
-          <button
-            className={b("ActionButton")}
-            onClick={gameEventsClient.exportEvents}
-          >
+          <button className={s.actionButton} onClick={gameEventsClient.exportEvents}>
             Сохранить
           </button>
 
-          <button
-            className={b("ActionButton")}
-            onClick={gameEventsClient.importEvents}
-          >
+          <button className={s.actionButton} onClick={gameEventsClient.importEvents}>
             Загрузить
           </button>
         </div>

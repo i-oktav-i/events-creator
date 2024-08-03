@@ -1,1 +1,1 @@
-export { EventCard, type EventCardProps } from "./EventCard";
+export { EventCard, type EventCardProps } from './EventCard';

@@ -1,4 +1,4 @@
 export {
   DependenciesFormFields,
   type DependenciesFormFieldsProps,
-} from "./DependenciesFormFields";
+} from './DependenciesFormFields';
