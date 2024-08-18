@@ -8,11 +8,9 @@ export const layout = style([
     flexDirection: 'column',
     gap: 'x4',
     backgroundColor: 'primary',
+    size: 'viewport',
   }),
   {
-    width: '100dvw',
-    height: '100dvh',
-
     selectors: {
       [`${darkThemeClassName}.&`]: {
         colorScheme: 'dark',

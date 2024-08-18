@@ -11,10 +11,9 @@ export const eventsActionsSelectModal = style([
     gap: 'x4',
     padding: 'x4',
     backgroundColor: 'primary',
+    size: 'full',
   }),
   {
-    width: '100%',
-    height: '100%',
     border: `1px solid ${config.colors.border.active}`,
     borderRadius: config.radii.x4,
   },
@@ -33,16 +32,12 @@ export const eventsActionsSelectModalContainer = style([
   },
 ]);
 
-export const eventsActionsSelectModalEvents = style([
-  container({
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-  },
-]);
+export const eventsActionsSelectModalEvents = container({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 'x4',
+  width: 'full',
+});
 
 export const eventsActionsSelectModalEvent = style({
   width: '100%',
@@ -77,27 +72,19 @@ export const eventsActionsSelectModalAction = recipe({
   },
 });
 
-export const eventsActionsSelect = style([
-  container({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-  },
-]);
+export const eventsActionsSelect = container({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'x4',
+  width: 'full',
+});
 
-export const eventsActionsSelectSelectedContainer = style([
-  container({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-  },
-]);
+export const eventsActionsSelectSelectedContainer = container({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'x4',
+  width: 'full',
+});
 
 export const eventsActionsSelectSelectedItem = style([
   container({
@@ -105,9 +92,9 @@ export const eventsActionsSelectSelectedItem = style([
     gap: 'x4',
     flexDirection: 'column',
     padding: 'x2',
+    width: 'full',
   }),
   {
-    width: '100%',
     border: `1px solid ${config.colors.border.primary}`,
     borderRadius: config.radii.x2,
   },

@@ -1,46 +1,43 @@
-import { Group } from './groups';
+import { DeepPartial, TypedOmit } from '@shared/typings';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type GameEventId = number & {};
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type GameEventActionId = `${number}-${number}` & {};
-
-export type Dependencies = {
-  events?: {
-    required?: GameEventId[];
-    blocking?: GameEventId[];
-  };
-  actions?: {
-    required?: GameEventActionId[];
-    blocking?: GameEventActionId[];
-  };
-  state?: Partial<
-    Record<
-      Group | 'week',
-      {
-        min: number;
-        max: number;
-      }
-    >
-  >;
-};
+import { Dependencies } from './dependencies';
+import { GameEventActionId, GameEventId } from './ids';
+import { GameState } from './state';
 
 export type GameEventType = 'weekly' | 'weekend';
 
 export type GameEvent = {
   id: GameEventId;
+  type: GameEventType;
+
   title: string;
   description: string;
-  type: GameEventType;
-  fireIfPossible: boolean;
+
   actions: GameEventAction[];
+
   dependencies?: Dependencies;
+
+  triggerProbability: number;
+  checksAttempts: number;
+
+  allowOverStack: boolean;
 };
+
+export type GameEventActionChanges = DeepPartial<
+  TypedOmit<GameState, 'chosenActionIds' | 'happenedEventsIds' | 'week' | 'eventsType'>
+>;
 
 export type GameEventAction = {
   id: GameEventActionId;
+
   title: string;
   description: string;
-  changes: Partial<Record<Group, number>>;
-  dependencies: Dependencies;
+
+  dependencies?: Dependencies;
+
+  changes?: GameEventActionChanges;
+};
+
+export type UnknownGameEvent = TypedOmit<GameEvent, 'id' | 'actions'> & {
+  actions: TypedOmit<GameEventAction, 'id'>[];
 };

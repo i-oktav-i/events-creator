@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { GameEvent, eventsSearch } from '@entities/gameEvent';
+import { GameEvent, GameEventId, eventsSearch } from '@entities/gameEvent';
 import { PORTAL_ID } from '@shared/config';
 
 import { useBlockBodyScroll } from '@shared/hooks';
@@ -9,14 +9,14 @@ import * as s from './EventSelect.css';
 
 export type EventSelectModalProps = {
   events: GameEvent[];
-  initialSelectedEvents: number[];
-  onSelect: (ids: number[]) => void;
+  initialSelectedEvents?: GameEventId[];
+  onSelect: (ids: GameEventId[]) => void;
   onClose: () => void;
 };
 
 export const EventSelectModal: FC<EventSelectModalProps> = ({
   events,
-  initialSelectedEvents,
+  initialSelectedEvents = [],
   onClose,
   onSelect,
 }) => {
@@ -25,7 +25,7 @@ export const EventSelectModal: FC<EventSelectModalProps> = ({
 
   const filteredEvents = eventsSearch(events, search);
 
-  const handleSelect = (id: number) => {
+  const handleSelect = (id: GameEventId) => {
     setSelectedEvents((prev) =>
       prev.includes(id) ? prev.filter((eventId) => eventId !== id) : [...prev, id],
     );

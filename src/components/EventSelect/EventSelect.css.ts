@@ -10,10 +10,9 @@ export const eventSelectModal = style([
     gap: 'x4',
     padding: 'x4',
     backgroundColor: 'primary',
+    size: 'full',
   }),
   {
-    width: '100%',
-    height: '100%',
     border: `1px solid ${config.colors.border.active}`,
     borderRadius: config.radii.x4,
   },
@@ -31,16 +30,12 @@ export const eventSelectModalContainer = style([
   },
 ]);
 
-export const eventSelectModalEvents = style([
-  container({
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-  },
-]);
+export const eventSelectModalEvents = container({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 'x4',
+  width: 'full',
+});
 
 export const eventSelectModalEvent = recipe({
   base: {
@@ -57,16 +52,12 @@ export const eventSelectModalEvent = recipe({
   },
 });
 
-export const eventSelect = style([
-  container({
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-  },
-]);
+export const eventSelect = container({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 'x4',
+  width: 'full',
+});
 
 export const eventSelectSelectedContainer = container({
   display: 'flex',

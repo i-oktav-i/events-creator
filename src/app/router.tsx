@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { EventCreator } from '@pages/EventCreator';
-import { Game } from '@pages/Game';
 import { Layout } from './ui/Layout';
 
 export const router = createBrowserRouter(
@@ -15,7 +14,6 @@ export const router = createBrowserRouter(
         },
         {
           path: '/game/',
-          element: <Game />,
         },
       ],
     },

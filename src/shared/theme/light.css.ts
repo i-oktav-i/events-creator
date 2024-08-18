@@ -12,6 +12,7 @@ export const [lightThemeClassName, colorsConfig] = createTheme({
       primary: tokensConfig.tailwindColors.white,
       secondary: tokensConfig.tailwindColors.gray[400],
       backdrop: tokensConfig.tailwindColors.neutral[400],
+      active: tokensConfig.tailwindColors.blue[500],
     },
     border: {
       primary: tokensConfig.tailwindColors.gray[800],

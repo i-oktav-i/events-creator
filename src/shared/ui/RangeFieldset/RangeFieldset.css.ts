@@ -15,8 +15,7 @@ export const rangeFieldset = style([
 ]);
 
 export const rangeFieldsetItem = style([
-  container({ display: 'flex', flexDirection: 'column', gap: 'x4' }),
-  { width: '50%' },
+  container({ display: 'flex', flexDirection: 'column', gap: 'x4', width: 'half' }),
 ]);
 
 globalStyle(`${rangeFieldsetItem} input`, {

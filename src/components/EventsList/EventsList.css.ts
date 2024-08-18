@@ -1,31 +1,18 @@
-import { style } from '@vanilla-extract/css';
-
 import { container } from '@shared/theme';
 
-export const eventsList = style([
-  container({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-    height: '100%',
-  },
-]);
-export const eventsListSearch = style({
-  width: '100%',
+export const eventsList = container({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'x4',
+  size: 'full',
 });
 
-export const eventsListScroll = style([
-  container({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-    height: '100%',
-    overflow: 'auto',
-  },
-]);
+export const eventsListSearch = container({ width: 'full' });
+
+export const eventsListScroll = container({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'x4',
+  size: 'full',
+  overflow: 'auto',
+});

@@ -1,8 +1,14 @@
-import { GameEventActionId, GameEventId } from './event';
-import { Group } from './groups';
+import { GameEventType } from './event';
+import { Fraction, FractionsState } from './fractions';
+import { GameEventActionId, GameEventId } from './ids';
 
-export type GameState = Record<Group | 'week', number> & {
+export type GameState = {
+  week: number;
   happenedEventsIds: GameEventId[];
   chosenActionIds: GameEventActionId[];
-  isWeekend: boolean;
-};
+  eventsType: GameEventType;
+  fractionsState: FractionsState;
+  publishingHouseReputation: number;
+  money: number;
+  policeAttention: number;
+} & Record<`${Fraction}Reputation`, number>;

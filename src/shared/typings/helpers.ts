@@ -17,3 +17,23 @@ type LastOf<T> = UnionToIntersection<T extends unknown ? () => T : never> extend
 export type UnionToTuple<T, L = LastOf<T>> = [L] extends [never]
   ? []
   : [...UnionToTuple<Exclude<T, L>>, L];
+
+// export type Prettify<T> = { [K in keyof T]: T[K] } & unknown;
+// biome-ignore lint/suspicious/noExplicitAny:
+export type Prettify<T> = T extends any
+  ? T extends infer U
+    ? { [Key in keyof U]: U[Key] }
+    : never
+  : never;
+
+// biome-ignore lint/suspicious/noExplicitAny:
+export type DeepPartial<T extends Record<string, any>> = {
+  // biome-ignore lint/suspicious/noExplicitAny:
+  [Key in keyof T]?: T[Key] extends Record<string, any> ? DeepPartial<T[Key]> : T[Key];
+};
+
+// biome-ignore lint/suspicious/noExplicitAny:
+export type AnyObject = Record<string, any>;
+export type UnknownObject = Record<string, unknown>;
+
+export type TypedOmit<T extends AnyObject, K extends keyof T> = Omit<T, K>;

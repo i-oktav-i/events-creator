@@ -1,7 +1,5 @@
-import { loadFromFile, saveToFile } from '@shared/lib';
-
-import { loadGameEvents, uploadGameEvents } from '../api';
-import { GameEvent } from '../types';
+import { exportGameEvents, importGameEvents, loadGameEvents, uploadGameEvents } from '../api';
+import { GameEvent, GameEventActionId, GameEventId, UnknownGameEvent } from '../types';
 
 class GameEventsClient {
   #events: GameEvent[];
@@ -36,18 +34,41 @@ class GameEventsClient {
     this.#callbacks.splice(index, 1);
   };
 
-  exportEvents = () => {
-    saveToFile(JSON.stringify(this.#events, null, 4), 'events.json', 'application/json');
-  };
+  exportEvents = exportGameEvents;
 
   importEvents = async () => {
-    const readResult = await loadFromFile('application/json');
+    const data = await importGameEvents();
 
-    if (typeof readResult !== 'string') throw new Error('Not a string file');
+    if (!data) return;
 
-    const readEvents = JSON.parse(readResult);
+    this.events = data;
+  };
 
-    this.events = readEvents;
+  addUnknownGameEvent = (unknownGameEvent: UnknownGameEvent) => {
+    const maxId = this.events.length
+      ? Math.max(...this.events.map((gameEvent) => gameEvent.id))
+      : 0;
+
+    const newGameEventId = (maxId + 1) as GameEventId;
+
+    const newGameEvent: GameEvent = {
+      ...unknownGameEvent,
+      id: newGameEventId,
+      actions: unknownGameEvent.actions.map((action, index) => ({
+        ...action,
+        id: `${newGameEventId}-${index}` as GameEventActionId,
+      })),
+    };
+
+    this.events = [...this.events, newGameEvent];
+  };
+
+  updateEvent = (updatedGameEvent: GameEvent) => {
+    const eventIndex = this.events.findIndex((gameEvent) => gameEvent.id === updatedGameEvent.id);
+
+    if (eventIndex === -1) throw new Error(`No game event with ID ${updatedGameEvent.id}`);
+
+    this.events = this.events.with(eventIndex, updatedGameEvent);
   };
 }
 

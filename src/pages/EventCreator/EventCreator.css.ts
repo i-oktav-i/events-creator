@@ -1,17 +1,12 @@
 import { config, container, indent } from '@shared/theme';
 import { style } from '@vanilla-extract/css';
 
-export const root = style([
-  container({
-    display: 'flex',
-    gap: 'x4',
-    padding: 'x4',
-  }),
-  {
-    width: '100%',
-    height: '100%',
-  },
-]);
+export const root = container({
+  display: 'flex',
+  gap: 'x4',
+  padding: 'x4',
+  size: 'full',
+});
 
 export const search = style({
   width: '30%',
@@ -30,16 +25,12 @@ export const event = style([
   },
 ]);
 
-export const actionsContainer = style([
-  container({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 'x4',
-  }),
-  {
-    width: '100%',
-  },
-]);
+export const actionsContainer = container({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'x4',
+  width: 'full',
+});
 
 export const actionButton = style([
   indent({ padding: 'x2' }),
@@ -52,9 +43,8 @@ export const actionButton = style([
 ]);
 
 export const popover = style([
-  container({ display: 'flex', padding: 'x4', gap: 'x4' }),
+  container({ display: 'flex', padding: 'x4', gap: 'x4', width: 'full' }),
   {
-    width: '100%',
     border: `1px solid ${config.colors.border.primary}`,
     borderRadius: config.radii.x2,
     alignSelf: 'center',

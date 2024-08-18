@@ -1,34 +1,37 @@
-import { Field } from 'react-final-form';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
-import * as s from './SelectField.css';
+import { ForwardedRef, JSX, forwardRef } from 'react';
+import { InputLabelWrapper } from '../InputLabelWrapper';
 
-export type SelectFieldProps<T extends string | number> = {
-  name: string;
+export type SelectFieldProps<T extends string | number> = UseFormRegisterReturn & {
   label: string;
   options: {
     value: T;
     label: string;
   }[];
+  error?: FieldError;
 };
 
-export const SelectField = <T extends string | number>({
-  name,
-  options,
-  label,
-}: SelectFieldProps<T>) => {
-  if (!options.length) return null;
+export const SelectField = forwardRef(
+  <T extends string | number>(
+    { label, options, error, ...field }: SelectFieldProps<T>,
+    ref: ForwardedRef<HTMLSelectElement>,
+  ) => {
+    if (!options.length) return null;
 
-  return (
-    <label className={s.label}>
-      {label}
-
-      <Field<T> name={name} component="select" defaultValue={options[0]?.value}>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </Field>
-    </label>
-  );
-};
+    return (
+      <InputLabelWrapper label={label} error={error}>
+        <select {...field} ref={ref}>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </InputLabelWrapper>
+    );
+  },
+) as <T extends string | number>(
+  { label, options, error, ...field }: SelectFieldProps<T>,
+  ref: ForwardedRef<HTMLSelectElement>,
+) => JSX.Element | null;

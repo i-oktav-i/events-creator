@@ -5,6 +5,14 @@ import { conditions } from './conditions.css';
 import { indentProperties } from './indents.css';
 import { colorsConfig } from './light.css';
 
+const commonSizes = {
+  third: 'calc(100% / 3)',
+  quarter: '25%',
+  half: '50%',
+  full: '100%',
+  auto: 'auto',
+} as const;
+
 const responsiveProperties = defineProperties({
   ...conditions,
   defaultCondition: 'mobile',
@@ -25,9 +33,16 @@ const responsiveProperties = defineProperties({
     gap: tokensConfig.space,
     rowGap: tokensConfig.space,
     columnGap: tokensConfig.space,
+    overflow: ['visible', 'hidden', 'scroll', 'auto'],
+    overflowX: ['visible', 'hidden', 'scroll', 'auto'],
+    overflowY: ['visible', 'hidden', 'scroll', 'auto'],
+    width: { ...commonSizes, viewport: '100dvw' },
+    height: { ...commonSizes, viewport: '100dvh' },
+    border: {},
   },
   shorthands: {
     placeItems: ['justifyContent', 'alignItems'],
+    size: ['width', 'height'],
   },
 });
 

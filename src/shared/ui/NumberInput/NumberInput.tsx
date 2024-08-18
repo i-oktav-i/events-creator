@@ -1,24 +1,20 @@
-import { FC } from 'react';
-import { Field } from 'react-final-form';
+import { ReactNode, forwardRef } from 'react';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
-export type NumberInputProps = {
-  name: string;
-  label: string;
+import { InputLabelWrapper } from '../InputLabelWrapper';
+
+export type NumberInputProps = UseFormRegisterReturn & {
+  label: string | ReactNode;
+  error?: FieldError;
+  inputClassName?: string;
 };
 
-export const NumberInput: FC<NumberInputProps> = ({ name, label }) => {
-  return (
-    <label>
-      {label}
-
-      <Field
-        name={name}
-        component="input"
-        type="number"
-        defaultValue={0}
-        format={(value: number | undefined) => (value === undefined ? '' : `${value}`)}
-        parse={(value) => (!value ? undefined : parseInt(value, 10))}
-      />
-    </label>
-  );
-};
+export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
+  ({ label, error, inputClassName, ...field }, ref) => {
+    return (
+      <InputLabelWrapper label={label} error={error}>
+        <input {...field} className={inputClassName} ref={ref} type="number" />
+      </InputLabelWrapper>
+    );
+  },
+);
