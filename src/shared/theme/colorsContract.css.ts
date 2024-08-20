@@ -1,6 +1,6 @@
-import { createGlobalThemeContract } from '@vanilla-extract/css';
+import { createThemeContract } from '@vanilla-extract/css';
 
-export const colorsContract = createGlobalThemeContract({
+export const colorsContract = createThemeContract({
   colors: {
     text: {
       primary: '',
@@ -10,6 +10,7 @@ export const colorsContract = createGlobalThemeContract({
       primary: '',
       secondary: '',
       backdrop: '',
+      active: '',
     },
     border: {
       primary: '',

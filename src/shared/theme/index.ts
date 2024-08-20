@@ -1,6 +1,7 @@
-import { tokensConfig } from './base.css';
-import { colorsConfig } from './light.css';
+import { themeDependentTokensConfig, tokensConfig } from './base.css';
+import { colorsContract } from './colorsContract.css';
 
+export { themeDependentTokensClassName as baseClassName } from './base.css';
 export { container, type ContainerProps } from './container.css';
 export { darkThemeClassName } from './dark.css';
 export { indent, type IndentProps } from './indents.css';
@@ -10,5 +11,6 @@ export { inset, type InsetProps } from './inset.css';
 
 export const config = {
   ...tokensConfig,
-  ...colorsConfig,
+  ...themeDependentTokensConfig,
+  ...colorsContract,
 };

@@ -1,8 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import { tokensConfig } from './base.css';
+import { colorsContract } from './colorsContract.css';
 
-export const [lightThemeClassName, colorsConfig] = createTheme({
+export const lightThemeClassName = createTheme(colorsContract, {
   colors: {
     text: {
       primary: tokensConfig.tailwindColors.neutral[950],

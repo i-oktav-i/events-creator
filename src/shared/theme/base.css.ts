@@ -1,5 +1,6 @@
-import { createGlobalTheme, createVar, globalStyle } from '@vanilla-extract/css';
+import { createGlobalTheme, createTheme, createVar, globalStyle } from '@vanilla-extract/css';
 import * as tailwindColors from 'tailwindcss/colors';
+import { colorsContract } from './colorsContract.css';
 
 // biome-ignore lint/suspicious/noExplicitAny:
 type Convert<T extends Record<string, any>> = {
@@ -54,4 +55,12 @@ export const tokensConfig = createGlobalTheme(':root', {
     x4: `calc(${baseSize} * 4)`,
   },
   tailwindColors: tailwindColors as TailwindColors,
+});
+
+export const [themeDependentTokensClassName, themeDependentTokensConfig] = createTheme({
+  borders: {
+    primary: `1px solid ${colorsContract.colors.border.primary}`,
+    active: `1px solid ${colorsContract.colors.border.active}`,
+    none: 'none',
+  },
 });

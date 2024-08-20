@@ -1,9 +1,9 @@
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
-import { tokensConfig } from './base.css';
+import { themeDependentTokensConfig, tokensConfig } from './base.css';
+import { colorsContract } from './colorsContract.css';
 import { conditions } from './conditions.css';
 import { indentProperties } from './indents.css';
-import { colorsConfig } from './light.css';
 
 const commonSizes = {
   third: 'calc(100% / 3)',
@@ -38,7 +38,8 @@ const responsiveProperties = defineProperties({
     overflowY: ['visible', 'hidden', 'scroll', 'auto'],
     width: { ...commonSizes, viewport: '100dvw' },
     height: { ...commonSizes, viewport: '100dvh' },
-    border: {},
+    border: themeDependentTokensConfig.borders,
+    borderRadius: tokensConfig.radii,
   },
   shorthands: {
     placeItems: ['justifyContent', 'alignItems'],
@@ -48,7 +49,7 @@ const responsiveProperties = defineProperties({
 
 const containerColorProperties = defineProperties({
   properties: {
-    backgroundColor: colorsConfig.colors.background,
+    backgroundColor: { ...colorsContract.colors.background, transparent: '#ffffff00' },
   },
 });
 

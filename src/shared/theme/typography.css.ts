@@ -3,14 +3,14 @@ import { recipe } from '@vanilla-extract/recipes';
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 import { tokensConfig } from './base.css';
-import { colorsConfig } from './light.css';
+import { colorsContract } from './colorsContract.css';
 
 const typographySizesProperties = defineProperties({
   properties: {
     fontSize: tokensConfig.typography.fontSize,
     lineHeight: tokensConfig.typography.lineHeight,
     fontWeight: tokensConfig.typography.fontWeight,
-    color: colorsConfig.colors.text,
+    color: colorsContract.colors.text,
   },
   shorthands: {
     variant: ['fontSize', 'lineHeight'],
@@ -34,10 +34,10 @@ export const typography = recipe({
     },
     color: {
       primary: {
-        color: colorsConfig.colors.text.primary,
+        color: colorsContract.colors.text.primary,
       },
       secondary: {
-        color: colorsConfig.colors.text.secondary,
+        color: colorsContract.colors.text.secondary,
       },
     },
   },
