@@ -37,3 +37,5 @@ export type AnyObject = Record<string, any>;
 export type UnknownObject = Record<string, unknown>;
 
 export type TypedOmit<T extends AnyObject, K extends keyof T> = Omit<T, K>;
+
+export type OneOrArray<T> = T | T[];

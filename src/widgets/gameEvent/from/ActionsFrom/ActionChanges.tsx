@@ -2,11 +2,7 @@ import _get from 'lodash/get';
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import {
-  GameEventActionChanges,
-  UnknownGameEvent,
-  dependenciesStateLabels,
-} from '@entities/gameEvent';
+import { GameEvent, GameEventActionChanges, dependenciesStateLabels } from '@entities/gameEvent';
 import { UnionToTuple } from '@shared/typings';
 import { NumberInput } from '@shared/ui';
 
@@ -35,7 +31,7 @@ export const ActionChanges: FC<ActionChangesProps> = ({ name }) => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<UnknownGameEvent>();
+  } = useFormContext<GameEvent>();
 
   const changesErrors = _get(errors, name);
 

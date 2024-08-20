@@ -2,7 +2,7 @@ import _get from 'lodash/get';
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { UnknownGameEvent } from '@entities/gameEvent';
+import { GameEvent } from '@entities/gameEvent';
 import { TextField } from '@shared/ui';
 
 import { Dependencies } from '../dependencies/Dependencies';
@@ -17,7 +17,7 @@ export const ActionForm: FC<ActionFormProps> = ({ name, hidden }) => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<UnknownGameEvent>();
+  } = useFormContext<GameEvent>();
 
   const actionErrors = _get(errors, name);
 
@@ -38,7 +38,7 @@ export const ActionForm: FC<ActionFormProps> = ({ name, hidden }) => {
         error={actionErrors?.description}
       />
 
-      <Dependencies name={`${name}.dependencies`} type="actions" />
+      <Dependencies name={`${name}.dependencies`} />
 
       <ActionChanges name={`${name}.changes`} />
     </fieldset>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { GameEventType, UnknownGameEvent, unknownGameEvent } from '@entities/gameEvent';
+import { GameEvent, GameEventType } from '@entities/gameEvent';
 import { Checkbox, NumberInput, SelectField, TextField } from '@shared/ui';
 
 import { ActionsFrom } from './ActionsFrom';
@@ -14,18 +14,17 @@ const typeOptions: { [Type in GameEventType]: { value: Type; label: string } }[G
 ];
 
 export type GameEventFormProps = {
-  onSubmit: (gameEvent: UnknownGameEvent) => void;
-  defaultValues?: UnknownGameEvent;
+  onSubmit: (gameEvent: GameEvent) => void;
+  onAbort: () => void;
+  defaultValues: GameEvent | Pick<GameEvent, 'id'>;
 };
 
-export const GameEventForm: FC<GameEventFormProps> = ({
-  defaultValues = unknownGameEvent,
-  onSubmit,
-}) => {
-  const methods = useForm({ defaultValues });
+export const GameEventForm: FC<GameEventFormProps> = ({ defaultValues, onSubmit, onAbort }) => {
+  const methods = useForm<GameEvent>({ defaultValues });
 
   const {
     handleSubmit,
+    reset,
     register,
     formState: { errors },
   } = methods;
@@ -77,11 +76,17 @@ export const GameEventForm: FC<GameEventFormProps> = ({
           {...register('allowOverStack')}
         />
 
-        <Dependencies name="dependencies" type="events" />
+        <Dependencies name="dependencies" />
 
         <ActionsFrom name="actions" />
 
         <button type="submit">Submit</button>
+        <button type="button" onClick={() => reset()}>
+          Reset
+        </button>
+        <button type="button" onClick={onAbort}>
+          Abort
+        </button>
       </form>
     </FormProvider>
   );

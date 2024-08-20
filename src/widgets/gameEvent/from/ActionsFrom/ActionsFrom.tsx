@@ -2,7 +2,7 @@ import _get from 'lodash/get';
 import { FC, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import { UnknownGameEvent, unknownGameEventAction } from '@entities/gameEvent';
+import { GameEvent, GameEventActionId } from '@entities/gameEvent';
 
 import { ActionForm } from './ActionForm';
 import { actionsContainer, paginationButton, paginationContainer } from './ActionsFrom.css';
@@ -17,7 +17,8 @@ export const ActionsFrom: FC<ActionsFormProps> = ({ name }) => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<UnknownGameEvent>();
+    getValues,
+  } = useFormContext<GameEvent>();
   const { fields, append, remove } = useFieldArray({
     control,
     name,
@@ -27,7 +28,18 @@ export const ActionsFrom: FC<ActionsFormProps> = ({ name }) => {
   const actionsErrors = _get(errors, name);
 
   const addItem = () => {
-    append(unknownGameEventAction);
+    const gameEventId = getValues('id');
+    const actions = getValues(name);
+    const maxActionId = actions.length
+      ? Math.max(...actions.map((action) => +(action.id.split('-').at(-1) ?? 0)))
+      : 0;
+    const newActionId = maxActionId + 1;
+
+    append({
+      id: `${gameEventId}-${newActionId}` as GameEventActionId,
+      description: '',
+      title: '',
+    });
 
     setCurrentActionIndex(fields.length);
   };

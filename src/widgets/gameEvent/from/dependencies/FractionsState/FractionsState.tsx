@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { FieldPath } from 'react-hook-form';
 
 import {
-  UnknownGameEvent,
+  GameEvent,
   fractionsShortage,
   illegalNormalFractionsOrder,
   illegalStrangeFractionsOrder,
@@ -17,7 +17,7 @@ import {
   rangeInput,
 } from './FractionsState.css';
 
-type FractionGroupPath = FieldPath<UnknownGameEvent> extends infer Keys
+type FractionGroupPath = FieldPath<GameEvent> extends infer Keys
   ? Keys extends `${infer U extends `${string}.influence`}.${'min' | 'max'}`
     ? U
     : never
@@ -32,7 +32,7 @@ type FractionsGroupProps = {
 const FractionsGroup: FC<FractionsGroupProps> = ({ label, name, children }) => {
   return (
     <fieldset className={fractionsGroupContainer}>
-      <RangeFieldset<UnknownGameEvent> label={label} name={name} inputClassName={rangeInput} />
+      <RangeFieldset<GameEvent> label={label} name={name} inputClassName={rangeInput} />
 
       <div className={fractionsGroupContent}>{children}</div>
     </fieldset>
@@ -51,7 +51,7 @@ export const FractionsState: FC<FractionsStateProps> = ({ name }) => {
       <div className={fractionsStateContainer}>
         <FractionsGroup label="Legal" name={`${name}.legal.influence`}>
           {legalFractionsOrder.map((fraction) => (
-            <RangeFieldset<UnknownGameEvent>
+            <RangeFieldset<GameEvent>
               key={fraction}
               label={fractionsShortage[fraction]}
               name={`${name}.legal.fractions.${fraction}`}
@@ -63,7 +63,7 @@ export const FractionsState: FC<FractionsStateProps> = ({ name }) => {
         <FractionsGroup label="Illegal" name={`${name}.illegal.influence` as const}>
           <FractionsGroup label="Normal" name={`${name}.illegal.normal.influence`}>
             {illegalNormalFractionsOrder.map((fraction) => (
-              <RangeFieldset<UnknownGameEvent>
+              <RangeFieldset<GameEvent>
                 key={fraction}
                 label={fractionsShortage[fraction]}
                 name={`${name}.illegal.normal.fractions.${fraction}`}
@@ -74,7 +74,7 @@ export const FractionsState: FC<FractionsStateProps> = ({ name }) => {
 
           <FractionsGroup label="Strange" name={`${name}.illegal.strange.influence`}>
             {illegalStrangeFractionsOrder.map((fraction) => (
-              <RangeFieldset<UnknownGameEvent>
+              <RangeFieldset<GameEvent>
                 key={fraction}
                 label={fractionsShortage[fraction]}
                 name={`${name}.illegal.strange.fractions.${fraction}`}

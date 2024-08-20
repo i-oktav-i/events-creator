@@ -1,5 +1,5 @@
 import { exportGameEvents, importGameEvents, loadGameEvents, uploadGameEvents } from '../api';
-import { GameEvent, GameEventActionId, GameEventId, UnknownGameEvent } from '../types';
+import { GameEvent, GameEventActionId, GameEventId } from '../types';
 
 class GameEventsClient {
   #events: GameEvent[];
@@ -44,31 +44,24 @@ class GameEventsClient {
     this.events = data;
   };
 
-  addUnknownGameEvent = (unknownGameEvent: UnknownGameEvent) => {
-    const maxId = this.events.length
-      ? Math.max(...this.events.map((gameEvent) => gameEvent.id))
-      : 0;
-
-    const newGameEventId = (maxId + 1) as GameEventId;
-
-    const newGameEvent: GameEvent = {
-      ...unknownGameEvent,
-      id: newGameEventId,
-      actions: unknownGameEvent.actions.map((action, index) => ({
-        ...action,
-        id: `${newGameEventId}-${index}` as GameEventActionId,
-      })),
-    };
-
-    this.events = [...this.events, newGameEvent];
+  addGameEvent = (gameEvent: GameEvent) => {
+    this.events = [...this.events, gameEvent];
   };
 
-  updateEvent = (updatedGameEvent: GameEvent) => {
+  updateGameEvent = (updatedGameEvent: GameEvent) => {
     const eventIndex = this.events.findIndex((gameEvent) => gameEvent.id === updatedGameEvent.id);
 
     if (eventIndex === -1) throw new Error(`No game event with ID ${updatedGameEvent.id}`);
 
     this.events = this.events.with(eventIndex, updatedGameEvent);
+  };
+
+  findGameEvent = (id: GameEventId) => this.events.find((event) => event.id === id);
+  findGameEventAction = (id: GameEventActionId) => {
+    const gameEventId = +id.split('-')[0] as GameEventId;
+    const gameEvent = this.findGameEvent(gameEventId);
+
+    return gameEvent?.actions.find((action) => action.id === id);
   };
 }
 

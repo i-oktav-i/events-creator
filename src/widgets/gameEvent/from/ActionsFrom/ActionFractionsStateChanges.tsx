@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 import { FieldPath, useFormContext } from 'react-hook-form';
 
 import {
-  UnknownGameEvent,
+  GameEvent,
   fractionsShortage,
   illegalNormalFractionsOrder,
   illegalStrangeFractionsOrder,
@@ -16,7 +16,7 @@ import {
   fractionsStateChangesGroupContainer,
 } from './ActionsFrom.css';
 
-type FractionGroupPath = FieldPath<UnknownGameEvent> extends infer Keys
+type FractionGroupPath = FieldPath<GameEvent> extends infer Keys
   ? Keys extends infer U extends `actions.${number}.${string}.influence`
     ? U
     : never
@@ -32,7 +32,7 @@ const FractionsGroup: FC<FractionsGroupProps> = ({ label, name, children }) => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<UnknownGameEvent>();
+  } = useFormContext<GameEvent>();
 
   return (
     <fieldset className={fractionsStateChangesGroupContainer}>
@@ -51,7 +51,7 @@ export const ActionFractionsStateChanges: FC<ActionFractionsStateChangesProps> =
   const {
     register,
     formState: { errors },
-  } = useFormContext<UnknownGameEvent>();
+  } = useFormContext<GameEvent>();
 
   const fractionsStateChangesErrors = _get(errors, name) as NonNullable<
     NonNullable<NonNullable<(typeof errors)['actions']>[number]>['changes']

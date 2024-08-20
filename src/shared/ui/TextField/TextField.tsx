@@ -10,10 +10,14 @@ export type TextFieldProps = UseFormRegisterReturn & {
   placeholder?: string;
   asTextArea?: boolean;
   error?: FieldError;
+  readOnly?: boolean;
 };
 
 export const TextField = forwardRef<HTMLInputElement & HTMLAreaElement, TextFieldProps>(
-  function TextField({ label, placeholder, asTextArea, error, ...field }: TextFieldProps, ref) {
+  function TextField(
+    { label, placeholder, asTextArea, error, readOnly, ...field }: TextFieldProps,
+    ref,
+  ) {
     const Component = asTextArea ? 'textarea' : 'input';
 
     return (
@@ -24,6 +28,7 @@ export const TextField = forwardRef<HTMLInputElement & HTMLAreaElement, TextFiel
           ref={ref as any}
           placeholder={placeholder}
           className={s.input[Component]}
+          readOnly={readOnly}
         />
       </InputLabelWrapper>
     );

@@ -1,17 +1,17 @@
 import _get from 'lodash/get';
 import { FC, useState } from 'react';
-import { FieldError, useFieldArray, useFormContext } from 'react-hook-form';
+import { FieldError, useFieldArray, useFormContext, useWatch } from 'react-hook-form';
 
-import { EventSelectModal } from '@components/EventSelect';
-import { EventsActionsSelectModal } from '@components/EventsActionsSelect';
 import {
-  GameEventActionId,
-  GameEventId,
+  GameEvent,
+  GameEventAction,
   IdsDependenciesInfo,
-  UnknownGameEvent,
   gameEventsClient,
 } from '@entities/gameEvent';
-import { SelectField, TextField } from '@shared/ui';
+import { SelectField } from '@shared/ui';
+
+import { GameEventActionSelectModal } from '../../../GameEventActionSelectModal';
+import { GameEventSelectModal } from '../../../GameEventSelectModal';
 
 import * as s from './IdsDependencies.css';
 
@@ -41,25 +41,39 @@ const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
   const {
     control,
     register,
-    watch,
     formState: { errors },
-  } = useFormContext<UnknownGameEvent>();
+    getValues,
+  } = useFormContext<GameEvent>();
 
-  const { fields, append, remove } = useFieldArray({
+  const idsFieldsName = `${name}.ids` as const;
+  const dependencyTypeFieldName = `${name}.type` as const;
+
+  const { fields, append, remove, prepend } = useFieldArray({
     control,
-    name: `${name}.ids` as const,
+    name: idsFieldsName,
   });
 
   const idsErrors = _get(errors, name) as IdsDependenciesErrors;
 
-  const dependencyType = watch(`${name}.type`);
+  const dependencyType = useWatch({ control, name: dependencyTypeFieldName });
 
-  const IdsSelectorComponent = idsType === 'actions' ? EventsActionsSelectModal : EventSelectModal;
+  const IdsSelectorComponent =
+    idsType === 'actions' ? GameEventActionSelectModal : GameEventSelectModal;
+
+  const getTitle = (id: string) => {
+    const method = idsType === 'events' ? 'findGameEvent' : 'findGameEventAction';
+
+    return gameEventsClient[method](id as never)?.title;
+  };
 
   const onModalClose = () => setIsModalOpen(false);
 
-  const onIdsSelect = (ids: (GameEventActionId | GameEventId)[]) => {
-    append(ids);
+  const onIdsSelect = (items: (GameEventAction | GameEvent)[]) => {
+    // biome-ignore lint/suspicious/noExplicitAny: TODO: Подумать
+    const filtered = items.filter((item) => !getValues(idsFieldsName).includes(item.id as any));
+
+    prepend(filtered.map((item) => item.id));
+
     onModalClose();
   };
 
@@ -67,7 +81,7 @@ const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
     <>
       <fieldset>
         <SelectField
-          {...register(`${name}.type`)}
+          {...register(dependencyTypeFieldName)}
           label="Dependency type"
           options={dependencyTypeOptions}
           error={idsErrors?.type}
@@ -79,14 +93,10 @@ const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
           {fields.map((field, index) => (
             <div key={field.id}>
               {!('type' in field) ? (
-                <TextField
-                  {...register(`${name}.ids.${index}`, { required: 'Required' })}
-                  placeholder="Enter ID"
-                  error={idsErrors?.ids?.[index] as FieldError}
-                />
+                <span>{getTitle(getValues(`${idsFieldsName}.${index}`).toString())}</span>
               ) : (
                 <IdsDependenciesFields
-                  name={`${name}.ids.${index}` as IdsDependenciesProps['name']}
+                  name={`${idsFieldsName}.${index}` as IdsDependenciesProps['name']}
                   idsType={idsType}
                 />
               )}
@@ -110,13 +120,12 @@ const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
         </button>
       </fieldset>
 
-      {isModalOpen ? (
-        <IdsSelectorComponent
-          events={gameEventsClient.events}
-          onSelect={onIdsSelect}
-          onClose={onModalClose}
-        />
-      ) : null}
+      <IdsSelectorComponent
+        type="multi"
+        isOpen={isModalOpen}
+        onSelect={onIdsSelect}
+        onClose={onModalClose}
+      />
     </>
   );
 };
