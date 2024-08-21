@@ -11,8 +11,9 @@ class GameEventsClient {
 
   set events(value) {
     this.#events = value;
-    console.log('save value', value);
+
     uploadGameEvents(value);
+
     this.#callbacks.forEach((callback) => callback(value));
   }
 

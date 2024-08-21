@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 
 import { GameEvent, GameEventId, GameEventsList, useGameEvents } from '@entities/gameEvent';
-import { SearchGameEvents } from '@features/gameEvent';
+import { ExportEventsButton, ImportEventsButton, SearchGameEvents } from '@features/gameEvent';
 import { GameEventForm } from '@widgets/gameEvent';
 
 import { listContainer, pageContainer } from './EventCreator.css';
@@ -32,6 +32,9 @@ export const EventCreator: FC = () => {
         <button onClick={() => setSelectedGameEvent(newGameEventBase)}>
           Create new game event
         </button>
+
+        <ExportEventsButton />
+        <ImportEventsButton />
 
         <SearchGameEvents gameEvents={gameEvents}>
           {(filteredGameEvents) => (

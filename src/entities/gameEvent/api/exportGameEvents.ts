@@ -1,7 +1,11 @@
 import { saveToFile } from '@shared/lib';
 
-import { loadGameEvents } from './loadGameEvents';
+import { EVENTS_LOCAL_STORAGE_KEY } from '../config';
 
 export const exportGameEvents = () => {
-  saveToFile(JSON.stringify(loadGameEvents()), 'gameEvents.json', 'application/json');
+  saveToFile(
+    localStorage.getItem(EVENTS_LOCAL_STORAGE_KEY) || '',
+    'gameEvents.json',
+    'application/json',
+  );
 };
