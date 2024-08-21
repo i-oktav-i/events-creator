@@ -51,7 +51,7 @@ class GameEventsClient {
   updateGameEvent = (updatedGameEvent: GameEvent) => {
     const eventIndex = this.events.findIndex((gameEvent) => gameEvent.id === updatedGameEvent.id);
 
-    if (eventIndex === -1) throw new Error(`No game event with ID ${updatedGameEvent.id}`);
+    if (eventIndex === -1) return this.addGameEvent(updatedGameEvent);
 
     this.events = this.events.with(eventIndex, updatedGameEvent);
   };

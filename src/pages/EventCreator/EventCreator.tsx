@@ -11,7 +11,7 @@ export const EventCreator: FC = () => {
     GameEvent | Pick<GameEvent, 'id'> | null
   >(null);
 
-  const { gameEvents, addGameEvent, updateGameEvent } = useGameEvents();
+  const { gameEvents, updateGameEvent } = useGameEvents();
 
   const newGameEventBase = useMemo(() => {
     const maxId = gameEvents.length ? Math.max(...gameEvents.map((gameEvent) => gameEvent.id)) : 0;
@@ -22,8 +22,7 @@ export const EventCreator: FC = () => {
   }, [gameEvents]);
 
   const onFormSubmit = (gameEvent: GameEvent) => {
-    const formSubmitAction = selectedGameEvent ? updateGameEvent : addGameEvent;
-    formSubmitAction(gameEvent);
+    updateGameEvent(gameEvent);
     setSelectedGameEvent(null);
   };
 
