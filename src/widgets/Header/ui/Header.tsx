@@ -8,7 +8,7 @@ export const Header = () => {
     <header className={s.header}>
       <nav className={s.navigation}>
         <Link to="/">Создание событий</Link>
-        <Link to="/game/">Игра</Link>
+        <Link to="/graph/">Граф событий</Link>
       </nav>
 
       <ThemeModeSelector />

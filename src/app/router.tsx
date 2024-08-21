@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { EventCreator } from '@pages/EventCreator';
+import { GraphPage } from '@pages/Graph';
 import { Layout } from './ui/Layout';
 
 export const router = createBrowserRouter(
@@ -14,6 +15,10 @@ export const router = createBrowserRouter(
         },
         {
           path: '/game/',
+        },
+        {
+          path: '/graph/',
+          element: <GraphPage />,
         },
       ],
     },
