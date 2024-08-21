@@ -63,7 +63,6 @@ export const GameEventForm: FC<GameEventFormProps> = ({ defaultValues, onSubmit,
 
         <NumberInput
           {...register('checksAttempts', {
-            required: 'Required',
             min: { message: 'Minimum 1', value: 1 },
           })}
           label="Checks Attempts"

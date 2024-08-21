@@ -18,7 +18,7 @@ export type GameEvent = {
   dependencies?: Dependencies;
 
   triggerProbability: number;
-  checksAttempts: number;
+  checksAttempts?: number;
 
   allowOverStack: boolean;
 };

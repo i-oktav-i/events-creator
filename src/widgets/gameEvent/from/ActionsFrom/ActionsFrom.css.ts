@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes';
 
 import { config, container, indent } from '@shared/theme';
-import { styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
 export const actionContainer = styleVariants({
   hidden: [container({ display: 'none' })],
@@ -43,3 +43,8 @@ export const paginationButton = recipe({
     },
   },
 });
+
+export const actionsError = style([
+  indent({ marginLeft: 'x4' }),
+  { color: config.colors.status.error },
+]);

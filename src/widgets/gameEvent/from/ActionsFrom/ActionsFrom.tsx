@@ -5,7 +5,12 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import { GameEvent, GameEventActionId } from '@entities/gameEvent';
 
 import { ActionForm } from './ActionForm';
-import { actionsContainer, paginationButton, paginationContainer } from './ActionsFrom.css';
+import {
+  actionsContainer,
+  actionsError,
+  paginationButton,
+  paginationContainer,
+} from './ActionsFrom.css';
 
 export type ActionsFormProps = {
   name: 'actions';
@@ -52,7 +57,12 @@ export const ActionsFrom: FC<ActionsFormProps> = ({ name }) => {
 
   return (
     <fieldset className={actionsContainer}>
-      <legend>Actions</legend>
+      <legend>
+        Actions
+        {actionsErrors?.root?.message ? (
+          <span className={actionsError}>{actionsErrors.root.message}</span>
+        ) : null}
+      </legend>
 
       {fields.map((field, index) => (
         <ActionForm
