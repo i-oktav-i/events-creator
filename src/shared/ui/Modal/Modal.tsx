@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 import { PORTAL_ID } from '@shared/config';
 
-import { header, modalContainer, modalContent } from './Modal.css';
+import { content, header, modalContainer, modalContent } from './Modal.css';
 
 export type ModalProps = {
   children: ReactNode;
@@ -24,7 +24,7 @@ export const Modal: FC<ModalProps> = ({ children, isOpen, onClose, title }) => {
           </button>
         </div>
 
-        <div>{children}</div>
+        <div className={content}>{children}</div>
       </div>
     </dialog>
   );

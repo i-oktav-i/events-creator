@@ -36,3 +36,5 @@ export const modalContent = style([
 ]);
 
 export const header = container({ display: 'flex', justifyContent: 'space-between' });
+
+export const content = container({ overflowY: 'auto', overflowX: 'hidden' });
