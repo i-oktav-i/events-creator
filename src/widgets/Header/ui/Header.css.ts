@@ -2,7 +2,12 @@ import { config, container, indent, inset } from '@shared/theme';
 import { style } from '@vanilla-extract/css';
 
 export const header = style([
-  container({ display: 'flex', justifyContent: 'space-between', width: 'full' }),
+  container({
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: 'full',
+    backgroundColor: 'primary',
+  }),
   inset({ position: 'sticky', top: 'x0' }),
   indent({ paddingY: 'x3', paddingX: 'x4' }),
   {
