@@ -20,7 +20,7 @@ export type GameEvent = {
   triggerProbability: number;
   checksAttempts?: number;
 
-  allowOverStack: boolean;
+  allowOverStack?: boolean;
 };
 
 export type GameEventActionChanges = DeepPartial<

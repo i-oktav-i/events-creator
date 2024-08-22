@@ -21,7 +21,7 @@ const typeOptions: { [Type in GameEventType]: { value: Type; label: string } }[G
 export type GameEventFormProps = {
   onSubmit: (gameEvent: GameEvent) => void;
   onAbort: () => void;
-  defaultValues: GameEvent | Pick<GameEvent, 'id'>;
+  defaultValues: GameEvent;
 };
 
 export const GameEventForm: FC<GameEventFormProps> = ({ defaultValues, onSubmit, onAbort }) => {

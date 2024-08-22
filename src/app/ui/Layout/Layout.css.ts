@@ -9,6 +9,8 @@ export const layout = style([
     gap: 'x4',
     backgroundColor: 'primary',
     size: 'viewport',
+    overflowY: 'auto',
+    overflowX: 'hidden',
   }),
   {
     selectors: {
@@ -19,9 +21,8 @@ export const layout = style([
   },
 ]);
 
-export const main = style({
-  width: '100%',
-  height: '100%',
+export const main = container({
+  size: 'full',
   flex: 'auto',
-  overflow: 'hidden',
+  padding: 'x4',
 });

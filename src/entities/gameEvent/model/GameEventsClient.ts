@@ -5,7 +5,7 @@ import {
   mergeGameEvents,
   uploadGameEvents,
 } from '../api';
-import { GameEvent, GameEventActionId, GameEventId, IdsDependenciesInfo } from '../types';
+import { GameEvent, GameEventActionId, GameEventId } from '../types';
 
 class GameEventsClient {
   #events: GameEvent[];
@@ -79,6 +79,23 @@ class GameEventsClient {
     const gameEvent = this.findGameEvent(gameEventId);
 
     return gameEvent?.actions.find((action) => action.id === id);
+  };
+
+  getNewEventBase = (): GameEvent => {
+    const maxId = this.events.length
+      ? Math.max(...this.events.map((gameEvent) => gameEvent.id))
+      : 0;
+
+    const newGameEventId = (maxId + 1) as GameEventId;
+
+    return {
+      id: newGameEventId,
+      actions: [],
+      title: '',
+      description: '',
+      triggerProbability: 1,
+      type: 'weekly',
+    };
   };
 }
 

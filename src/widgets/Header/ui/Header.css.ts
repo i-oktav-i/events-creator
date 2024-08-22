@@ -1,8 +1,9 @@
-import { config, container, indent } from '@shared/theme';
+import { config, container, indent, inset } from '@shared/theme';
 import { style } from '@vanilla-extract/css';
 
 export const header = style([
   container({ display: 'flex', justifyContent: 'space-between', width: 'full' }),
+  inset({ position: 'sticky', top: 'x0' }),
   indent({ paddingY: 'x3', paddingX: 'x4' }),
   {
     borderBottom: `1px solid ${config.colors.border.active}`,

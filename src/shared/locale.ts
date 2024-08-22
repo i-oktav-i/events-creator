@@ -20,7 +20,7 @@ const fractionsLocale: Record<Fraction, string> = {
 
 export const locale = {
   header: {
-    gameEvents: 'Создание игровых событий',
+    gameEvents: 'Список игровых событий',
     graph: 'Граф игровых событий',
   },
   fractions: {

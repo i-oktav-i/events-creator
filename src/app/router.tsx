@@ -1,7 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
 
-import { EventCreator } from '@pages/EventCreator';
 import { GraphPage } from '@pages/Graph';
+import { CreatePage, EditPage, MainPage } from '@pages/gameEvents';
 import { Layout } from './ui/Layout';
 
 export const router = createBrowserRouter(
@@ -11,7 +11,24 @@ export const router = createBrowserRouter(
       children: [
         {
           path: '/',
-          element: <EventCreator />,
+          children: [
+            {
+              path: '',
+              element: <MainPage />,
+            },
+            {
+              path: 'create/',
+              element: <CreatePage />,
+            },
+            {
+              path: 'edit/',
+              loader: () => redirect('..'),
+            },
+            {
+              path: 'edit/:id',
+              element: <EditPage />,
+            },
+          ],
         },
         {
           path: '/game/',

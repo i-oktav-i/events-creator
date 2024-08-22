@@ -6,7 +6,7 @@ import { conditions } from './conditions.css';
 const insetProperties = defineProperties({
   ...conditions,
   properties: {
-    position: ['relative', 'absolute', 'fixed'],
+    position: ['relative', 'absolute', 'fixed', 'sticky'],
     top: tokensConfig.space,
     bottom: tokensConfig.space,
     left: tokensConfig.space,

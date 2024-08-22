@@ -12,5 +12,6 @@ export const useGameEvents = () => {
     updateGameEvent: gameEventsClient.updateGameEvent,
     findGameEvent: gameEventsClient.findGameEvent,
     findGameEventAction: gameEventsClient.findGameEventAction,
+    getNewEventBase: gameEventsClient.getNewEventBase,
   };
 };
