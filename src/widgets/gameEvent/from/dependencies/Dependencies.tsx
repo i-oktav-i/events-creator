@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { GameEvent, dependenciesStateLabels } from '@entities/gameEvent';
-import { objectEntries } from '@shared/lib';
+import { GameEvent, Dependencies as GameEventDependencies } from '@entities/gameEvent';
+import { locale as fullLocale } from '@shared/locale';
 import { RangeFieldset } from '@shared/ui';
 
 import { FractionsState } from './FractionsState';
@@ -9,52 +9,92 @@ import { IdsDependencies } from './Ids';
 
 import * as s from './Dependencies.css';
 
+const locale = fullLocale.gameEvents.dependencies;
+
 export type DependenciesProps = {
   name: 'dependencies' | `actions.${number}.dependencies`;
 };
 
+type StateKeys = Exclude<keyof NonNullable<GameEventDependencies['state']>, 'fractionsState'>;
+
+const dependenciesStateOrder: StateKeys[] = [
+  'week',
+  'money',
+  'policeAttention',
+  'equalityAndBrotherhoodReputation',
+  'honorAndConscienceReputation',
+  'pathToThePeakReputation',
+  'publishingHouseReputation',
+  'powerOfTraditionReputation',
+  'redWaterReputation',
+  'revolutionaryAvantGardeReputation',
+  'truthInWealthReputation',
+  'woodenStickReputation',
+];
+
 export const Dependencies: FC<DependenciesProps> = ({ name }) => {
   return (
     <fieldset>
-      <legend>Dependencies</legend>
+      <legend>{locale.title}</legend>
 
       <summary className={s.summaryContainer}>
-        required events
+        {locale.events.required}
+
         <details>
-          <IdsDependencies name={`${name}.events.required`} idsType={'events'} />
+          <IdsDependencies
+            name={`${name}.events.required`}
+            label={locale.events.required}
+            idsType={'events'}
+          />
         </details>
       </summary>
 
       <summary className={s.summaryContainer}>
-        blocking events
+        {locale.events.blocking}
+
         <details>
-          <IdsDependencies name={`${name}.events.blocking`} idsType={'events'} />
+          <IdsDependencies
+            name={`${name}.events.blocking`}
+            label={locale.events.blocking}
+            idsType={'events'}
+          />
         </details>
       </summary>
 
       <summary className={s.summaryContainer}>
-        required actions
+        {locale.actions.required}
+
         <details>
-          <IdsDependencies name={`${name}.actions.required`} idsType={'actions'} />
+          <IdsDependencies
+            name={`${name}.actions.required`}
+            label={locale.actions.required}
+            idsType={'actions'}
+          />
         </details>
       </summary>
 
       <summary className={s.summaryContainer}>
-        blocking actions
+        {locale.actions.blocking}
+
         <details>
-          <IdsDependencies name={`${name}.actions.blocking`} idsType={'actions'} />
+          <IdsDependencies
+            name={`${name}.actions.blocking`}
+            label={locale.actions.blocking}
+            idsType={'actions'}
+          />
         </details>
       </summary>
 
       <summary className={s.summaryContainer}>
-        State
+        {locale.state.title}
+
         <details>
           <div className={s.stateContainer}>
-            {objectEntries(dependenciesStateLabels).map(([key, label]) => (
+            {dependenciesStateOrder.map((key) => (
               <RangeFieldset<GameEvent>
                 key={key}
                 name={`${name}.state.${key}`}
-                label={label}
+                label={locale.state[key]}
                 min={0}
               />
             ))}
@@ -63,7 +103,8 @@ export const Dependencies: FC<DependenciesProps> = ({ name }) => {
       </summary>
 
       <summary className={s.summaryContainer}>
-        Fractions
+        {locale.state.fractionsState.title}
+
         <details>
           <FractionsState name={`${name}.state.fractionsState`} />
         </details>

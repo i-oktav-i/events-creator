@@ -4,6 +4,7 @@ import { GameEvent, GameEventId, GameEventsList, useGameEvents } from '@entities
 import { ExportEventsButton, ImportEventsButton, SearchGameEvents } from '@features/gameEvent';
 import { GameEventForm } from '@widgets/gameEvent';
 
+import { locale } from '@shared/locale';
 import { listContainer, pageContainer } from './EventCreator.css';
 
 export const EventCreator: FC = () => {
@@ -30,7 +31,7 @@ export const EventCreator: FC = () => {
     <div className={pageContainer}>
       <div className={listContainer({ hidden: !!selectedGameEvent })}>
         <button onClick={() => setSelectedGameEvent(newGameEventBase)}>
-          Create new game event
+          {locale.gameEvents.createNew}
         </button>
 
         <ExportEventsButton />

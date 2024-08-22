@@ -2,15 +2,20 @@ import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { GameEvent, GameEventType } from '@entities/gameEvent';
+import { locale as fullLocale } from '@shared/locale';
 import { Checkbox, NumberInput, SelectField, TextField } from '@shared/ui';
 
 import { ActionsFrom } from './ActionsFrom';
-import * as s from './GameEventForm.css';
 import { Dependencies } from './dependencies';
 
+import * as s from './GameEventForm.css';
+
+const locale = fullLocale.gameEvents.from;
+const formsLocale = fullLocale.forms;
+
 const typeOptions: { [Type in GameEventType]: { value: Type; label: string } }[GameEventType][] = [
-  { value: 'weekly', label: 'Weekly' },
-  { value: 'weekend', label: 'Weekend' },
+  { value: 'weekly', label: locale.eventType.weekly },
+  { value: 'weekend', label: locale.eventType.weekend },
 ];
 
 export type GameEventFormProps = {
@@ -34,19 +39,19 @@ export const GameEventForm: FC<GameEventFormProps> = ({ defaultValues, onSubmit,
       <form onSubmit={handleSubmit(onSubmit)} className={s.from}>
         <SelectField
           {...register('type', { required: 'Required' })}
-          label={'Type'}
+          label={locale.eventType.title}
           options={typeOptions}
         />
 
         <TextField
           {...register('title', { required: 'Required' })}
-          label="Title"
+          label={locale.title}
           error={errors.title}
         />
 
         <TextField
           {...register('description', { required: 'Required' })}
-          label="Description"
+          label={locale.description}
           error={errors.description}
           asTextArea
         />
@@ -54,37 +59,37 @@ export const GameEventForm: FC<GameEventFormProps> = ({ defaultValues, onSubmit,
         <TextField
           {...register('triggerProbability', {
             required: 'Required',
-            min: { message: 'Minimum 0', value: 0 },
-            max: { message: 'Maximum 1', value: 1 },
+            min: { message: `${formsLocale.min} 0`, value: 0 },
+            max: { message: `${formsLocale.max} 1`, value: 1 },
           })}
-          label="Trigger Probability"
+          label={locale.triggerProbability}
           error={errors.triggerProbability}
         />
 
         <NumberInput
           {...register('checksAttempts', {
-            min: { message: 'Minimum 1', value: 1 },
+            min: { message: `${formsLocale.min} 1`, value: 1 },
           })}
-          label="Checks Attempts"
+          label={locale.checksAttempts}
           error={errors.checksAttempts}
         />
 
         <Checkbox
-          label="Allow Over Stack"
-          error={errors.allowOverStack}
           {...register('allowOverStack')}
+          label={locale.allowOverStack}
+          error={errors.allowOverStack}
         />
 
         <Dependencies name="dependencies" />
 
         <ActionsFrom name="actions" />
 
-        <button type="submit">Submit</button>
+        <button type="submit">{formsLocale.actions.submit}</button>
         <button type="button" onClick={() => reset()}>
-          Reset
+          {formsLocale.actions.reset}
         </button>
         <button type="button" onClick={onAbort}>
-          Abort
+          {formsLocale.actions.abort}
         </button>
       </form>
     </FormProvider>

@@ -8,6 +8,7 @@ import {
   IdsDependenciesInfo,
   gameEventsClient,
 } from '@entities/gameEvent';
+import { locale as fullLocale } from '@shared/locale';
 import { SelectField } from '@shared/ui';
 
 import { GameEventActionSelectModal } from '../../../GameEventActionSelectModal';
@@ -15,27 +16,29 @@ import { GameEventSelectModal } from '../../../GameEventSelectModal';
 
 import * as s from './IdsDependencies.css';
 
+const locale = fullLocale.gameEvents.dependencies.ids;
+
 const dependencyTypeOptions: {
   value: IdsDependenciesInfo<string | number>['type'];
   label: string;
 }[] = [
-  { value: 'all', label: 'All' },
-  { value: 'any', label: 'Any' },
+  { value: 'all', label: locale.dependencyType.all },
+  { value: 'any', label: locale.dependencyType.any },
 ];
 
-export type IdsDependenciesErrors = {
+type IdsDependenciesErrors = {
   type?: FieldError;
   ids?: (FieldError | IdsDependenciesErrors)[];
 };
 
 type IdsPath = `${'events' | 'actions'}.${'required' | 'blocking'}`;
 
-export type IdsDependenciesProps = {
+type IdsDependenciesFieldsProps = {
   idsType: 'events' | 'actions';
   name: `dependencies.${IdsPath}` | `actions.${number}.dependencies.${IdsPath}`;
 };
 
-const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
+const IdsDependenciesFields: FC<IdsDependenciesFieldsProps> = ({ name, idsType }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
@@ -82,13 +85,13 @@ const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
       <fieldset>
         <SelectField
           {...register(dependencyTypeFieldName)}
-          label="Dependency type"
+          label={locale.dependencyType.title}
           options={dependencyTypeOptions}
           error={idsErrors?.type}
         />
 
         <fieldset className={s.idsContainer[dependencyType]}>
-          <legend>IDs</legend>
+          <legend>{locale.title[idsType]}</legend>
 
           {fields.map((field, index) => (
             <div key={field.id}>
@@ -96,27 +99,27 @@ const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
                 <span>{getTitle(getValues(`${idsFieldsName}.${index}`).toString())}</span>
               ) : (
                 <IdsDependenciesFields
-                  name={`${idsFieldsName}.${index}` as IdsDependenciesProps['name']}
+                  name={`${idsFieldsName}.${index}` as IdsDependenciesFieldsProps['name']}
                   idsType={idsType}
                 />
               )}
 
               <button type="button" onClick={() => remove(index)}>
-                Remove
+                {locale.actions.remove}
               </button>
             </div>
           ))}
         </fieldset>
 
         <button type="button" onClick={() => setIsModalOpen(true)}>
-          Add ID
+          {locale.actions.addId}
         </button>
 
         <button
           type="button"
           onClick={() => append({ type: dependencyType === 'all' ? 'any' : 'all', ids: [] })}
         >
-          Add Nested Dependency
+          {locale.actions.addNested}
         </button>
       </fieldset>
 
@@ -130,10 +133,14 @@ const IdsDependenciesFields: FC<IdsDependenciesProps> = ({ name, idsType }) => {
   );
 };
 
-export const IdsDependencies: FC<IdsDependenciesProps> = ({ name, idsType }) => {
+export type IdsDependenciesProps = IdsDependenciesFieldsProps & {
+  label: string;
+};
+
+export const IdsDependencies: FC<IdsDependenciesProps> = ({ name, label, idsType }) => {
   return (
     <fieldset className={s.fieldsContainer}>
-      <legend>Ids Dependencies</legend>
+      <legend>{label}</legend>
 
       <IdsDependenciesFields name={name} idsType={idsType} />
     </fieldset>

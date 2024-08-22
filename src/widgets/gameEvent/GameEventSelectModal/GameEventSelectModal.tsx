@@ -2,7 +2,10 @@ import { FC, useCallback, useEffect, useState } from 'react';
 
 import { GameEvent, GameEventsList, useGameEvents } from '@entities/gameEvent';
 import { SearchGameEvents } from '@features/gameEvent';
+import { locale as fullLocale } from '@shared/locale';
 import { Modal } from '@shared/ui';
+
+const locale = fullLocale.gameEvents.gameEventSelect;
 
 export type GameEventSelectProps = {
   isOpen: boolean;
@@ -51,7 +54,6 @@ export const GameEventSelectModal: FC<GameEventSelectProps> = ({
   );
 
   const handleSelect = () => {
-    console.log('here');
     if (type === 'single') onSelect(selectedGameEvents[0]);
     else onSelect(selectedGameEvents);
   };
@@ -62,7 +64,7 @@ export const GameEventSelectModal: FC<GameEventSelectProps> = ({
   }, [isOpen]);
 
   return (
-    <Modal title="Select events" isOpen={isOpen} onClose={onClose}>
+    <Modal title={locale.title[type]} isOpen={isOpen} onClose={onClose}>
       <SearchGameEvents gameEvents={gameEvents}>
         {(filteredGameEvents) => (
           <GameEventsList
@@ -75,10 +77,10 @@ export const GameEventSelectModal: FC<GameEventSelectProps> = ({
 
       {selectedGameEvents.length ? (
         <button type="button" onClick={handleSelect}>
-          Confirm
+          {locale.confirm}
         </button>
       ) : (
-        <span>Nothing selected</span>
+        <span>{locale.empty}</span>
       )}
     </Modal>
   );

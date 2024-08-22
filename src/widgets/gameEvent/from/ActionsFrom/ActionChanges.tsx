@@ -2,12 +2,16 @@ import _get from 'lodash/get';
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { GameEvent, GameEventActionChanges, dependenciesStateLabels } from '@entities/gameEvent';
+import { GameEvent, GameEventActionChanges } from '@entities/gameEvent';
+import { locale as fullLocale } from '@shared/locale';
 import { UnionToTuple } from '@shared/typings';
 import { NumberInput } from '@shared/ui';
 
 import { ActionFractionsStateChanges } from './ActionFractionsStateChanges';
 import { gameStateChangesContainer } from './ActionsFrom.css';
+
+const locale = fullLocale.gameEvents.actions;
+const dependenciesLocale = fullLocale.gameEvents.dependencies;
 
 export type ActionChangesProps = {
   name: `actions.${number}.changes`;
@@ -37,7 +41,7 @@ export const ActionChanges: FC<ActionChangesProps> = ({ name }) => {
 
   return (
     <fieldset>
-      <legend>Action Changes</legend>
+      <legend>{locale.form.changes}</legend>
 
       <summary>
         <details>
@@ -46,7 +50,7 @@ export const ActionChanges: FC<ActionChangesProps> = ({ name }) => {
               <fieldset key={key}>
                 <NumberInput
                   {...register(`${name}.${key}`)}
-                  label={dependenciesStateLabels[key]}
+                  label={dependenciesLocale.state[key]}
                   error={changesErrors?.[key]}
                 />
               </fieldset>

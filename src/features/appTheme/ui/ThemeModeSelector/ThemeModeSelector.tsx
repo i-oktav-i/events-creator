@@ -1,11 +1,12 @@
 import { ChangeEventHandler, FC } from 'react';
 
 import { AppThemeMode, useAppTheme } from '@shared/AppTheme';
+import { locale } from '@shared/locale';
 
 const options: Record<AppThemeMode, string> = {
-  [AppThemeMode.AUTO]: 'Автоматическая',
-  [AppThemeMode.DARK]: 'Темная',
-  [AppThemeMode.LIGHT]: 'Светлая',
+  [AppThemeMode.AUTO]: locale.appTheme.mode.auto,
+  [AppThemeMode.DARK]: locale.appTheme.mode.dark,
+  [AppThemeMode.LIGHT]: locale.appTheme.mode.light,
 };
 
 export const ThemeModeSelector: FC = () => {

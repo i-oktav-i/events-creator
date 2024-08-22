@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { GameEvent, GameEventActionId } from '@entities/gameEvent';
+import { locale as fullLocale } from '@shared/locale';
 
 import { ActionForm } from './ActionForm';
 import {
@@ -11,6 +12,8 @@ import {
   paginationButton,
   paginationContainer,
 } from './ActionsFrom.css';
+
+const locale = fullLocale.gameEvents.actions;
 
 export type ActionsFormProps = {
   name: 'actions';
@@ -58,7 +61,8 @@ export const ActionsFrom: FC<ActionsFormProps> = ({ name }) => {
   return (
     <fieldset className={actionsContainer}>
       <legend>
-        Actions
+        {locale.title}
+
         {actionsErrors?.root?.message ? (
           <span className={actionsError}>{actionsErrors.root.message}</span>
         ) : null}
@@ -73,7 +77,7 @@ export const ActionsFrom: FC<ActionsFormProps> = ({ name }) => {
       ))}
 
       <button type="button" onClick={removeItem} className={paginationButton()}>
-        Remove current action
+        {locale.form.actions.remove}
       </button>
 
       <div className={paginationContainer}>
@@ -92,7 +96,7 @@ export const ActionsFrom: FC<ActionsFormProps> = ({ name }) => {
         ))}
 
         <button type="button" onClick={addItem} className={paginationButton()}>
-          Add Action
+          {locale.form.actions.add}
         </button>
       </div>
     </fieldset>

@@ -2,7 +2,10 @@ import { FC, useCallback, useEffect, useState } from 'react';
 
 import { GameEventAction, GameEventsActionsList, useGameEvents } from '@entities/gameEvent';
 import { SearchGameEvents } from '@features/gameEvent';
+import { locale as fullLocale } from '@shared/locale';
 import { Modal } from '@shared/ui';
+
+const locale = fullLocale.gameEvents.gameEventActionSelect;
 
 export type GameEventActionSelectModalProps = {
   isOpen: boolean;
@@ -63,7 +66,7 @@ export const GameEventActionSelectModal: FC<GameEventActionSelectModalProps> = (
   }, [isOpen]);
 
   return (
-    <Modal title="Select events action" isOpen={isOpen} onClose={onClose}>
+    <Modal title={locale.title[type]} isOpen={isOpen} onClose={onClose}>
       <SearchGameEvents gameEvents={gameEvents} checkActions>
         {(filteredGameEvents) => (
           <GameEventsActionsList
@@ -76,10 +79,10 @@ export const GameEventActionSelectModal: FC<GameEventActionSelectModalProps> = (
 
       {selectedGameEventsActions.length ? (
         <button type="button" onClick={handleSelect}>
-          Confirm
+          {locale.confirm}
         </button>
       ) : (
-        <span>Nothing selected</span>
+        <span>{locale.empty}</span>
       )}
     </Modal>
   );

@@ -5,19 +5,8 @@ import { FieldError, FieldPath, useFormContext } from 'react-hook-form';
 import { AnyObject } from '@shared/typings';
 import { NumberInput } from '../NumberInput';
 
+import { locale } from '@shared/locale';
 import * as s from './RangeFieldset.css';
-
-// export type RangeFieldsetProps = {
-//   name: string;
-//   label: string;
-//   min?: number;
-//   max?: number;
-//   errors?: {
-//     min?: FieldError;
-//     max?: FieldError;
-//   };
-//   inputClassName?: string;
-// };
 
 type MinMax = 'min' | 'max';
 
@@ -63,7 +52,8 @@ export const RangeFieldset = <T extends AnyObject>({
 
   const endLabel = (
     <>
-      Конец
+      {locale.range.end}
+
       <input
         type="checkbox"
         checked={withEnd}
@@ -86,7 +76,7 @@ export const RangeFieldset = <T extends AnyObject>({
         {...register(startName, {
           min: typeof min === 'number' ? { message: `Minimum ${min}`, value: min } : undefined,
         })}
-        label="Старт"
+        label={locale.range.start}
         error={fieldsErrors?.min}
         inputClassName={inputClassName}
       />

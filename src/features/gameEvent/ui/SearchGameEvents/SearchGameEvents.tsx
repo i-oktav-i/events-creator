@@ -2,6 +2,7 @@ import { ChangeEventHandler, FC, ReactNode, useMemo, useState, useTransition } f
 
 import { GameEvent, eventsSearch } from '@entities/gameEvent';
 
+import { locale } from '@shared/locale';
 import { rootContainer, searchContainer, searchInput } from './SearchGameEvents.css';
 
 export type SearchGameEventsProps = {
@@ -32,10 +33,19 @@ export const SearchGameEvents: FC<SearchGameEventsProps> = ({
   return (
     <div className={rootContainer}>
       <search className={searchContainer}>
-        <input type="search" onInput={onSearchInput} className={searchInput} />
+        <input
+          type="search"
+          onInput={onSearchInput}
+          placeholder={locale.gameEvents.search.placeholder}
+          className={searchInput}
+        />
       </search>
 
-      {filteredEvents.length ? children(filteredEvents) : <span>No suggestions</span>}
+      {filteredEvents.length ? (
+        children(filteredEvents)
+      ) : (
+        <span>{locale.gameEvents.search.empty}</span>
+      )}
     </div>
   );
 };
