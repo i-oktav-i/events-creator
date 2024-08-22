@@ -5,6 +5,8 @@ import { FieldError, useFieldArray, useFormContext, useWatch } from 'react-hook-
 import {
   GameEvent,
   GameEventAction,
+  GameEventActionId,
+  GameEventId,
   IdsDependenciesInfo,
   gameEventsClient,
 } from '@entities/gameEvent';
@@ -63,7 +65,7 @@ const IdsDependenciesFields: FC<IdsDependenciesFieldsProps> = ({ name, idsType }
   const IdsSelectorComponent =
     idsType === 'actions' ? GameEventActionSelectModal : GameEventSelectModal;
 
-  const getTitle = (id: string) => {
+  const getTitle = (id: GameEventActionId | GameEventId) => {
     const method = idsType === 'events' ? 'findGameEvent' : 'findGameEventAction';
 
     return gameEventsClient[method](id as never)?.title;
@@ -96,7 +98,11 @@ const IdsDependenciesFields: FC<IdsDependenciesFieldsProps> = ({ name, idsType }
           {fields.map((field, index) => (
             <div key={field.id}>
               {!('type' in field) ? (
-                <span>{getTitle(getValues(`${idsFieldsName}.${index}`).toString())}</span>
+                <span>
+                  {getTitle(
+                    getValues(`${idsFieldsName}.${index}`) as GameEventActionId | GameEventId,
+                  )}
+                </span>
               ) : (
                 <IdsDependenciesFields
                   name={`${idsFieldsName}.${index}` as IdsDependenciesFieldsProps['name']}
