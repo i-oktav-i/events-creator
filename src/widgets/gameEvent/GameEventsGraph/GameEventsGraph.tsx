@@ -4,15 +4,25 @@ import { FC, useEffect, useMemo } from 'react';
 
 import { Dependencies, GameEvent, GameEventAction, IdsDependenciesInfo } from '@entities/gameEvent';
 import { useAppTheme } from '@shared/AppTheme';
+import { locale as fullLocale } from '@shared/locale';
 import { graphContainer } from './GameEventsGraph.css';
+
+const locale = fullLocale.gameEvents.graph;
 
 export type GameEventsGraphProps = {
   gameEvents: GameEvent[];
 };
 
-const getItemNode = (item: GameEvent | GameEventAction) => `
-  ${item.id}[<p>${item.title}</p><p>${item.description}</p>]
-`;
+const getItemNode = (item: GameEvent | GameEventAction, rounded?: boolean) =>
+  [
+    `${item.id}${rounded ? '(' : '['}`,
+    `<p>${item.title}</p>`,
+    `<p>${item.description}</p>`,
+    ...('triggerProbability' in item
+      ? [`<p class="">${locale.probability}: ${item.triggerProbability}</p>`]
+      : []),
+    rounded ? ')' : ']',
+  ].join('\n');
 
 const getActionsConfections = (gameEvent: GameEvent) => `
   ${gameEvent.id} --> ${gameEvent.actions.map((action) => `${action.id}`).join(' & ')}
@@ -65,12 +75,12 @@ export const GameEventsGraph: FC<GameEventsGraphProps> = ({ gameEvents }) => {
     () =>
       gameEvents
         .map((gameEvent): string => {
-          const { dependencies, id, actions } = gameEvent;
+          const { title, dependencies, id, actions } = gameEvent;
 
           return [
-            `subgraph e${id}`,
+            `subgraph ${locale.event}: ${title}`,
             getItemNode(gameEvent),
-            actions.map((action) => getItemNode(action)),
+            actions.map((action) => getItemNode(action, true)),
             getActionsConfections(gameEvent),
             `end`,
             getDependenciesGraph(id, dependencies),

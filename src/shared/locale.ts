@@ -143,6 +143,10 @@ export const locale = {
         },
       },
     },
+    graph: {
+      event: 'Игровое событие',
+      probability: 'Вероятность',
+    },
   },
   forms: {
     required: 'Обязательное поле',
