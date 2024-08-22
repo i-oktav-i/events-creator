@@ -4,6 +4,7 @@ import { GameEvent, GameEventId, GameEventsList, useGameEvents } from '@entities
 import { ExportEventsButton, ImportEventsButton, SearchGameEvents } from '@features/gameEvent';
 import { GameEventForm } from '@widgets/gameEvent';
 
+import { MergeGameEventsButton } from '@features/gameEvent/ui/MergeGameEventsButton';
 import { locale } from '@shared/locale';
 import { listContainer, pageContainer } from './EventCreator.css';
 
@@ -36,6 +37,7 @@ export const EventCreator: FC = () => {
 
         <ExportEventsButton />
         <ImportEventsButton />
+        <MergeGameEventsButton />
 
         <SearchGameEvents gameEvents={gameEvents}>
           {(filteredGameEvents) => (

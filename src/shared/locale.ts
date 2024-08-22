@@ -49,6 +49,7 @@ export const locale = {
   gameEvents: {
     import: 'Загрузить игровые события с устройства',
     export: 'Сохранить игровые события',
+    merge: 'Объединить игровые события',
     createNew: 'Создать новое игровое событие',
     search: {
       placeholder: 'Поиск',

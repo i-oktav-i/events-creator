@@ -1,5 +1,11 @@
-import { exportGameEvents, importGameEvents, loadGameEvents, uploadGameEvents } from '../api';
-import { GameEvent, GameEventActionId, GameEventId } from '../types';
+import {
+  exportGameEvents,
+  importGameEvents,
+  loadGameEvents,
+  mergeGameEvents,
+  uploadGameEvents,
+} from '../api';
+import { GameEvent, GameEventActionId, GameEventId, IdsDependenciesInfo } from '../types';
 
 class GameEventsClient {
   #events: GameEvent[];
@@ -43,6 +49,16 @@ class GameEventsClient {
     if (!data) return;
 
     this.events = data;
+  };
+
+  mergeGameEvents = async () => {
+    const newGameEvents = await importGameEvents();
+
+    if (!newGameEvents) return uploadGameEvents(this.events);
+
+    if (!this.events.length) this.events = newGameEvents;
+
+    this.events = mergeGameEvents(this.events, newGameEvents);
   };
 
   addGameEvent = (gameEvent: GameEvent) => {
