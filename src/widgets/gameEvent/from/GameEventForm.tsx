@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -22,9 +23,15 @@ export type GameEventFormProps = {
   onSubmit: (gameEvent: GameEvent) => void;
   onAbort: () => void;
   defaultValues: GameEvent;
+  className?: string;
 };
 
-export const GameEventForm: FC<GameEventFormProps> = ({ defaultValues, onSubmit, onAbort }) => {
+export const GameEventForm: FC<GameEventFormProps> = ({
+  defaultValues,
+  onSubmit,
+  onAbort,
+  className,
+}) => {
   const methods = useForm<GameEvent>({ defaultValues });
 
   const {
@@ -36,7 +43,7 @@ export const GameEventForm: FC<GameEventFormProps> = ({ defaultValues, onSubmit,
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className={s.from}>
+      <form onSubmit={handleSubmit(onSubmit)} className={cn(s.from, className)}>
         <SelectField
           {...register('type', { required: 'Required' })}
           label={locale.eventType.title}

@@ -7,6 +7,7 @@ import { indentProperties } from './indents.css';
 
 const commonSizes = {
   third: 'calc(100% / 3)',
+  twoThird: 'calc(100% / 3 * 2)',
   quarter: '25%',
   half: '50%',
   full: '100%',

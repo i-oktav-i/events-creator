@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { container, darkThemeClassName } from '@shared/theme';
+import { container, darkThemeClassName, inset } from '@shared/theme';
 
 export const layout = style([
   container({
@@ -26,3 +26,5 @@ export const main = container({
   flex: 'auto',
   padding: 'x4',
 });
+
+export const portal = inset({ position: 'absolute' });

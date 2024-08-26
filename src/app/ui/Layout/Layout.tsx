@@ -3,23 +3,23 @@ import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useAppThemeClassName } from '@features/appTheme';
+import { baseClassName } from '@shared/theme';
 import { Header } from '@widgets/Header';
 
-import { baseClassName } from '@shared/theme';
-import * as s from './Layout.css';
+import { layout, main, portal } from './Layout.css';
 
 export const Layout: FC = () => {
   const themeClassName = useAppThemeClassName();
 
   return (
-    <div className={cn(s.layout, baseClassName, themeClassName)}>
+    <div className={cn(layout, baseClassName, themeClassName)}>
       <Header />
 
-      <main className={s.main}>
+      <main className={main}>
         <Outlet />
       </main>
 
-      <div id="portal"></div>
+      <div id="portal" className={portal}></div>
     </div>
   );
 };
