@@ -83,10 +83,13 @@ export const locale = {
         title: 'Тип игрового события',
         weekly: 'Недельное событие',
         weekend: 'Выходное событие',
+        fullWeek: 'Всенедельное событие',
+        chain: 'Цепочное событие',
       },
       triggerProbability: 'Вероятность срабатывания',
       checksAttempts: 'Количество попыток запустить событие',
       allowOverStack: 'Разрешить переполнение',
+      isCutscene: 'Событие является кат-сценой',
     },
     dependencies: {
       title: 'Зависимости',
