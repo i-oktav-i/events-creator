@@ -50,6 +50,8 @@ export const GameEventForm: FC<GameEventFormProps> = ({
           options={typeOptions}
         />
 
+        <Checkbox {...register('isСutscene')} label={locale.isCutscene} error={errors.isСutscene} />
+
         <TextField
           {...register('title', { required: 'Required' })}
           label={locale.title}

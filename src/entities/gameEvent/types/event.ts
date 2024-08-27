@@ -21,6 +21,8 @@ export type GameEvent = {
   checksAttempts?: number;
 
   allowOverStack?: boolean;
+
+  isСutscene?: boolean;
 };
 
 export type GameEventActionChanges = DeepPartial<
