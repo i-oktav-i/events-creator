@@ -9,7 +9,7 @@ import { formContainer, fullSizeContainer, pageContainer } from './Graph.css';
 
 mermaid.initialize({ theme: appThemeService.currentTheme.toLowerCase() });
 
-const wheelConfig = { step: 0.01 };
+const wheelConfig = { step: 0.1 };
 
 export const GraphPage: FC = () => {
   const [editingGameEvent, setEditingGameEvent] = useState<GameEvent | null>(null);
