@@ -7,7 +7,11 @@ import { appThemeService, useAppTheme } from '@shared/AppTheme';
 import { ConfirmDeleteGameEvent, GameEventForm, GameEventsGraph } from '@widgets/gameEvent';
 import { formContainer, fullSizeContainer, pageContainer } from './Graph.css';
 
-mermaid.initialize({ theme: appThemeService.currentTheme.toLowerCase() });
+mermaid.initialize({
+  theme: appThemeService.currentTheme.toLowerCase(),
+  maxTextSize: Infinity,
+  maxEdges: Infinity,
+});
 
 const wheelConfig = { step: 0.1 };
 
@@ -35,7 +39,7 @@ export const GraphPage: FC = () => {
   }, []);
 
   useLayoutEffect(() => {
-    mermaid.initialize({ theme: theme.toLowerCase() });
+    mermaid.initialize({ theme: theme.toLowerCase(), maxTextSize: Infinity, maxEdges: Infinity });
   }, [theme]);
 
   return (

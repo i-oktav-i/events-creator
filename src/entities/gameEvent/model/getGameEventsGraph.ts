@@ -90,7 +90,6 @@ const getGraphText = (gameEvents: GameEvent[]) => {
 export const getGameEventsGraph = async (gameEvents: GameEvent[], graphId: string) => {
   const graphText = getGraphText(gameEvents);
 
-  console.log('graphText', graphText);
   const { svg } = await mermaid.render(graphId, graphText);
 
   return svg;
