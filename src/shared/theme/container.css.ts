@@ -39,12 +39,18 @@ const responsiveProperties = defineProperties({
     overflowY: ['visible', 'hidden', 'scroll', 'auto'],
     width: { ...commonSizes, viewport: '100dvw' },
     height: { ...commonSizes, viewport: '100dvh' },
+    maxWidth: { ...commonSizes, viewport: '100dvw' },
+    maxHeight: { ...commonSizes, viewport: '100dvh' },
+    minWidth: { ...commonSizes, viewport: '100dvw' },
+    minHeight: { ...commonSizes, viewport: '100dvh' },
     border: themeDependentTokensConfig.borders,
     borderRadius: tokensConfig.radii,
   },
   shorthands: {
     placeItems: ['justifyContent', 'alignItems'],
     size: ['width', 'height'],
+    maxSize: ['maxWidth', 'maxHeight'],
+    minSize: ['minWidth', 'minHeight'],
   },
 });
 

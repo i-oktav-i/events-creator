@@ -26,6 +26,7 @@ export const modalContent = style([
   container({
     display: 'flex',
     flexDirection: 'column',
+    maxSize: 'full',
     size: 'auto',
     padding: 'x4',
     gap: 'x4',
