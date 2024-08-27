@@ -35,6 +35,8 @@ export type GameEventAction = {
   title: string;
   description: string;
 
+  chainedEvent?: GameEventId;
+
   dependencies?: Dependencies;
 
   changes?: GameEventActionChanges;

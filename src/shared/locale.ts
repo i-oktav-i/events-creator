@@ -145,6 +145,11 @@ export const locale = {
         title: 'Название действия',
         description: 'Описание действия',
         changes: 'Изменения после действия',
+        chainedEvent: {
+          title: 'Связанное событие',
+          select: 'Выбрать',
+          remove: 'Удалить связь',
+        },
         actions: {
           add: 'Добавить действие',
           remove: 'Удалить текущее действие',

@@ -15,7 +15,7 @@ import * as s from './GameEventForm.css';
 const locale = fullLocale.gameEvents.from;
 const formsLocale = fullLocale.forms;
 
-const allGameEventsTypes: UnionToTuple<GameEventType> = ['weekly', 'weekend', 'fullWeek', 'chain'];
+const allGameEventsTypes: UnionToTuple<GameEventType> = ['weekly', 'weekend', 'chain', 'fullWeek'];
 
 const gameEventTypeOptions = allGameEventsTypes.map((gameEventType) => ({
   value: gameEventType,
