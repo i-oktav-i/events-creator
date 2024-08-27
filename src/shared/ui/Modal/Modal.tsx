@@ -1,22 +1,30 @@
-import { FC, ReactNode } from 'react';
+import { FC, JSX, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { PORTAL_ID } from '@shared/config';
 
-import { content, header, modalContainer, modalContent } from './Modal.css';
+import {
+  contentContainer,
+  footerContainer,
+  headerContainer,
+  modalContainer,
+  modalContent,
+} from './Modal.css';
 
 export type ModalProps = {
-  children: ReactNode;
   isOpen: boolean;
   onClose: () => void;
+  adaptive?: boolean;
   title: string;
+  footer?: JSX.Element;
+  children: ReactNode;
 };
 
-export const Modal: FC<ModalProps> = ({ children, isOpen, onClose, title }) => {
+export const Modal: FC<ModalProps> = ({ children, isOpen, onClose, title, footer, adaptive }) => {
   const modalNode = (
-    <dialog open={isOpen} aria-modal="true" className={modalContainer}>
-      <div className={modalContent}>
-        <div className={header}>
+    <dialog open={isOpen} aria-modal="true" className={modalContainer({ adaptive })}>
+      <div className={modalContent({ adaptive })}>
+        <div className={headerContainer}>
           <h2>{title}</h2>
 
           <button type="button" onClick={onClose}>
@@ -24,7 +32,9 @@ export const Modal: FC<ModalProps> = ({ children, isOpen, onClose, title }) => {
           </button>
         </div>
 
-        <div className={content}>{children}</div>
+        <div className={contentContainer}>{children}</div>
+
+        <div className={footerContainer}>{footer}</div>
       </div>
     </dialog>
   );

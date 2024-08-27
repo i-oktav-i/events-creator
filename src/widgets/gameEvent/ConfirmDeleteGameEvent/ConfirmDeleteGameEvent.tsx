@@ -14,7 +14,7 @@ export const ConfirmDeleteGameEvent: FC<ConfirmDeleteGameEventProps> = ({
   onSubmit,
 }) => {
   return (
-    <Modal title={locale.gameEvents.deleteModal.title} isOpen={isOpen} onClose={onAbort}>
+    <Modal title={locale.gameEvents.deleteModal.title} isOpen={isOpen} onClose={onAbort} adaptive>
       <button type="button" onClick={onSubmit}>
         {locale.gameEvents.deleteModal.submit}
       </button>

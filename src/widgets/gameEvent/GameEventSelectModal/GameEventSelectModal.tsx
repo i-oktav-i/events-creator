@@ -63,8 +63,16 @@ export const GameEventSelectModal: FC<GameEventSelectProps> = ({
     setSelectedGameEvents(Array.isArray(initialSelected) ? initialSelected : [initialSelected]);
   }, [isOpen]);
 
+  const footerNode = selectedGameEvents.length ? (
+    <button type="button" onClick={handleSelect}>
+      {locale.confirm}
+    </button>
+  ) : (
+    <span>{locale.empty}</span>
+  );
+
   return (
-    <Modal title={locale.title[type]} isOpen={isOpen} onClose={onClose}>
+    <Modal title={locale.title[type]} isOpen={isOpen} onClose={onClose} footer={footerNode}>
       <SearchGameEvents gameEvents={gameEvents}>
         {(filteredGameEvents) => (
           <GameEventsList
@@ -74,14 +82,6 @@ export const GameEventSelectModal: FC<GameEventSelectProps> = ({
           />
         )}
       </SearchGameEvents>
-
-      {selectedGameEvents.length ? (
-        <button type="button" onClick={handleSelect}>
-          {locale.confirm}
-        </button>
-      ) : (
-        <span>{locale.empty}</span>
-      )}
     </Modal>
   );
 };
