@@ -9,15 +9,18 @@ import { Checkbox, NumberInput, SelectField, TextField } from '@shared/ui';
 import { ActionsFrom } from './ActionsFrom';
 import { Dependencies } from './dependencies';
 
+import { UnionToTuple } from '@shared/typings';
 import * as s from './GameEventForm.css';
 
 const locale = fullLocale.gameEvents.from;
 const formsLocale = fullLocale.forms;
 
-const typeOptions: { [Type in GameEventType]: { value: Type; label: string } }[GameEventType][] = [
-  { value: 'weekly', label: locale.eventType.weekly },
-  { value: 'weekend', label: locale.eventType.weekend },
-];
+const allGameEventsTypes: UnionToTuple<GameEventType> = ['weekly', 'weekend', 'fullWeek', 'chain'];
+
+const gameEventTypeOptions = allGameEventsTypes.map((gameEventType) => ({
+  value: gameEventType,
+  label: locale.eventType[gameEventType],
+}));
 
 export type GameEventFormProps = {
   onSubmit: (gameEvent: GameEvent) => void;
@@ -47,7 +50,7 @@ export const GameEventForm: FC<GameEventFormProps> = ({
         <SelectField
           {...register('type', { required: 'Required' })}
           label={locale.eventType.title}
-          options={typeOptions}
+          options={gameEventTypeOptions}
         />
 
         <Checkbox {...register('isСutscene')} label={locale.isCutscene} error={errors.isСutscene} />

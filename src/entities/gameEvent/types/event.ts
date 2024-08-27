@@ -4,7 +4,7 @@ import { Dependencies } from './dependencies';
 import { GameEventActionId, GameEventId } from './ids';
 import { GameState } from './state';
 
-export type GameEventType = 'weekly' | 'weekend';
+export type GameEventType = 'weekly' | 'weekend' | 'chain' | 'fullWeek';
 
 export type GameEvent = {
   id: GameEventId;
