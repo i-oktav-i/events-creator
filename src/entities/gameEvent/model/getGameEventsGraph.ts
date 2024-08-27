@@ -73,6 +73,9 @@ const getGraphText = (gameEvents: GameEvent[]) => {
         actions.map((action) => getItemNode(action, true)),
         getActionsConfections(gameEvent),
         `end`,
+        actions.map((action) =>
+          action.chainedEvent ? [`${action.id} -.-> ${action.chainedEvent}`] : '',
+        ),
         getDependenciesGraph(id, dependencies),
         actions.map((action) => getDependenciesGraph(action.id, action.dependencies)).join('\n'),
       ]
