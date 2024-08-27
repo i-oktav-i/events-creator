@@ -8,7 +8,7 @@ export const modalContainer = style([
     alignItems: 'center',
     justifyContent: 'center',
     padding: 'x8',
-    size: 'full',
+    size: 'auto',
     border: 'none',
     backgroundColor: 'transparent',
   }),
@@ -26,7 +26,7 @@ export const modalContent = style([
   container({
     display: 'flex',
     flexDirection: 'column',
-    size: 'full',
+    size: 'auto',
     padding: 'x4',
     gap: 'x4',
     backgroundColor: 'primary',

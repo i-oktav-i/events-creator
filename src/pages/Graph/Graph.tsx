@@ -4,7 +4,7 @@ import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 import { GameEvent, GameEventId, useGameEvents } from '@entities/gameEvent';
 import { appThemeService, useAppTheme } from '@shared/AppTheme';
-import { GameEventForm, GameEventsGraph } from '@widgets/gameEvent';
+import { ConfirmDeleteGameEvent, GameEventForm, GameEventsGraph } from '@widgets/gameEvent';
 import { formContainer, fullSizeContainer, pageContainer } from './Graph.css';
 
 mermaid.initialize({ theme: appThemeService.currentTheme.toLowerCase() });
@@ -13,14 +13,21 @@ const wheelConfig = { step: 0.01 };
 
 export const GraphPage: FC = () => {
   const [editingGameEvent, setEditingGameEvent] = useState<GameEvent | null>(null);
+  const [deletingEventId, setDeletingEventId] = useState<GameEventId | null>(null);
 
-  const { gameEvents, updateGameEvent, findGameEvent } = useGameEvents();
+  const { gameEvents, updateGameEvent, findGameEvent, removeGameEvent } = useGameEvents();
   const { theme } = useAppTheme();
 
   const onFormAbort = () => setEditingGameEvent(null);
   const onFormSubmit = (updatedGameEvent: GameEvent) => {
     updateGameEvent(updatedGameEvent);
     onFormAbort();
+  };
+
+  const onDeleteAbort = () => setDeletingEventId(null);
+  const onDeleteSubmit = () => {
+    removeGameEvent(deletingEventId!);
+    setDeletingEventId(null);
   };
 
   const onEventNodeClick = useCallback((id: GameEventId) => {
@@ -42,7 +49,11 @@ export const GraphPage: FC = () => {
         wheel={wheelConfig}
       >
         <TransformComponent wrapperClass={fullSizeContainer} contentClass={fullSizeContainer}>
-          <GameEventsGraph gameEvents={gameEvents} onEventNodeClick={onEventNodeClick} />
+          <GameEventsGraph
+            gameEvents={gameEvents}
+            onEventNodeClick={onEventNodeClick}
+            onEventNodeContextMenu={setDeletingEventId}
+          />
         </TransformComponent>
       </TransformWrapper>
 
@@ -56,6 +67,12 @@ export const GraphPage: FC = () => {
           />
         </div>
       ) : null}
+
+      <ConfirmDeleteGameEvent
+        isOpen={!!deletingEventId}
+        onAbort={onDeleteAbort}
+        onSubmit={onDeleteSubmit}
+      />
     </div>
   );
 };

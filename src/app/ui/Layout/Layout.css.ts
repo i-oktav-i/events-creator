@@ -27,4 +27,4 @@ export const main = container({
   padding: 'x4',
 });
 
-export const portal = inset({ position: 'absolute' });
+export const portal = style([inset({ position: 'absolute' }), { zIndex: 100 }]);

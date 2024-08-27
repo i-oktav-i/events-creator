@@ -5,7 +5,13 @@ import {
   mergeGameEvents,
   uploadGameEvents,
 } from '../api';
-import { GameEvent, GameEventActionId, GameEventId } from '../types';
+import {
+  Dependencies,
+  GameEvent,
+  GameEventActionId,
+  GameEventId,
+  IdsDependenciesInfo,
+} from '../types';
 
 class GameEventsClient {
   #events: GameEvent[];
@@ -71,6 +77,10 @@ class GameEventsClient {
     if (eventIndex === -1) return this.addGameEvent(updatedGameEvent);
 
     this.events = this.events.with(eventIndex, updatedGameEvent);
+  };
+
+  removeGameEvent = (id: GameEventId) => {
+    this.events = this.events.filter((gameEvent) => gameEvent.id !== id);
   };
 
   findGameEvent = (id: GameEventId) => this.events.find((event) => event.id === id);

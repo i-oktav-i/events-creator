@@ -9,9 +9,14 @@ import { graphContainer } from './GameEventsGraph.css';
 export type GameEventsGraphProps = {
   gameEvents: GameEvent[];
   onEventNodeClick?: (id: GameEventId) => void;
+  onEventNodeContextMenu?: (id: GameEventId) => void;
 };
 
-export const GameEventsGraph: FC<GameEventsGraphProps> = ({ gameEvents, onEventNodeClick }) => {
+export const GameEventsGraph: FC<GameEventsGraphProps> = ({
+  gameEvents,
+  onEventNodeClick,
+  onEventNodeContextMenu,
+}) => {
   const [svgAsText, setSvgAsText] = useState('');
   const graphContainerRef = useRef<HTMLDivElement>(null);
 
@@ -45,6 +50,27 @@ export const GameEventsGraph: FC<GameEventsGraphProps> = ({ gameEvents, onEventN
     nodes?.forEach((node) => node.addEventListener('click', handleClick));
 
     return () => nodes?.forEach((node) => node.removeEventListener('click', handleClick));
+  }, [svgAsText, onEventNodeClick]);
+
+  useEffect(() => {
+    if (!onEventNodeContextMenu) return;
+
+    const nodes = graphContainerRef.current?.querySelectorAll<HTMLElement>(
+      '[data-id]:not([data-id*="-"])',
+    );
+
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+      const dataId = (event.currentTarget as HTMLElement).dataset.id;
+
+      if (!dataId) return;
+
+      onEventNodeContextMenu(+dataId as GameEventId);
+    };
+
+    nodes?.forEach((node) => node.addEventListener('contextmenu', handleContextMenu));
+
+    return () => nodes?.forEach((node) => node.removeEventListener('click', handleContextMenu));
   }, [svgAsText, onEventNodeClick]);
 
   return (

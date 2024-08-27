@@ -10,6 +10,7 @@ import { listContainer } from './GameEventsList.css';
 export type GameEventsListProps = {
   gameEvents: GameEvent[];
   onClick?: (gameEvent: GameEvent) => void;
+  onContextMenu?: (gameEvent: GameEvent) => void;
   activeGameEventId?: OneOrArray<GameEventId>;
 };
 
@@ -17,6 +18,7 @@ export const GameEventsList: FC<GameEventsListProps> = ({
   gameEvents,
   activeGameEventId,
   onClick,
+  onContextMenu,
 }) => {
   const idsArray = Array.isArray(activeGameEventId) ? activeGameEventId : [activeGameEventId];
 
@@ -29,6 +31,7 @@ export const GameEventsList: FC<GameEventsListProps> = ({
             item={gameEvent}
             active={idsArray.includes(gameEvent.id)}
             onClick={() => onClick?.(gameEvent)}
+            onContextMenu={() => onContextMenu?.(gameEvent)}
           />
         </li>
       ))}

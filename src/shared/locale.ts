@@ -51,6 +51,11 @@ export const locale = {
     export: 'Сохранить игровые события',
     merge: 'Объединить игровые события',
     createNew: 'Создать новое игровое событие',
+    deleteModal: {
+      title: 'Удалить событие?',
+      submit: 'Да',
+      abort: 'Нет',
+    },
     search: {
       placeholder: 'Поиск',
       empty: 'Нет совпадений',

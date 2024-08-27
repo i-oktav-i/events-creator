@@ -10,6 +10,7 @@ export const useGameEvents = () => {
     gameEvents,
     addGameEvent: gameEventsClient.addGameEvent,
     updateGameEvent: gameEventsClient.updateGameEvent,
+    removeGameEvent: gameEventsClient.removeGameEvent,
     findGameEvent: gameEventsClient.findGameEvent,
     findGameEventAction: gameEventsClient.findGameEventAction,
     getNewEventBase: gameEventsClient.getNewEventBase,
