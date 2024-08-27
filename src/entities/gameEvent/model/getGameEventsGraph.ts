@@ -5,16 +5,18 @@ import { Dependencies, GameEvent, GameEventAction, IdsDependenciesInfo } from '.
 
 const locale = fullLocale.gameEvents.graph;
 
+const escapeQuot = (value: string) => value.replace(/"/g, '&quot;');
+
 const getItemNode = (item: GameEvent | GameEventAction, rounded?: boolean) =>
   [
     `${item.id}${rounded ? '(' : '['}"`,
-    `<p>${item.title}</p>`,
-    `<p>${item.description}</p>`,
+    escapeQuot(`<p>${item.title}</p>`),
+    escapeQuot(`<p>${item.description}</p>`),
     ...('triggerProbability' in item
-      ? [`<p class="">${locale.probability}: ${item.triggerProbability}</p>`]
+      ? [escapeQuot(`<p>${locale.probability}: ${item.triggerProbability}</p>`)]
       : []),
     `"${rounded ? ')' : ']'}`,
-  ].join('\n');
+  ].join('');
 
 const getActionsConfections = (gameEvent: GameEvent) => `
   ${gameEvent.id} --> ${gameEvent.actions.map((action) => `${action.id}`).join(' & ')}
@@ -66,7 +68,7 @@ const getGraphText = (gameEvents: GameEvent[]) => {
       const { title, dependencies, id, actions } = gameEvent;
 
       return [
-        `subgraph ${locale.event}: ${title}`,
+        `subgraph "${locale.event}: ${escapeQuot(title)}"`,
         getItemNode(gameEvent),
         actions.map((action) => getItemNode(action, true)),
         getActionsConfections(gameEvent),
@@ -85,6 +87,7 @@ const getGraphText = (gameEvents: GameEvent[]) => {
 export const getGameEventsGraph = async (gameEvents: GameEvent[], graphId: string) => {
   const graphText = getGraphText(gameEvents);
 
+  console.log('graphText', graphText);
   const { svg } = await mermaid.render(graphId, graphText);
 
   return svg;
