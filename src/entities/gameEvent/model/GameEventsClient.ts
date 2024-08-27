@@ -5,13 +5,7 @@ import {
   mergeGameEvents,
   uploadGameEvents,
 } from '../api';
-import {
-  Dependencies,
-  GameEvent,
-  GameEventActionId,
-  GameEventId,
-  IdsDependenciesInfo,
-} from '../types';
+import { GameEvent, GameEventActionId, GameEventId } from '../types';
 
 class GameEventsClient {
   #events: GameEvent[];

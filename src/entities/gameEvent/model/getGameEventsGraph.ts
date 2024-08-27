@@ -7,13 +7,13 @@ const locale = fullLocale.gameEvents.graph;
 
 const getItemNode = (item: GameEvent | GameEventAction, rounded?: boolean) =>
   [
-    `${item.id}${rounded ? '(' : '['}`,
+    `${item.id}${rounded ? '(' : '['}"`,
     `<p>${item.title}</p>`,
     `<p>${item.description}</p>`,
     ...('triggerProbability' in item
       ? [`<p class="">${locale.probability}: ${item.triggerProbability}</p>`]
       : []),
-    rounded ? ')' : ']',
+    `"${rounded ? ')' : ']'}`,
   ].join('\n');
 
 const getActionsConfections = (gameEvent: GameEvent) => `

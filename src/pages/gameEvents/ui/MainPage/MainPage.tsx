@@ -10,7 +10,6 @@ import {
 } from '@features/gameEvent';
 import { locale } from '@shared/locale';
 
-import { Modal } from '@shared/ui';
 import { ConfirmDeleteGameEvent } from '@widgets/gameEvent';
 import { mainPageContainer } from './MainPage.css';
 
