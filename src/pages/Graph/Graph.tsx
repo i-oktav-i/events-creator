@@ -9,6 +9,8 @@ import { formContainer, fullSizeContainer, pageContainer } from './Graph.css';
 
 mermaid.initialize({ theme: appThemeService.currentTheme.toLowerCase() });
 
+const wheelConfig = { step: 0.01 };
+
 export const GraphPage: FC = () => {
   const [editingGameEvent, setEditingGameEvent] = useState<GameEvent | null>(null);
 
@@ -31,7 +33,14 @@ export const GraphPage: FC = () => {
 
   return (
     <div className={pageContainer}>
-      <TransformWrapper maxScale={Infinity} centerOnInit smooth={false} centerZoomedOut>
+      <TransformWrapper
+        minScale={wheelConfig.step}
+        maxScale={Infinity}
+        centerOnInit
+        smooth={false}
+        centerZoomedOut
+        wheel={wheelConfig}
+      >
         <TransformComponent wrapperClass={fullSizeContainer} contentClass={fullSizeContainer}>
           <GameEventsGraph gameEvents={gameEvents} onEventNodeClick={onEventNodeClick} />
         </TransformComponent>
